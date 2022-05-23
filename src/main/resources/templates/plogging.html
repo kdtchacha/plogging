@@ -5,6 +5,15 @@
 
 <body>
     <h1>😀강문범님, 플로깅사이트에 오신 걸 환영합니다😀</h1>
+
+
+    <ul class="nav navbar-nav navbar-right">
+        <li><a th:href="@{/signout}" th:if="${session.user != null}"><span class="glyphicon glyphicon-log-in"></span> [[${session.user.nickname}]]님 환영합니다😊 Logout</a></li>
+        <li><a th:href="@{/sign}" th:unless="${session.user != null}"><span class="glyphicon glyphicon-log-out"></span> Login</a></li>
+
+
+      </ul>
+
 </body>
 
 </html>

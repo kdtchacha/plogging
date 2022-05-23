@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class PloggingController {
-    @RequestMapping("/comon")
+    @RequestMapping("/comeon")
     public String plogging() {
         return "plogging";
     }
