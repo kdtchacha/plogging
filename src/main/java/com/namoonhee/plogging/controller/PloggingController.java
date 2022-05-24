@@ -11,8 +11,6 @@ public class PloggingController {
         return "plogging";
     }
 
-
-
     @GetMapping("/index")
     public String index() {
         return "indextemp";
