@@ -9,4 +9,8 @@ public interface UserService {
     public void signup(User user);
 
     public Optional<User> signin(User user);
+
+    public User userCheck(String email);
+
+    public void deleteAccount(User user);
 }
