@@ -1,6 +1,5 @@
 package com.namoonhee.plogging.controller;
 
-
 import java.util.Optional;
 
 import javax.servlet.http.HttpSession;
@@ -15,12 +14,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-
-
 @Controller
 public class UserController {
 
-    @Autowired 
+    @Autowired
     UserService userService;
 
     @GetMapping("/signin")
@@ -30,17 +27,16 @@ public class UserController {
 
     @PostMapping("/signup")
     public String signup(@ModelAttribute User user) {
-        
-    userService.signup(user);
+
+        userService.signup(user);
 
         return "redirect:/index";
     }
-    
 
     @PostMapping("/signin")
     public String signin(@ModelAttribute User user, HttpSession httpSession) {
 
-        Optional<User> opt= userService.signin(user);
+        Optional<User> opt = userService.signin(user);
 
         httpSession.setAttribute("user", opt.get());
 
@@ -53,7 +49,7 @@ public class UserController {
         httpSession.invalidate();
 
         return "redirect:/index";
-        
+
     }
 
     @GetMapping("/user/check")
@@ -61,9 +57,7 @@ public class UserController {
     public User userCheck(String email) {
         User user = userService.userCheck(email);
         return user;
-        
+
     }
 
-    
 }
-
