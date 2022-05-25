@@ -1,5 +1,7 @@
 package com.namoonhee.plogging.model;
 
+import java.util.Date;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -20,6 +22,7 @@ public class Activity {
     String startTime;
     String endTime;
 
+    Date createDate;
 
 
     @ManyToOne
