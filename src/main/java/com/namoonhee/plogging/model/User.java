@@ -1,9 +1,13 @@
 package com.namoonhee.plogging.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 import lombok.Data;
 
@@ -17,5 +21,6 @@ public class User {
     String pwd;
     String nickname;
 
-    
+    @OneToMany(mappedBy = "user")
+    List<Activity> activities = new ArrayList<>();
 }
