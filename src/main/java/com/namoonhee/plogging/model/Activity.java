@@ -24,6 +24,7 @@ public class Activity {
 
     Date createDate;
 
+    int progress;
 
     @ManyToOne
     User user;
