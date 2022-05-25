@@ -29,7 +29,7 @@ public class ActivityController {
 
 
     @PostMapping("/activity/start")
-    public String activityCreate(Activity act, HttpSession session) {
+    public String activityStart(Activity act, HttpSession session) {
 
         User user = (User) session.getAttribute("user");
 
@@ -38,6 +38,22 @@ public class ActivityController {
         actRepository.save(act);
 
         return "redirect:/activityform";
+    }
+
+
+    @PostMapping("/activity/end")
+    public String activityEnd() {
+
+        
+        return "redirect:/activityform";
+    }
+
+
+    @PostMapping("/activity/confirm")
+    public String activityConfirm() {
+
+
+        return "";
     }
 
 }
