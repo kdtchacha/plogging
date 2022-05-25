@@ -21,7 +21,7 @@ body {
   }
 
   .jumbotron {
-    background-color: #f4511e;
+    background-color: yellow;
     color: #fff;
     padding: 100px 25px;
     font-family: Montserrat, sans-serif;
@@ -60,11 +60,11 @@ body {
   .carousel-control.right,
   .carousel-control.left {
     background-image: none;
-    color: #f4511e;
+    color: yellow;
   }
 
   .carousel-indicators li {
-    border-color: #f4511e;
+    border-color: yellow;
   }
 
   .carousel-indicators li.active {
@@ -131,7 +131,7 @@ body {
 
   .navbar {
     margin-bottom: 0;
-    background-color: #f4511e;
+    background-color: yellow;
     z-index: 9999;
     border: 0;
     font-size: 12px !important;
