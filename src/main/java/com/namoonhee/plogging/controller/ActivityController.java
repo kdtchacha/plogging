@@ -2,6 +2,7 @@ package com.namoonhee.plogging.controller;
 
 import java.util.Date;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import com.namoonhee.plogging.model.Activity;
@@ -12,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class ActivityController {
@@ -24,6 +26,19 @@ public class ActivityController {
     @GetMapping("/activityform")
     public String actForm() {
         return "activityform";
+    }
+
+    @ResponseBody
+    @PostMapping("/act/time")
+    public String actTimeTest(HttpServletRequest req){
+    
+       String a = req.getParameter("mintime");
+       String b = req.getParameter("sectime");
+        
+        System.out.println(a);
+        System.out.println(b);
+        
+        return "aaa";
     }
 
 
@@ -41,10 +56,10 @@ public class ActivityController {
     }
 
 
-    @PostMapping("/activity/end")
-    public String activityEnd() {
+    @PostMapping("/activity/pause")
+    public String activityPause() {
 
-        
+
         return "redirect:/activityform";
     }
 
