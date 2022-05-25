@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,9 +10,135 @@
 
 <body>
 
-    
+    <div>
+        <div>
+            <span id="postTestMin">00</span><!-- 분 -->
+            <span>:</span>
+            <span id="postTestSec">00</span>
+            <!--초-->
+            <span>.</span>
+            <span id="postTestMilisec">00</span>
+            <!--밀리초-->
+        </div>
+        <div>
+            <ul id="testRecordList"></ul>
+            <!--중간 기록할 리스트-->
+        </div>
+        <div> <button type="button" id="testStartBtn">START</button>
+            <!--시작/재시작/기록 버튼-->
+            <button type="button" id="testStopBtn">STOP</button>
+            <!--스톱 버튼-->
+        </div>
+
+        <div>
+            <button type="button" id="timedb">DB에저장</button>
+        </div>
+
+    </div>
+
+
 
 </body>
+
+
+<script>
+    var stTime = 0
+    var endTime = 0
+    var timerStart
+    var min
+    var sec
+    var milisec
+    var startBtn = document.getElementById('testStartBtn')
+    var stopBtn = document.getElementById('testStopBtn')
+    var recordList = document.getElementById('testRecordList')
+    startBtn.addEventListener('click', function () {
+        // RECORD
+        if (this.innerText == 'RECORD' && milisec) {
+            console.log(min, sec, milisec)
+            var li = document.createElement('li')
+            li.style.color = "#fff"
+            li.innerText = min + ' : ' + sec + ' : ' + milisec
+            if (!recordList.firstChild) {
+                recordList.append(li)
+            } else {
+                recordList.insertBefore(li, recordList.firstChild)
+            }
+            return false
+        }
+        this.innerText = 'RECORD'
+
+        if (!stTime) {
+            stTime = Date.now() // 최초 START 
+        } else {
+            stopBtn.innerText = 'STOP'
+            stTime += (Date.now() - endTime)	// RESTART   
+        }
+        timerStart = setInterval(function () {
+            var nowTime = new Date(Date.now() - stTime)
+            min = addZero(nowTime.getMinutes())
+            sec = addZero(nowTime.getSeconds())
+            milisec = addZero(Math.floor(nowTime.getMilliseconds() / 10))
+            document.getElementById('postTestMin').innerText = min
+            document.getElementById('postTestSec').innerText = sec
+            document.getElementById('postTestMilisec').innerText = milisec
+        }, 1)
+    })
+
+    stopBtn.addEventListener('click', function () {
+        if (timerStart) {
+            clearInterval(timerStart)	// STOP  
+            if (this.innerText == 'STOP') {
+                endTime = Date.now()
+                this.innerText = 'RESET'
+                startBtn.innerText = 'RESTART'
+            } else {	// RESET       
+                stTime = 0
+                min = 0
+                sec = 0
+                milisec = 0
+                document.getElementById('postTestMin').innerText = '00'
+                document.getElementById('postTestSec').innerText = '00'
+                document.getElementById('postTestMilisec').innerText = '00'
+                startBtn.innerText = 'START'
+                this.innerText = 'STOP'
+                timerStart = null
+                recordList.innerHTML = ''
+            }
+        }
+    })
+    function addZero(num) {
+        return (num < 10 ? '0' + num : '' + num)
+    }
+
+</script>
+
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script>
+    const mintime = document.getElementById("postTestMin").innerText;
+    const sectime = document.getElementById("postTestSec").innerText;
+
+    console.log(mintime);
+    console.log(sectime);
+
+    const a = document.getElementById("timedb");
+    a.addEventListener("click", () => {
+        const formData = new FormData();
+        formData.append('mintime', mintime);
+        formData.append('sectime', sectime);
+        const data = axios({
+            url: 'act/time',
+            method: 'post',
+            data: formData
+        });
+        data.then(function (result) {
+            console.log(result.data);
+        });
+
+
+
+    })
+
+</script>
 
 
 </html>
