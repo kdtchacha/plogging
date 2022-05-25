@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <table border="1" width="300px" height="100px">
+        <tr>
+            <td id="c1" style="background-color: aqua;"></td>
+            <td id="c2" style="background-color: blueviolet;"></td>
+            <td id="c3" style="background-color: brown;"></td>
+        </tr>
+    </table>
+    <br>
+    <table border="1" width="100px" height="100px">
+        <tr>
+            <td id="cc" style="background-color:white;"></td>
+        </tr>
+    </table>
+    <br>
+    <hr><br>
+    <div>
+        <p>choice color : <input id="pick" type="text"></p>
+    </div>
+    <div>
+        <input id="copy" type="text">
+    </div>
+
+</body>
+
+<script>
+
+    const a = document.getElementById("pick")
+
+    a.addEventListener("input", () => {
+        const b = document.querySelector("#pick").value
+        const c = document.getElementById(b).style.backgroundColor
+
+        document.getElementById("cc").style.backgroundColor = c
+
+    });
+
+    a.addEventListener("input", () => {
+        const bb = document.querySelector("#pick").value
+
+        document.getElementById("copy").value = bb
+
+    });
+
+</script>
+
+
+
+
+</html>
