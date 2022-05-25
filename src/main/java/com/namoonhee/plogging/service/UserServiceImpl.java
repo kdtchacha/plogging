@@ -2,6 +2,8 @@ package com.namoonhee.plogging.service;
 
 import java.util.Optional;
 
+import javax.transaction.Transactional;
+
 import com.namoonhee.plogging.model.User;
 import com.namoonhee.plogging.repository.UserRepository;
 
@@ -35,8 +37,9 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
+    @Transactional
     public void deleteAccount(User user) {
-        userRepository.deleteByEmail(user.getEmail());
+        userRepository.deleteByEmailAndPwd(user.getEmail(), user.getPwd());
         
     }
     
