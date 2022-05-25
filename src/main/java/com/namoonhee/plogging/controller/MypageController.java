@@ -26,8 +26,14 @@ public class MypageController {
         
     }
 
+    @GetMapping(value = "/deleteaccount")
+    public String deleteAccountForm() {
+        return "deleteaccount";
+        
+    }
+
     @PostMapping(value = "/deleteaccount")
-    public String deleteAcc(@ModelAttribute User user, HttpSession httpSession, Model model) {
+    public String deleteAccount(@ModelAttribute User user, HttpSession httpSession, Model model) {
 
        Optional<User> opt = userService.signin(user);
 
