@@ -16,43 +16,43 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class MypageController {
-    
+
     @Autowired
     UserService userService;
 
     @GetMapping(value = "/mypage")
     public String mypage() {
         return "mypage";
-        
+
     }
 
     @GetMapping(value = "/deleteaccount")
     public String deleteAccountForm() {
         return "deleteaccount";
-        
+
     }
 
     @PostMapping(value = "/deleteaccount")
     public String deleteAccount(@ModelAttribute User user, HttpSession httpSession, Model model) {
 
-       Optional<User> opt = userService.signin(user);
+        Optional<User> opt = userService.signin(user);
 
-       String redir = "";
+        String redir = "";
 
-       if(opt.isPresent()) {
-           
-        userService.deleteAccount(user);
-        httpSession.invalidate();
-        model.addAttribute("deleteaccount_result", "success");
-        redir = "indextemp";
+        if (opt.isPresent()) {
 
-       }else{
-           model.addAttribute("deleteaccount_result","fail");
-           
-           redir = "mypage";
-       }
-        
-       return redir;
+            userService.deleteAccount(user);
+            httpSession.invalidate();
+            model.addAttribute("deleteaccount_result", "success");
+            redir = "indextemp";
+
+        } else {
+            model.addAttribute("deleteaccount_result", "fail");
+
+            redir = "mypage";
+        }
+
+        return redir;
     }
 
 }

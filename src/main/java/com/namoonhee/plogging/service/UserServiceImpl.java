@@ -11,7 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class UserServiceImpl implements UserService{
+public class UserServiceImpl implements UserService {
 
     @Autowired
     UserRepository userRepository;
@@ -19,14 +19,14 @@ public class UserServiceImpl implements UserService{
     @Override
     public void signup(User user) {
         userRepository.save(user);
-        
+
     }
 
     @Override
     public Optional<User> signin(User user) {
-        
+
         Optional<User> opt = userRepository.findByEmailAndPwd(user.getEmail(), user.getPwd());
-        
+
         return opt;
     }
 
@@ -40,7 +40,7 @@ public class UserServiceImpl implements UserService{
     @Transactional
     public void deleteAccount(User user) {
         userRepository.deleteByEmailAndPwd(user.getEmail(), user.getPwd());
-        
+
     }
-    
+
 }

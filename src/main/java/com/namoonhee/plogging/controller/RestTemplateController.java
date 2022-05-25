@@ -14,33 +14,32 @@ import org.springframework.web.client.RestTemplate;
 
 @RestController
 public class RestTemplateController {
-    
-    @GetMapping("/navernews")
-    public ResponseEntity<Map> getNaver(
-        String query) {
-      RestTemplate rt = new RestTemplate();
-      RequestEntity requestEntity = null;
-      try {
-        requestEntity = RequestEntity
-            .get(
+
+  @GetMapping("/navernews")
+  public ResponseEntity<Map> getNaver(
+      String query) {
+    RestTemplate rt = new RestTemplate();
+    RequestEntity requestEntity = null;
+    try {
+      requestEntity = RequestEntity
+          .get(
               new URI(
-              "https://openapi.naver.com/v1/search/news?query=" + 
-                        URLEncoder.encode(query, "utf-8")))
-            .header("X-Naver-Client-Id", "luTWH2TgUj6WT_cIta1i")
-            .header("X-Naver-Client-Secret", "DilYy6o8IQ")
-            .build();
-            
-      } catch (UnsupportedEncodingException e) {
-        e.printStackTrace();
-      } catch (URISyntaxException e) {
-        e.printStackTrace();
-      }
-      ResponseEntity<Map> entity = rt.exchange(requestEntity, Map.class);
-      
-      System.out.println(entity.getBody());
-      
-      return entity;
+                  "https://openapi.naver.com/v1/search/news?query=" +
+                      URLEncoder.encode(query, "utf-8")))
+          .header("X-Naver-Client-Id", "luTWH2TgUj6WT_cIta1i")
+          .header("X-Naver-Client-Secret", "DilYy6o8IQ")
+          .build();
+
+    } catch (UnsupportedEncodingException e) {
+      e.printStackTrace();
+    } catch (URISyntaxException e) {
+      e.printStackTrace();
     }
-  
+    ResponseEntity<Map> entity = rt.exchange(requestEntity, Map.class);
+
+    System.out.println(entity.getBody());
+
+    return entity;
+  }
 
 }
