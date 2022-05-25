@@ -16,7 +16,7 @@ import org.springframework.web.client.RestTemplate;
 public class RestTemplateController {
     
     @GetMapping("/navernews")
-    public ResponseEntity<Map> getNaverRoma(
+    public ResponseEntity<Map> getNaver(
         String query) {
       RestTemplate rt = new RestTemplate();
       RequestEntity requestEntity = null;
