@@ -6,7 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-
+import javax.persistence.OneToMany;
 
 import lombok.Data;
 
@@ -19,12 +19,17 @@ public class Activity {
     Long id;
 
 
-    String startTime;
-    String endTime;
+    String actName;
+
+    String actTime;
+
+    String actDistance;
+
 
     Date createDate;
 
-    int progress;
+    
+
 
     @ManyToOne
     User user;

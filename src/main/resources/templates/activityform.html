@@ -114,14 +114,13 @@
 
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script>
-    const mintime = document.getElementById("postTestMin").innerText;
-    const sectime = document.getElementById("postTestSec").innerText;
-
-    console.log(mintime);
-    console.log(sectime);
-
+    
     const a = document.getElementById("timedb");
     a.addEventListener("click", () => {
+        const mintime = document.getElementById("postTestMin").innerText;
+        const sectime = document.getElementById("postTestSec").innerText;
+        console.log(mintime);
+        console.log(sectime);
         const formData = new FormData();
         formData.append('mintime', mintime);
         formData.append('sectime', sectime);
@@ -129,14 +128,14 @@
             url: 'act/time',
             method: 'post',
             data: formData
+        })
+        .then(function (result) {
+            console.log(result);
+        })
+        .catch(function (error) {
+            console.log(error.message);
         });
-        data.then(function (result) {
-            console.log(result.data);
-        });
-
-
-
-    })
+    });
 
 </script>
 
