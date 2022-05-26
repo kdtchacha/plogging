@@ -3,14 +3,138 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
 
-<body>
+<!-- 지도 스타일 -->
+<style>
+    html,
+        body {
+            width: 600px;
+            height: 350px;
+            margin: 0;
+            padding: 0;
+        }
+    /* <!-- 선의 거리 계산하기--> */
+    .dot {
+        overflow: hidden;
+        float: left;
+        width: 12px;
+        height: 12px;
+        background: url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/mini_circle.png');
+    }
 
-    <div>
+    .dotOverlay {
+        position: relative;
+        bottom: 10px;
+        border-radius: 6px;
+        border: 1px solid #ccc;
+        border-bottom: 2px solid #ddd;
+        float: left;
+        font-size: 12px;
+        padding: 5px;
+        background: #fff;
+    }
+
+    .dotOverlay:nth-of-type(n) {
+        border: 0;
+        box-shadow: 0px 1px 2px #888;
+    }
+
+    .number {
+        font-weight: bold;
+        color: #ee6152;
+    }
+
+    .dotOverlay:after {
+        content: '';
+        position: absolute;
+        margin-left: -6px;
+        left: 50%;
+        bottom: -8px;
+        width: 11px;
+        height: 8px;
+        background: url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/vertex_white_small.png')
+    }
+
+    .distanceInfo {
+        position: relative;
+        top: 5px;
+        left: 5px;
+        list-style: none;
+        margin: 0;
+    }
+
+    .distanceInfo .label {
+        display: inline-block;
+        width: 50px;
+    }
+
+    .distanceInfo:after {
+        content: none;
+    }
+
+    .label {
+        color: #888;
+        font-size: 12px;
+    }
+
+    /* Drawing undo, redo */
+    .map_wrap {
+        width: 100%;
+        position: relative;
+    }
+
+    .modes {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        z-index: 1;
+    }
+
+    .edit {
+        position: absolute;
+        top: 62px;
+        left: 10px;
+        z-index: 1;
+    }
+
+    #mapOption {
+        width: 100%;
+        height: 150px;
+    }
+
+    #undo.disabled,
+    #redo.disabled {
+        background-color: #ddd;
+        color: #9e9e9e;
+    }
+</style>
+
+
+<body>
+    <br><br>
+
+        <p style="margin-top:-12px"><b>나의 플로깅 맵</b></p>
+        <div id="map" style="width:100%; height:100%; position:relative; overflow:hidden;"></div>
+
+        /* Drawing undo, redo */
+        <div class="map_wrap">
+            <div id="mapOption"></div>
+            <p class="modes">
+                <button onclick="selectOverlay('MARKER')">마커</button>
+                <button onclick="selectOverlay('POLYLINE')">선</button>
+                <button onclick="selectOverlay('CIRCLE')">원</button>
+                <button onclick="selectOverlay('RECTANGLE')">사각형</button>
+                <button onclick="selectOverlay('POLYGON')">다각형</button>
+            </p>
+            <p class="edit">
+                <button id="undo" class="disabled" onclick="undo()" disabled>UNDO</button>
+                <button id="redo" class="disabled" onclick="redo()" disabled>REDO</button>
+            </p>
+        </div><hr>
+
+    <div class="stopwatch">
         <div>
             <span id="postTestMin">00</span><!-- 분 -->
             <span>:</span>
@@ -30,6 +154,11 @@
             <!--스톱 버튼-->
         </div>
 
+
+        <div>
+            <p> 활동 이름 : <input id="actname" type="text"></p>
+        </div>
+
         <div>
             <button type="button" id="timedb">DB에저장</button>
             <!-- id속성에 timedb 값을 설정  -->
@@ -39,7 +168,454 @@
 
 
 
-</body>
+
+<!-- 지도 스크립트 -->
+<script type="text/javascript"
+    src="//dapi.kakao.com/v2/maps/sdk.js?appkey=2be20ca0a50df1e82e1ef6c4f832ca69&libraries=drawing"></script>
+<script>
+
+    var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+        mapOption = {
+            center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+            level: 6 // 지도의 확대 레벨 
+        };
+
+    var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+    redo
+
+    // HTML5의 geolocation으로 사용할 수 있는지 확인합니다 
+    if (navigator.geolocation) {
+
+        // GeoLocation을 이용해서 접속 위치를 얻어옵니다
+        navigator.geolocation.getCurrentPosition(function (position) {
+
+            var lat = position.coords.latitude, // 위도
+                lon = position.coords.longitude; // 경도
+
+            var locPosition = new kakao.maps.LatLng(lat, lon), // 마커가 표시될 위치를 geolocation으로 얻어온 좌표로 생성합니다
+                message = '<div style="padding:5px;">여기에 계신가요?!</div>'; // 인포윈도우에 표시될 내용입니다
+
+            // 마커와 인포윈도우를 표시합니다
+            displayMarker(locPosition, message);
+
+        });
+
+    } else { // HTML5의 GeoLocation을 사용할 수 없을때 마커 표시 위치와 인포윈도우 내용을 설정합니다
+
+        var locPosition = new kakao.maps.LatLng(33.450701, 126.570667),
+            message = 'geolocation을 사용할수 없어요..'
+
+        displayMarker(locPosition, message);
+    }
+
+    // 지도에 마커와 인포윈도우를 표시하는 함수입니다
+    function displayMarker(locPosition, message) {
+
+        // 마커를 생성합니다
+        var marker = new kakao.maps.Marker({
+            map: map,
+            position: locPosition
+        });
+
+        var iwContent = message, // 인포윈도우에 표시할 내용
+            iwRemoveable = true;
+
+        // 인포윈도우를 생성합니다
+        var infowindow = new kakao.maps.InfoWindow({
+            content: iwContent,
+            removable: iwRemoveable
+        });
+
+        // 인포윈도우를 마커위에 표시합니다 
+        infowindow.open(map, marker);
+
+        // 지도 중심좌표를 접속위치로 변경합니다
+        map.setCenter(locPosition);
+    }
+
+
+
+
+    // 지도 확대, 축소 콘트롤 
+
+
+    // 일반 지도와 스카이뷰로 지도 타입을 전환할 수 있는 지도타입 컨트롤을 생성합니다
+    var mapTypeControl = new kakao.maps.MapTypeControl();
+
+    // 지도에 컨트롤을 추가해야 지도위에 표시됩니다
+    // kakao.maps.ControlPosition은 컨트롤이 표시될 위치를 정의하는데 TOPRIGHT는 오른쪽 위를 의미합니다
+    map.addControl(mapTypeControl, kakao.maps.ControlPosition.TOPRIGHT);
+
+    // 지도 확대 축소를 제어할 수 있는  줌 컨트롤을 생성합니다
+    var zoomControl = new kakao.maps.ZoomControl();
+    map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
+
+
+
+
+
+    // 선그리기
+
+    var drawingFlag = false; // 선이 그려지고 있는 상태를 가지고 있을 변수입니다
+    var moveLine; // 선이 그려지고 있을때 마우스 움직임에 따라 그려질 선 객체 입니다
+    var clickLine // 마우스로 클릭한 좌표로 그려질 선 객체입니다
+    var distanceOverlay; // 선의 거리정보를 표시할 커스텀오버레이 입니다
+    var dots = {}; // 선이 그려지고 있을때 클릭할 때마다 클릭 지점과 거리를 표시하는 커스텀 오버레이 배열입니다.
+
+    // 지도에 클릭 이벤트를 등록합니다
+    // 지도를 클릭하면 선 그리기가 시작됩니다 그려진 선이 있으면 지우고 다시 그립니다
+    kakao.maps.event.addListener(map, 'click', function (mouseEvent) {
+
+        // 마우스로 클릭한 위치입니다 
+        var clickPosition = mouseEvent.latLng;
+
+        // 지도 클릭이벤트가 발생했는데 선을 그리고있는 상태가 아니면
+        if (!drawingFlag) {
+
+            // 상태를 true로, 선이 그리고있는 상태로 변경합니다
+            drawingFlag = true;
+
+            // 지도 위에 선이 표시되고 있다면 지도에서 제거합니다
+            deleteClickLine();
+
+            // 지도 위에 커스텀오버레이가 표시되고 있다면 지도에서 제거합니다
+            deleteDistnce();
+
+            // 지도 위에 선을 그리기 위해 클릭한 지점과 해당 지점의 거리정보가 표시되고 있다면 지도에서 제거합니다
+            deleteCircleDot();
+
+            // 클릭한 위치를 기준으로 선을 생성하고 지도위에 표시합니다
+            clickLine = new kakao.maps.Polyline({
+                map: map, // 선을 표시할 지도입니다 
+                path: [clickPosition], // 선을 구성하는 좌표 배열입니다 클릭한 위치를 넣어줍니다
+                strokeWeight: 3, // 선의 두께입니다 
+                strokeColor: '#db4040', // 선의 색깔입니다
+                strokeOpacity: 1, // 선의 불투명도입니다 0에서 1 사이값이며 0에 가까울수록 투명합니다
+                strokeStyle: 'solid' // 선의 스타일입니다
+            });
+
+            // 선이 그려지고 있을 때 마우스 움직임에 따라 선이 그려질 위치를 표시할 선을 생성합니다
+            moveLine = new kakao.maps.Polyline({
+                strokeWeight: 3, // 선의 두께입니다 
+                strokeColor: '#db4040', // 선의 색깔입니다
+                strokeOpacity: 0.5, // 선의 불투명도입니다 0에서 1 사이값이며 0에 가까울수록 투명합니다
+                strokeStyle: 'solid' // 선의 스타일입니다    
+            });
+
+            // 클릭한 지점에 대한 정보를 지도에 표시합니다
+            displayCircleDot(clickPosition, 0);
+
+
+        } else { // 선이 그려지고 있는 상태이면
+
+            // 그려지고 있는 선의 좌표 배열을 얻어옵니다
+            var path = clickLine.getPath();
+
+            // 좌표 배열에 클릭한 위치를 추가합니다
+            path.push(clickPosition);
+
+            // 다시 선에 좌표 배열을 설정하여 클릭 위치까지 선을 그리도록 설정합니다
+            clickLine.setPath(path);
+
+            var distance = Math.round(clickLine.getLength());
+            displayCircleDot(clickPosition, distance);
+        }
+    });
+
+    // 지도에 마우스무브 이벤트를 등록합니다
+    // 선을 그리고있는 상태에서 마우스무브 이벤트가 발생하면 그려질 선의 위치를 동적으로 보여주도록 합니다
+    kakao.maps.event.addListener(map, 'mousemove', function (mouseEvent) {
+
+        // 지도 마우스무브 이벤트가 발생했는데 선을 그리고있는 상태이면
+        if (drawingFlag) {
+
+            // 마우스 커서의 현재 위치를 얻어옵니다 
+            var mousePosition = mouseEvent.latLng;
+
+            // 마우스 클릭으로 그려진 선의 좌표 배열을 얻어옵니다
+            var path = clickLine.getPath();
+
+            // 마우스 클릭으로 그려진 마지막 좌표와 마우스 커서 위치의 좌표로 선을 표시합니다
+            var movepath = [path[path.length - 1], mousePosition];
+            moveLine.setPath(movepath);
+            moveLine.setMap(map);
+
+            var distance = Math.round(clickLine.getLength() + moveLine.getLength()), // 선의 총 거리를 계산합니다
+                content = '<div class="dotOverlay distanceInfo">총거리 <span class="number">' + distance + '</span>m</div>'; // 커스텀오버레이에 추가될 내용입니다
+
+            // 거리정보를 지도에 표시합니다
+            showDistance(content, mousePosition);
+        }
+    });
+
+    // 지도에 마우스 오른쪽 클릭 이벤트를 등록합니다
+    // 선을 그리고있는 상태에서 마우스 오른쪽 클릭 이벤트가 발생하면 선 그리기를 종료합니다
+    kakao.maps.event.addListener(map, 'rightclick', function (mouseEvent) {
+
+        // 지도 오른쪽 클릭 이벤트가 발생했는데 선을 그리고있는 상태이면
+        if (drawingFlag) {
+
+            // 마우스무브로 그려진 선은 지도에서 제거합니다
+            moveLine.setMap(null);
+            moveLine = null;
+
+            // 마우스 클릭으로 그린 선의 좌표 배열을 얻어옵니다
+            var path = clickLine.getPath();
+
+            // 선을 구성하는 좌표의 개수가 2개 이상이면
+            if (path.length > 1) {
+
+                // 마지막 클릭 지점에 대한 거리 정보 커스텀 오버레이를 지웁니다
+                if (dots[dots.length - 1].distance) {
+                    dots[dots.length - 1].distance.setMap(null);
+                    dots[dots.length - 1].distance = null;
+                }
+
+                var distance = Math.round(clickLine.getLength()), // 선의 총 거리를 계산합니다
+                    content = getTimeHTML(distance); // 커스텀오버레이에 추가될 내용입니다
+
+                // 그려진 선의 거리정보를 지도에 표시합니다
+                showDistance(content, path[path.length - 1]);
+
+            } else {
+
+                // 선을 구성하는 좌표의 개수가 1개 이하이면 
+                // 지도에 표시되고 있는 선과 정보들을 지도에서 제거합니다.
+                deleteClickLine();
+                deleteCircleDot();
+                deleteDistnce();
+
+            }
+
+            // 상태를 false로, 그리지 않고 있는 상태로 변경합니다
+            drawingFlag = false;
+        }
+    });
+
+    // 클릭으로 그려진 선을 지도에서 제거하는 함수입니다
+    function deleteClickLine() {
+        if (clickLine) {
+            clickLine.setMap(null);
+            clickLine = null;
+        }
+    }
+
+    // 마우스 드래그로 그려지고 있는 선의 총거리 정보를 표시하거
+    // 마우스 오른쪽 클릭으로 선 그리가 종료됐을 때 선의 정보를 표시하는 커스텀 오버레이를 생성하고 지도에 표시하는 함수입니다
+    function showDistance(content, position) {
+
+        if (distanceOverlay) { // 커스텀오버레이가 생성된 상태이면
+
+            // 커스텀 오버레이의 위치와 표시할 내용을 설정합니다
+            distanceOverlay.setPosition(position);
+            distanceOverlay.setContent(content);
+
+        } else { // 커스텀 오버레이가 생성되지 않은 상태이면
+
+            // 커스텀 오버레이를 생성하고 지도에 표시합니다
+            distanceOverlay = new kakao.maps.CustomOverlay({
+                map: map, // 커스텀오버레이를 표시할 지도입니다
+                content: content,  // 커스텀오버레이에 표시할 내용입니다
+                position: position, // 커스텀오버레이를 표시할 위치입니다.
+                xAnchor: 0,
+                yAnchor: 0,
+                zIndex: 3
+            });
+        }
+    }
+
+    // 그려지고 있는 선의 총거리 정보와 
+    // 선 그리가 종료됐을 때 선의 정보를 표시하는 커스텀 오버레이를 삭제하는 함수입니다
+    function deleteDistnce() {
+        if (distanceOverlay) {
+            distanceOverlay.setMap(null);
+            distanceOverlay = null;
+        }
+    }
+
+    // 선이 그려지고 있는 상태일 때 지도를 클릭하면 호출하여 
+    // 클릭 지점에 대한 정보 (동그라미와 클릭 지점까지의 총거리)를 표출하는 함수입니다
+    function displayCircleDot(position, distance) {
+
+        // 클릭 지점을 표시할 빨간 동그라미 커스텀오버레이를 생성합니다
+        var circleOverlay = new kakao.maps.CustomOverlay({
+            content: '<span class="dot"></span>',
+            position: position,
+            zIndex: 1
+        });
+
+        // 지도에 표시합니다
+        circleOverlay.setMap(map);
+
+        if (distance > 0) {
+            // 클릭한 지점까지의 그려진 선의 총 거리를 표시할 커스텀 오버레이를 생성합니다
+            var distanceOverlay = new kakao.maps.CustomOverlay({
+                content: '<div class="dotOverlay">거리 <span class="number">' + distance + '</span>m</div>',
+                position: position,
+                yAnchor: 1,
+                zIndex: 2
+            });
+
+            // 지도에 표시합니다
+            distanceOverlay.setMap(map);
+        }
+
+        // 배열에 추가합니다
+        dots.push({ circle: circleOverlay, distance: distanceOverlay });
+    }
+
+    // 클릭 지점에 대한 정보 (동그라미와 클릭 지점까지의 총거리)를 지도에서 모두 제거하는 함수입니다
+    function deleteCircleDot() {
+        var i;
+
+        for (i = 0; i < dots.length; i++) {
+            if (dots[i].circle) {
+                dots[i].circle.setMap(null);
+            }
+
+            if (dots[i].distance) {
+                dots[i].distance.setMap(null);
+            }
+        }
+
+        dots = [];
+    }
+
+    // 마우스 우클릭 하여 선 그리기가 종료됐을 때 호출하여 
+    // 그려진 선의 총거리 정보와 거리에 대한 도보, 자전거 시간을 계산하여
+    // HTML Content를 만들어 리턴하는 함수입니다
+    function getTimeHTML(distance) {
+
+        // 도보의 시속은 평균 4km/h 이고 도보의 분속은 67m/min입니다
+        var walkkTime = distance / 67 | 0;
+        var walkHour = '', walkMin = '';
+
+        // 계산한 도보 시간이 60분 보다 크면 시간으로 표시합니다
+        if (walkkTime > 60) {
+            walkHour = '<span class="number">' + Math.floor(walkkTime / 60) + '</span>시간 '
+        }
+        walkMin = '<span class="number">' + walkkTime % 60 + '</span>분'
+
+
+        //조깅의 시속은 평균 8km/h 이고. 조깅의 분속은 133m/min 입니다.
+        var joggingTime = distance / 133 | 0;
+        var joggingHour = '', joggingMin = '';
+
+        // 계산한 조깅의 시간이 60분보다 크면 시간으로 표시합니다. 
+        if (joggingTime > 60) {
+            joggingHour = '<span class="number">' + Math.floor(joggingTime / 60) + '</span>시간'
+        }
+        joggingMin = '<span class="number">' + joggingTime % 60 + '</span>분'
+
+
+        // 자전거의 평균 시속은 16km/h 이고 이것을 기준으로 자전거의 분속은 267m/min입니다
+        // var bycicleTime = distance / 227 | 0;
+        // var bycicleHour = '', bycicleMin = '';
+
+        // 계산한 자전거 시간이 60분 보다 크면 시간으로 표출합니다
+        // if (bycicleTime > 60) {
+        //     bycicleHour = '<span class="number">' + Math.floor(bycicleTime / 60) + '</span>시간 '
+        // }
+        // bycicleMin = '<span class="number">' + bycicleTime % 60 + '</span>분'
+
+        // 거리와 도보 시간, 조깅 시간을 가지고 HTML Content를 만들어 리턴합니다
+        var content = '<ul class="dotOverlay distanceInfo">';
+        content += '    <li>';
+        content += '        <span class="label">총거리</span><span class="number" id="dist">' + distance + '</span>m';
+        content += '    </li>';
+        content += '    <li>';
+        content += '        <span class="label">도보</span>' + walkHour + walkMin;
+        content += '    </li>';
+        content += '    <li>';
+        content += '        <span class="label">조깅</span>' + joggingHour + joggingMin;
+        content += '    </li>';
+        content += '</ul>'
+
+        return content;
+    }
+
+
+
+
+    /*
+            // Drawing Manager로 도형을 그릴 지도 div
+    var drawingMapContainer = document.getElementById('drawingMap'),
+        drawingMap = { 
+            center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+            level: 3 // 지도의 확대 레벨
+        };
+    
+    // 지도를 표시할 div와  지도 옵션으로  지도를 생성합니다
+    var drawingMap = new kakao.maps.Map(drawingMapContainer, drawingMap);  */
+
+    /*
+    var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+                mapOption = {
+                    center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+                    level: 6 // 지도의 확대 레벨 
+                };
+    
+            var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+            redo  */
+
+
+
+
+    var options = { // Drawing Manager를 생성할 때 사용할 옵션입니다
+        map: mapOption, // Drawing Manager로 그리기 요소를 그릴 map 객체입니다
+        drawingMode: [ // Drawing Manager로 제공할 그리기 요소 모드입니다
+            kakao.maps.Drawing.OverlayType.MARKER,
+            kakao.maps.Drawing.OverlayType.POLYLINE,
+            kakao.maps.Drawing.OverlayType.RECTANGLE,
+            kakao.maps.Drawing.OverlayType.CIRCLE,
+            kakao.maps.Drawing.OverlayType.POLYGON
+        ],
+        // 사용자에게 제공할 그리기 가이드 툴팁입니다
+        // 사용자에게 도형을 그릴때, 드래그할때, 수정할때 가이드 툴팁을 표시하도록 설정합니다
+        guideTooltip: ['draw', 'drag', 'edit'],
+        markerOptions: { // 마커 옵션입니다 
+            draggable: true, // 마커를 그리고 나서 드래그 가능하게 합니다 
+            removable: true // 마커를 삭제 할 수 있도록 x 버튼이 표시됩니다  
+        },
+        polylineOptions: { // 선 옵션입니다
+            draggable: true, // 그린 후 드래그가 가능하도록 설정합니다
+            removable: true, // 그린 후 삭제 할 수 있도록 x 버튼이 표시됩니다
+            editable: true, // 그린 후 수정할 수 있도록 설정합니다 
+            strokeColor: '#39f', // 선 색
+            hintStrokeStyle: 'dash', // 그리중 마우스를 따라다니는 보조선의 선 스타일
+            hintStrokeOpacity: 0.5  // 그리중 마우스를 따라다니는 보조선의 투명도
+        },
+        rectangleOptions: {
+            draggable: true,
+            removable: true,
+            editable: true,
+            strokeColor: '#39f', // 외곽선 색
+            fillColor: '#39f', // 채우기 색
+            fillOpacity: 0.5 // 채우기색 투명도
+        },
+        circleOptions: {
+            draggable: true,
+            removable: true,
+            editable: true,
+            strokeColor: '#39f',
+            fillColor: '#39f',
+            fillOpacity: 0.5
+        },
+        polygonOptions: {
+            draggable: true,
+            removable: true,
+            editable: true,
+            strokeColor: '#39f',
+            fillColor: '#39f',
+            fillOpacity: 0.5,
+            hintStrokeStyle: 'dash',
+            hintStrokeOpacity: 0.5
+        }
+    };
+</script>
+
+
+
 
 <!-- 스톱워치 스크립트 44~113 line -->
 <script>
@@ -118,35 +694,41 @@
 <!-- DB저장버튼 스크립트 118~143 line -->
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script>
-    
+
     const a = document.getElementById("timedb");
     a.addEventListener("click", () => {
-    
+
         // 스톱워치의 분과 초 부분을 선택
         const mintime = document.getElementById("postTestMin").innerText;
         const sectime = document.getElementById("postTestSec").innerText;
+        const distance = document.getElementById("dist").innerText;
+        const actname = document.getElementById("actname").value;
         console.log(mintime);
         console.log(sectime);
+        console.log(distance);
+        console.log(actname);
 
         //선택한 값을 폼데이터 라는 형식으로 담음
         const formData = new FormData();
         formData.append('min', mintime);
         formData.append('sec', sectime);
+        formData.append('dist', distance);
+        formData.append('actname', actname);
 
         const data = axios({
             url: 'act',
             method: 'post',
             data: formData
         })
-        .then(function (result) {
-            console.log(result);
-        })
-        .catch(function (error) {
-            console.log(error.message);
-        });
+            .then(function (result) {
+                console.log(result);
+            })
+            .catch(function (error) {
+                console.log(error.message);
+            });
     });
 
 </script>
-
+</body>
 
 </html>

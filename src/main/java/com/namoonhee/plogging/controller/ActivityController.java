@@ -11,7 +11,6 @@ import com.namoonhee.plogging.repository.ActivityRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -33,15 +32,20 @@ public class ActivityController {
 
         String a = req.getParameter("min");
         String b = req.getParameter("sec");
+        String dist = req.getParameter("dist");
+        String actname = req.getParameter("actname");
 
         System.out.println(a);
         System.out.println(b);
 
         String c = a+":"+b;
+        dist += "m";
         System.out.println(c);
 
         Activity act = new Activity();
         act.setActTime(c);
+        act.setActDistance(dist);
+        act.setActName(actname);
 
         User user = (User) session.getAttribute("user");
 

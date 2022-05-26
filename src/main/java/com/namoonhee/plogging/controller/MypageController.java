@@ -1,9 +1,11 @@
 package com.namoonhee.plogging.controller;
 
+import java.util.List;
 import java.util.Optional;
 
 import javax.servlet.http.HttpSession;
 
+import com.namoonhee.plogging.model.Activity;
 import com.namoonhee.plogging.model.User;
 import com.namoonhee.plogging.service.UserService;
 
@@ -21,7 +23,14 @@ public class MypageController {
     UserService userService;
 
     @GetMapping(value = "/mypage")
-    public String mypage() {
+    public String mypage(HttpSession session, Model model) {
+
+        User user = (User) session.getAttribute("user");
+
+        List<Activity> myActList = userService.myActList(user);
+
+        model.addAttribute("list", myActList);
+
         return "mypage";
 
     }

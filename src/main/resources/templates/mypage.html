@@ -6,4 +6,23 @@
     <a href="deleteaccount">탈퇴하기</a>
 
 
+
+    <h2>나의 플로깅 기록</h2>
+    <table border="1">
+        <tr>
+            <th>활동 이름</th>
+            <th>활동한 시간</th>
+            <th>총 거리</th>
+            <th>기록 일자</th>
+        </tr>
+        <tr th:each="act : ${list}">
+            <td th:text="${act.actName}"></td>
+            <td th:text="${act.actTime}"></td>
+            <td th:text="${act.actDistance}"></td>
+            <td th:text="${act.createDate}"></td>
+        </tr>
+    </table>
+
+
+
 </body>
