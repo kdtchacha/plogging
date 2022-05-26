@@ -32,6 +32,7 @@
 
         <div>
             <button type="button" id="timedb">DB에저장</button>
+            <!-- id속성에 timedb 값을 설정  -->
         </div>
 
     </div>
@@ -40,7 +41,7 @@
 
 </body>
 
-
+<!-- 스톱워치 스크립트 44~113 line -->
 <script>
     var stTime = 0
     var endTime = 0
@@ -112,20 +113,28 @@
 
 </script>
 
+
+
+<!-- DB저장버튼 스크립트 118~143 line -->
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script>
     
     const a = document.getElementById("timedb");
     a.addEventListener("click", () => {
+    
+        // 스톱워치의 분과 초 부분을 선택
         const mintime = document.getElementById("postTestMin").innerText;
         const sectime = document.getElementById("postTestSec").innerText;
         console.log(mintime);
         console.log(sectime);
+
+        //선택한 값을 폼데이터 라는 형식으로 담음
         const formData = new FormData();
-        formData.append('mintime', mintime);
-        formData.append('sectime', sectime);
+        formData.append('min', mintime);
+        formData.append('sec', sectime);
+
         const data = axios({
-            url: 'act/time',
+            url: 'act',
             method: 'post',
             data: formData
         })

@@ -11,14 +11,13 @@ import com.namoonhee.plogging.repository.ActivityRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class ActivityController {
- 
-    
 
     @Autowired
     ActivityRepository actRepository;
@@ -29,46 +28,30 @@ public class ActivityController {
     }
 
     @ResponseBody
-    @PostMapping("/act/time")
-    public String actTimeTest(HttpServletRequest req){
-    
-       String a = req.getParameter("mintime");
-       String b = req.getParameter("sectime");
-        
+    @PostMapping("/act")
+    public String actTimeTest(HttpServletRequest req, HttpSession session) {
+
+        String a = req.getParameter("min");
+        String b = req.getParameter("sec");
+
         System.out.println(a);
         System.out.println(b);
-        
-        return "aaa";
-    }
 
+        String c = a+":"+b;
+        System.out.println(c);
 
-
-    @PostMapping("/activity/start")
-    public String activityStart(Activity act, HttpSession session) {
+        Activity act = new Activity();
+        act.setActTime(c);
 
         User user = (User) session.getAttribute("user");
 
         act.setUser(user);
-        
+
+        act.setCreateDate(new Date());
+
         actRepository.save(act);
 
-        return "redirect:/activityform";
-    }
-
-
-    @PostMapping("/activity/pause")
-    public String activityPause() {
-
-
-        return "redirect:/activityform";
-    }
-
-
-    @PostMapping("/activity/confirm")
-    public String activityConfirm() {
-
-
-        return "";
+        return "aaa";
     }
 
 }
