@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <body>
 
     <button>정보수정</button>
@@ -14,15 +13,18 @@
             <th>활동한 시간</th>
             <th>총 거리</th>
             <th>기록 일자</th>
+            <th>공개 설정</th>
         </tr>
         <tr th:each="act : ${list}">
             <td th:text="${act.actName}"></td>
             <td th:text="${act.actTime}"></td>
             <td th:text="${act.actDistance}"></td>
             <td th:text="${act.createDate}"></td>
+            <td><a th:href="@{/index}" th:text="abc"></a></td>
         </tr>
     </table>
 
 
 
 </body>
+</html>

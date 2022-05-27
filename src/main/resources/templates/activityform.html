@@ -136,7 +136,11 @@
 
     <div class="stopwatch">
         <div>
-            <span id="postTestMin">00</span><!-- 분 -->
+            <span id="postTestHour">00</span>
+            <!-- 시 -->
+            <span>:</span>
+            <span id="postTestMin">00</span>
+            <!-- 분 -->
             <span>:</span>
             <span id="postTestSec">00</span>
             <!--초-->
@@ -622,6 +626,7 @@
     var stTime = 0
     var endTime = 0
     var timerStart
+    var hour
     var min
     var sec
     var milisec
@@ -634,7 +639,7 @@
             console.log(min, sec, milisec)
             var li = document.createElement('li')
             li.style.color = "#fff"
-            li.innerText = min + ' : ' + sec + ' : ' + milisec
+            li.innerText = hour + ' : ' + min + ' : ' + sec + ' : ' + milisec
             if (!recordList.firstChild) {
                 recordList.append(li)
             } else {
@@ -652,9 +657,11 @@
         }
         timerStart = setInterval(function () {
             var nowTime = new Date(Date.now() - stTime)
+            hour = addZero(nowTime.getHours()-9)
             min = addZero(nowTime.getMinutes())
             sec = addZero(nowTime.getSeconds())
             milisec = addZero(Math.floor(nowTime.getMilliseconds() / 10))
+            document.getElementById('postTestHour').innerText = hour
             document.getElementById('postTestMin').innerText = min
             document.getElementById('postTestSec').innerText = sec
             document.getElementById('postTestMilisec').innerText = milisec
@@ -670,9 +677,11 @@
                 startBtn.innerText = 'RESTART'
             } else {	// RESET       
                 stTime = 0
+                hour = 0
                 min = 0
                 sec = 0
                 milisec = 0
+                document.getElementById('postTestHour').innerText = '00'
                 document.getElementById('postTestMin').innerText = '00'
                 document.getElementById('postTestSec').innerText = '00'
                 document.getElementById('postTestMilisec').innerText = '00'
@@ -699,10 +708,12 @@
     a.addEventListener("click", () => {
 
         // 스톱워치의 분과 초 부분을 선택
+        const hourtime = document.getElementById("postTestHour").innerText;
         const mintime = document.getElementById("postTestMin").innerText;
         const sectime = document.getElementById("postTestSec").innerText;
         const distance = document.getElementById("dist").innerText;
         const actname = document.getElementById("actname").value;
+        console.log(hourtime);
         console.log(mintime);
         console.log(sectime);
         console.log(distance);
@@ -710,6 +721,7 @@
 
         //선택한 값을 폼데이터 라는 형식으로 담음
         const formData = new FormData();
+        formData.append('hour', hourtime);
         formData.append('min', mintime);
         formData.append('sec', sectime);
         formData.append('dist', distance);

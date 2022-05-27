@@ -30,6 +30,7 @@ public class ActivityController {
     @PostMapping("/act")
     public String actTimeTest(HttpServletRequest req, HttpSession session) {
 
+        String aa = req.getParameter("hour");
         String a = req.getParameter("min");
         String b = req.getParameter("sec");
         String dist = req.getParameter("dist");
@@ -38,7 +39,7 @@ public class ActivityController {
         System.out.println(a);
         System.out.println(b);
 
-        String c = a+":"+b;
+        String c = aa+":"+a+":"+b;
         dist += "m";
         System.out.println(c);
 
