@@ -8,7 +8,7 @@
     <style>
         html,
         body {
-            width: 70%;
+            width: 90%;
             height: 70%;
             margin: 0;
             padding: 0;
@@ -268,7 +268,7 @@
                 moveLine.setMap(map);
 
                 var distance = Math.round(clickLine.getLength() + moveLine.getLength()), // 선의 총 거리를 계산합니다
-                    content = '<div class="dotOverlay distanceInfo">총거리 <span class="number" id="dist">' + distance + '</span>m</div>'; // 커스텀오버레이에 추가될 내용입니다
+                    content = '<div class="dotOverlay distanceInfo">총거리 <span class="number">' + distance + '</span>m</div>'; // 커스텀오버레이에 추가될 내용입니다
 
                 // 거리정보를 지도에 표시합니다
                 showDistance(content, mousePosition);
@@ -439,7 +439,7 @@
             // 거리와 도보 시간, 조깅 시간을 가지고 HTML Content를 만들어 리턴합니다
             var content = '<ul class="dotOverlay distanceInfo">';
             content += '    <li>';
-            content += '        <span class="label">총거리</span><span class="number">' + distance + '</span>m';
+            content += '        <span class="label">총거리</span><span class="number" id="dist">' + distance + '</span>m';
             content += '    </li>';
             content += '    <li>';
             content += '        <span class="label">도보</span>' + walkHour + walkMin;
