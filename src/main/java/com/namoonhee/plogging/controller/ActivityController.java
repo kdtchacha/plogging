@@ -1,6 +1,7 @@
 package com.namoonhee.plogging.controller;
 
 import java.util.Date;
+import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -62,6 +63,26 @@ public class ActivityController {
     @GetMapping("/camera")
     public String camera() {
         return "camera";
+    }
+
+    @GetMapping("/changevisibility")
+    public String changeVisibility(Long actid) {
+
+        Optional<Activity> actFromdb = actRepository.findById(actid);
+
+        if(actFromdb.isPresent()){
+            Activity dbact = actFromdb.get();
+            
+            if(actFromdb.get().getVisibility() == 0){
+                dbact.setVisibility(1);
+                actRepository.save(dbact);
+            }else{
+                dbact.setVisibility(0);
+                actRepository.save(dbact);
+            }
+
+        }
+        return "redirect:/mypage";
     }
 
 }
