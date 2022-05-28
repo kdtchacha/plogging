@@ -154,12 +154,12 @@
         const hourtime = document.getElementById("postTestHour").innerText;
         const mintime = document.getElementById("postTestMin").innerText;
         const sectime = document.getElementById("postTestSec").innerText;
-        // const distance = document.getElementById("dist").innerText;
+        const distance = document.getElementById("dist").innerText;
         const actname = document.getElementById("actname").value;
         console.log(hourtime);
         console.log(mintime);
         console.log(sectime);
-        // console.log(distance);
+        console.log(distance);
         console.log(actname);
 
         //선택한 값을 폼데이터 라는 형식으로 담음
@@ -167,7 +167,7 @@
         formData.append('hour', hourtime);
         formData.append('min', mintime);
         formData.append('sec', sectime);
-        // formData.append('dist', distance);
+        formData.append('dist', distance);
         formData.append('actname', actname);
 
         const data = axios({
