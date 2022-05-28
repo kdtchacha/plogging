@@ -31,10 +31,10 @@
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav navbar-right">
         <li><a href="#about">ABOUT</a></li>
-        <li><a href="#services">서비스</a></li>
-        <li><a href="#portfolio">캠페인</a></li>
+        <li><a href="#services">SERVICE</a></li>
+        <li><a href="#portfolio">CAMPAIGN</a></li>
         <li><a href="#pricing">PRICING</a></li>
-        <li><a href="#contact">지도</a></li>
+        <li><a href="#contact">MAP</a></li>
         <li><a class="#mypage" href="/mypage">MY PAGE</a></li>
         <li><a th:href="@{/signout}" th:if="${session.user != null}"><span class="glyphicon glyphicon-log-in"></span> [[${session.user.nickname}]]님 Logout</a></li>
         <li><a th:href="@{/signin}" th:unless="${session.user != null}"><span class="glyphicon glyphicon-log-out"></span> Login</a></li>
@@ -48,11 +48,12 @@
 
 <div class="jumbotron text-center">
   <h1>Plogging</h1> 
-  <p>We run on the Earth</p> 
+  <p>We run on the Earth</p>
+  <br>
   <form>
     <div class="input-group">
       <div class="input-group-btn">
-        <a th:href="@{/activityform}"><button type="button" class="btn btn-success">플로깅시작</button></a>
+        <a th:href="@{/activityform}"><button type="button" class="btn btn-default btn-lg">플로깅시작</button></a>
       </div>
     </div>
   </form>
@@ -63,12 +64,13 @@
   <div class="row">
     <div class="col-sm-8">
       <h2>Plogging이란?</h2><br>
-      <h4>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</h4><br>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-      <br><button class="btn btn-default btn-lg">Get in Touch</button>
+      <h4> ‘플로깅(plogging )’이란 2016년 환경보호를 위해 스웨덴에서 처음 시작된 환경보호운동이며, ‘이삭을 줍는다’는 뜻인 스웨덴어 ‘plocka upp’과 영어 단어 ‘ jogging(조깅)’의 합성어로, 조깅하면서 쓰레기를 줍는 행동을 말합니다.
+        조깅은 비교적 시간과 장소, 도구, 신체조건, 나이의 제약 없이 누구나 쉽게 참여할 수 있는 운동입니다. 플로깅은 조깅이라는 대중적 운동(exercise)에 환경운동(movement)이 더해져 개인이 자발적으로 실천할 수 있는 환경보호 실천운동을 뜻합니다.
+      </p>
+      <!-- <br><button class="btn btn-default btn-lg">Get in Touch</button> -->
     </div>
     <div class="col-sm-4">
-      <span class="glyphicon glyphicon-signal logo"></span>
+      <span class="glyphicon glyphicon-globe logo slideanim"></span>
     </div>
   </div>
 </div>
@@ -79,33 +81,32 @@
       <span class="glyphicon glyphicon-globe logo slideanim"></span>
     </div>
     <div class="col-sm-8">
-      <h2>줍깅이란?</h2><br>
-      <h4><strong>MISSION:</strong> Our mission lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</h4><br>
-      <p><strong>VISION:</strong> Our vision Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+      <h2>OUR SERVICE IS</h2><br>
+      <h4><strong></strong>플로깅 서비스는 '기록과 공유, 소통에 기반을 둔 SNS 기능'과 '러닝어플의 기능'을 결합한 서비스입니다. 자신의 운동내용을 지도(현재 위치, 경로 표시)와 사진(풍경, 주운 쓰레기), 기록(거리, 시간)으로 저장할 수 있게 하고, 이를 공유할 수 있는 게시판과 댓글 기능을 활용하여 개인 단위의 자발적인 환경보호활동을 장려합니다.</h4><br>
+      <p><strong></strong> </p>
     </div>
   </div>
 </div>
 
 <!-- Container (Services Section) -->
 <div id="services" class="container-fluid text-center">
-  <h2>우리의 서비스</h2>
+  <h2>기능</h2>
   <h4>What we offer</h4>
   <br>
   <div class="row slideanim">
     <div class="col-sm-4">
       <span class="glyphicon glyphicon-off logo-small"></span>
-      <h4>건강한 다리</h4>
+      <h4>경로 기록</h4>
       <p>Lorem ipsum dolor sit amet..</p>
     </div>
     <div class="col-sm-4">
       <span class="glyphicon glyphicon-heart logo-small"></span>
-      <h4>튼튼한 심장</h4>
+      <h4>SNS</h4>
       <p>Lorem ipsum dolor sit amet..</p>
     </div>
     <div class="col-sm-4">
       <span class="glyphicon glyphicon-lock logo-small"></span>
-      <h4>공동체 </h4>
+      <h4>플로깅 관련 뉴스</h4>
       <p>Lorem ipsum dolor sit amet..</p>
     </div>
   </div>
@@ -113,17 +114,17 @@
   <div class="row slideanim">
     <div class="col-sm-4">
       <span class="glyphicon glyphicon-leaf logo-small"></span>
-      <h4>환경보호</h4>
+      <h4>환경보호 캠페인</h4>
       <p>Lorem ipsum dolor sit amet..</p>
     </div>
     <div class="col-sm-4">
       <span class="glyphicon glyphicon-certificate logo-small"></span>
-      <h4>고장난 지구</h4>
+      <h4>스탑워치</h4>
       <p>Lorem ipsum dolor sit amet..</p>
     </div>
     <div class="col-sm-4">
       <span class="glyphicon glyphicon-wrench logo-small"></span>
-      <h4 style="color:#303030;">지구를고치자</h4>
+      <h4 style="color:#303030;">사진기록</h4>
       <p>Lorem ipsum dolor sit amet..</p>
     </div>
   </div>
@@ -287,11 +288,9 @@
   </div>
 </div>
 
-<!-- Image of location/map -->
-<!-- <img src="/w3images/map.jpg" class="w3-image w3-greyscale-min" style="width:100%"> -->
-<!-- 지도지도지도지도지도지도지도지도지도지도지도지도지도지도지도지도 -->
 
-<div th:replace="maptest"></div><br>
+
+<!-- <div th:replace="maptest"></div><br> -->
 
 
 

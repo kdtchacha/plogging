@@ -16,6 +16,11 @@ public class PloggingController {
         return "indextemp";
     }
 
+    @GetMapping("maptest")
+    public String mapatest() {
+        return "maptest";
+    }
+
 
 
 }

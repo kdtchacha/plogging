@@ -59,4 +59,9 @@ public class ActivityController {
         return "aaa";
     }
 
+    @GetMapping("/camera")
+    public String camera() {
+        return "camera";
+    }
+
 }
