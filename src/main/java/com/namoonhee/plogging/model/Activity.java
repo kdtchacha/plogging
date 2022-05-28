@@ -27,7 +27,7 @@ public class Activity {
 
     Date createDate;
 
-    int visibility;
+    Integer visibility;
     
 
 

@@ -20,7 +20,8 @@
             <td th:text="${act.actTime}"></td>
             <td th:text="${act.actDistance}"></td>
             <td th:text="${act.createDate}"></td>
-            <td><a th:href="@{/index}" th:text="abc"></a></td>
+            <td th:if="${act.visibility == 0}"><a th:href="@{/changevisibility(actid=${act.id})}" th:text="비공개"></a></td>
+            <td th:unless="${act.visibility == 0}"><a th:href="@{/changevisibility(actid=${act.id})}" th:text="공개"></a></td>
         </tr>
     </table>
 
