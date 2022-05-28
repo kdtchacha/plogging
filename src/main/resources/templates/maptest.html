@@ -59,7 +59,7 @@
         .distanceInfo {
             position: relative;
             top: 5px;
-            left: 5px;
+            left: 15px;
             list-style: none;
             margin: 0;
         }
@@ -268,7 +268,7 @@
                 moveLine.setMap(map);
 
                 var distance = Math.round(clickLine.getLength() + moveLine.getLength()), // 선의 총 거리를 계산합니다
-                    content = '<div class="dotOverlay distanceInfo">총거리 <span class="number">' + distance + '</span>m</div>'; // 커스텀오버레이에 추가될 내용입니다
+                    content = '<div class="dotOverlay distanceInfo">총거리 <span class="number" id="dist">' + distance + '</span>m</div>'; // 커스텀오버레이에 추가될 내용입니다
 
                 // 거리정보를 지도에 표시합니다
                 showDistance(content, mousePosition);

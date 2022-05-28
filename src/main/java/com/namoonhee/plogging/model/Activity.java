@@ -17,15 +17,13 @@ public class Activity {
     @Id
     Long id;
 
+    Date createDate;
+
+    String actDistance;
 
     String actName;
 
     String actTime;
-
-    String actDistance;
-
-
-    Date createDate;
 
     int visibility;
     
