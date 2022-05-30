@@ -36,6 +36,7 @@ public class ActivityController {
         String b = req.getParameter("sec");
         String dist = req.getParameter("dist");
         String actname = req.getParameter("actname");
+        String actmemo = req.getParameter("actmemo");
 
         System.out.println(a);
         System.out.println(b);
@@ -48,6 +49,7 @@ public class ActivityController {
         act.setActTime(c);
         act.setActDistance(dist);
         act.setActName(actname);
+        act.setActMemo(actmemo);
 
         User user = (User) session.getAttribute("user");
 

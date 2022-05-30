@@ -15,6 +15,7 @@
             margin: 0;
             padding: 0;
         }
+        #actname {width: 355px;}
     
 </style>
 
@@ -46,14 +47,16 @@
             <!--스톱 버튼-->
         </div>
 
-
+       
         <div>
-            <p> 활동 이름 : <input id="actname" type="text"></p>
+            <p> 활동 이름 : <input id="actname" type="text" ></p>
         </div>
 
         <div>
-            <p> 활동 메모 : <input id="actmemo" type="text"></p>
+            <p>활동 메모 : <textarea id="actmemo" cols="50" rows="10" 
+                style="resize: none;" placeholder="플로깅 메모를 입력해주세요"></textarea></p>
         </div>
+        
 
 
 
@@ -163,6 +166,7 @@
         const sectime = document.getElementById("postTestSec").innerText;
         const distance = document.getElementById("dist").innerText;
         const actname = document.getElementById("actname").value;
+        const actmemo = document.getElementById("actmemo").value;
         console.log(hourtime);
         console.log(mintime);
         console.log(sectime);
@@ -176,6 +180,7 @@
         formData.append('sec', sectime);
         formData.append('dist', distance);
         formData.append('actname', actname);
+        formData.append('actmemo', actmemo);
 
         const data = axios({
             url: 'act',

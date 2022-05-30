@@ -12,6 +12,7 @@
             <th>활동 이름</th>
             <th>활동한 시간</th>
             <th>총 거리</th>
+            <th>활동 메모</th>
             <th>기록 일자</th>
             <th>공개 설정</th>
         </tr>
@@ -19,6 +20,7 @@
             <td th:text="${act.actName}"></td>
             <td th:text="${act.actTime}"></td>
             <td th:text="${act.actDistance}"></td>
+            <td th:text="${act.actMemo}"></td>
             <td th:text="${act.createDate}"></td>
             <td th:if="${act.visibility == 0}"><a th:href="@{/changevisibility(actid=${act.id})}" th:text="비공개"></a></td>
             <td th:unless="${act.visibility == 0}"><a th:href="@{/changevisibility(actid=${act.id})}" th:text="공개"></a></td>

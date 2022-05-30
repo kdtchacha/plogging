@@ -25,6 +25,8 @@ public class Activity {
 
     String actTime;
 
+    String actMemo;
+
     int visibility;
     
 
