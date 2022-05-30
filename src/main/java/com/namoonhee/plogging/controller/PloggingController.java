@@ -13,7 +13,7 @@ public class PloggingController {
 
     @GetMapping("/index")
     public String index() {
-        return "indextemp";
+        return "index";
     }
 
     @GetMapping("maptest")

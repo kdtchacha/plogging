@@ -53,7 +53,7 @@ public class MypageController {
             userService.deleteAccount(user);
             httpSession.invalidate();
             model.addAttribute("deleteaccount_result", "success");
-            redir = "indextemp";
+            redir = "index";
 
         } else {
             model.addAttribute("deleteaccount_result", "fail");
