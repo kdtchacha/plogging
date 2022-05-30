@@ -40,7 +40,7 @@ public class UserController {
 
         httpSession.setAttribute("user", opt.get());
 
-        return "indextemp";
+        return "index";
     }
 
     @GetMapping("/signout")
