@@ -1,8 +1,45 @@
 <!DOCTYPE html>
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/css/index.css">
+</head>
 <body>
 
-    <button>정보수정</button>
-    <a href="deleteaccount">탈퇴하기</a>
+
+
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>                        
+            </button>
+            <a class="navbar-brand" href="/index">Logo</a>
+          </div>
+          <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav navbar-right">
+              <li><a href="#about">ABOUT</a></li>
+              <li><a href="#services">SERVICE</a></li>
+              <li><a href="#portfolio">CAMPAIGN</a></li>
+              <li><a href="#pricing">PRICING</a></li>
+              <li><a href="/activityform">MAP</a></li>
+              <li><a class="#mypage" href="/mypage">MY PAGE</a></li>
+              <li><a th:href="@{/signout}" th:if="${session.user != null}"><span class="glyphicon glyphicon-log-in"></span> [[${session.user.nickname}]]님 Logout</a></li>
+              <li><a th:href="@{/signin}" th:unless="${session.user != null}"><span class="glyphicon glyphicon-log-out"></span> Login</a></li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+
+
+
+
+    
 
 
 
@@ -27,6 +64,14 @@
         </tr>
     </table>
 
+    <br><br>
+
+    
+    <!-- <a href="deleteaccount">탈퇴하기</a> -->
+    
+    <button type="button" class="btn btn-default btn-lg" onclick="location.href='user_info/update'">회원정보수정</button>
+    
+    <button type="button" class="btn btn-warning btn-lg" onclick="location.href='deleteaccount'">탈퇴하기</button>
 
 
 </body>

@@ -5,6 +5,13 @@
     <meta charset="utf-8">
     <title>geolocation으로 마커 표시하기+지도에 컨트롤 올리기+선으로 계산하기+Drawing undo, redo</title>
 
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/css/index.css">
+
     <style>
         /* html,
         body {
@@ -83,6 +90,36 @@
 
 
 <body>
+
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>                        
+            </button>
+            <a class="navbar-brand" href="/index">Logo</a>
+          </div>
+          <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav navbar-right">
+              <li><a href="#about">ABOUT</a></li>
+              <li><a href="#services">SERVICE</a></li>
+              <li><a href="#portfolio">CAMPAIGN</a></li>
+              <li><a href="#pricing">PRICING</a></li>
+              <li><a href="/activityform">MAP</a></li>
+              <li><a class="#mypage" href="/mypage">MY PAGE</a></li>
+              <li><a th:href="@{/signout}" th:if="${session.user != null}"><span class="glyphicon glyphicon-log-in"></span> [[${session.user.nickname}]]님 Logout</a></li>
+              <li><a th:href="@{/signin}" th:unless="${session.user != null}"><span class="glyphicon glyphicon-log-out"></span> Login</a></li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+
+
+<br><br><br>
+
+    
     <p style="margin-top:-12px"><b>나의 플로깅 맵</b></p>
     <div id="map" style="width:90vw; height: 400px; position:relative; overflow:hidden;"></div>
     <p>
