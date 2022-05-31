@@ -16,7 +16,7 @@ import org.springframework.web.client.RestTemplate;
 public class RestTemplateController {
 
   @GetMapping("/navernews")
-  public ResponseEntity<Map> getNaver(
+  public Map getNaver(
       String query) {
     RestTemplate rt = new RestTemplate();
     RequestEntity requestEntity = null;
@@ -24,7 +24,7 @@ public class RestTemplateController {
       requestEntity = RequestEntity
           .get(
               new URI(
-                  "https://openapi.naver.com/v1/search/news?query=" +
+                  "https://openapi.naver.com/v1/search/news.json?display=5&query=" +
                       URLEncoder.encode(query, "utf-8")))
           .header("X-Naver-Client-Id", "luTWH2TgUj6WT_cIta1i")
           .header("X-Naver-Client-Secret", "DilYy6o8IQ")
@@ -37,9 +37,7 @@ public class RestTemplateController {
     }
     ResponseEntity<Map> entity = rt.exchange(requestEntity, Map.class);
 
-    System.out.println(entity.getBody());
-
-    return entity;
+    return entity.getBody();
   }
 
 }

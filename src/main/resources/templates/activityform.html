@@ -8,194 +8,200 @@
 
 <!-- 지도 스타일 -->
 <style>
-    #maptest {
-            
-            width: 300px; 
-            height: 350px;
-            margin: 0;
-            padding: 0;
-        }
-        #actname {width: 355px;}
-    
+    /* #maptest {
+
+        width: 300px;
+        height: 350px;
+        margin: 0;
+        padding: 0;
+    } */
+
+    body {
+        background-color: aquamarine;
+    }
+
+    #actname {
+        width: 355px;
+    }
 </style>
 
 <body>
     <br><br>
+
+
     <div id="maptest" th:replace="maptest"></div>
-        
-    <div class="stopwatch">
-        <div>
-            <span id="postTestHour">00</span>
-            <!-- 시 -->
-            <span>:</span>
-            <span id="postTestMin">00</span>
-            <!-- 분 -->
-            <span>:</span>
-            <span id="postTestSec">00</span>
-            <!--초-->
-            <span>.</span>
-            <span id="postTestMilisec">00</span>
-            <!--밀리초-->
+
+
+    <div>
+        <div class="stopwatch">
+            <div>
+                <span id="postTestHour">00</span>
+                <!-- 시 -->
+                <span>:</span>
+                <span id="postTestMin">00</span>
+                <!-- 분 -->
+                <span>:</span>
+                <span id="postTestSec">00</span>
+                <!--초-->
+                <span>.</span>
+                <span id="postTestMilisec">00</span>
+                <!--밀리초-->
+            </div>
+            <div>
+                <ul id="testRecordList"></ul>
+                <!--중간 기록할 리스트-->
+            </div>
+            <div> <button type="button" id="testStartBtn">START</button>
+                <!--시작/재시작/기록 버튼-->
+                <button type="button" id="testStopBtn">STOP</button>
+                <!--스톱 버튼-->
+            </div>
+
+
+            <div>
+                <p> 활동 이름 : <input id="actname" type="text"></p>
+            </div>
+
+            <div>
+                <p>활동 메모 : <textarea id="actmemo" cols="50" rows="10" style="resize: none;"
+                        placeholder="플로깅 메모를 입력해주세요"></textarea></p>
+            </div>
+
+
+            <div>
+                <button type="button" id="timedb">DB에저장</button>
+                <!-- id속성에 timedb 값을 설정  -->
+            </div>
+
+            <br><br>
+
+            <button type="button" id="camera" onclick="location.href='camera' ">카메라</button>
+
         </div>
-        <div>
-            <ul id="testRecordList"></ul>
-            <!--중간 기록할 리스트-->
-        </div>
-        <div> <button type="button" id="testStartBtn">START</button>
-            <!--시작/재시작/기록 버튼-->
-            <button type="button" id="testStopBtn">STOP</button>
-            <!--스톱 버튼-->
-        </div>
-
-       
-        <div>
-            <p> 활동 이름 : <input id="actname" type="text" ></p>
-        </div>
-
-        <div>
-            <p>활동 메모 : <textarea id="actmemo" cols="50" rows="10" 
-                style="resize: none;" placeholder="플로깅 메모를 입력해주세요"></textarea></p>
-        </div>
-        
-
-
-
-
-        <div>
-            <button type="button" id="timedb">DB에저장</button>
-            <!-- id속성에 timedb 값을 설정  -->
-        </div>
-
-        <br><br>
-
-        <button type="button" id="camera" onclick="location.href='camera' ">카메라</button>
-
     </div>
 
+    <!-- 스톱워치 스크립트 -->
+    <script>
+        var stTime = 0
+        var endTime = 0
+        var timerStart
+        var hour
+        var min
+        var sec
+        var milisec
+        var startBtn = document.getElementById('testStartBtn')
+        var stopBtn = document.getElementById('testStopBtn')
+        var recordList = document.getElementById('testRecordList')
+        startBtn.addEventListener('click', function () {
+            // RECORD
+            if (this.innerText == 'RECORD' && milisec) {
+                console.log(min, sec, milisec)
+                var li = document.createElement('li')
+                li.style.color = "#fff"
+                li.innerText = hour + ' : ' + min + ' : ' + sec + ' : ' + milisec
+                if (!recordList.firstChild) {
+                    recordList.append(li)
+                } else {
+                    recordList.insertBefore(li, recordList.firstChild)
+                }
+                return false
+            }
+            this.innerText = 'RECORD'
 
-
-<!-- 스톱워치 스크립트 -->
-<script>
-    var stTime = 0
-    var endTime = 0
-    var timerStart
-    var hour
-    var min
-    var sec
-    var milisec
-    var startBtn = document.getElementById('testStartBtn')
-    var stopBtn = document.getElementById('testStopBtn')
-    var recordList = document.getElementById('testRecordList')
-    startBtn.addEventListener('click', function () {
-        // RECORD
-        if (this.innerText == 'RECORD' && milisec) {
-            console.log(min, sec, milisec)
-            var li = document.createElement('li')
-            li.style.color = "#fff"
-            li.innerText = hour + ' : ' + min + ' : ' + sec + ' : ' + milisec
-            if (!recordList.firstChild) {
-                recordList.append(li)
+            if (!stTime) {
+                stTime = Date.now() // 최초 START 
             } else {
-                recordList.insertBefore(li, recordList.firstChild)
+                stopBtn.innerText = 'STOP'
+                stTime += (Date.now() - endTime)	// RESTART   
             }
-            return false
-        }
-        this.innerText = 'RECORD'
-
-        if (!stTime) {
-            stTime = Date.now() // 최초 START 
-        } else {
-            stopBtn.innerText = 'STOP'
-            stTime += (Date.now() - endTime)	// RESTART   
-        }
-        timerStart = setInterval(function () {
-            var nowTime = new Date(Date.now() - stTime)
-            hour = addZero(nowTime.getHours()-9)
-            min = addZero(nowTime.getMinutes())
-            sec = addZero(nowTime.getSeconds())
-            milisec = addZero(Math.floor(nowTime.getMilliseconds() / 10))
-            document.getElementById('postTestHour').innerText = hour
-            document.getElementById('postTestMin').innerText = min
-            document.getElementById('postTestSec').innerText = sec
-            document.getElementById('postTestMilisec').innerText = milisec
-        }, 1)
-    })
-
-    stopBtn.addEventListener('click', function () {
-        if (timerStart) {
-            clearInterval(timerStart)	// STOP  
-            if (this.innerText == 'STOP') {
-                endTime = Date.now()
-                this.innerText = 'RESET'
-                startBtn.innerText = 'RESTART'
-            } else {	// RESET       
-                stTime = 0
-                hour = 0
-                min = 0
-                sec = 0
-                milisec = 0
-                document.getElementById('postTestHour').innerText = '00'
-                document.getElementById('postTestMin').innerText = '00'
-                document.getElementById('postTestSec').innerText = '00'
-                document.getElementById('postTestMilisec').innerText = '00'
-                startBtn.innerText = 'START'
-                this.innerText = 'STOP'
-                timerStart = null
-                recordList.innerHTML = ''
-            }
-        }
-    })
-    function addZero(num) {
-        return (num < 10 ? '0' + num : '' + num)
-    }
-
-</script>
-
-
-
-<!-- DB저장버튼 스크립트 -->
-<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-<script>
-
-    const a = document.getElementById("timedb");
-    a.addEventListener("click", () => {
-
-        // 스톱워치의 분과 초 부분을 선택
-        const hourtime = document.getElementById("postTestHour").innerText;
-        const mintime = document.getElementById("postTestMin").innerText;
-        const sectime = document.getElementById("postTestSec").innerText;
-        const distance = document.getElementById("dist").innerText;
-        const actname = document.getElementById("actname").value;
-        const actmemo = document.getElementById("actmemo").value;
-        console.log(hourtime);
-        console.log(mintime);
-        console.log(sectime);
-        console.log(distance);
-        console.log(actname);
-
-        //선택한 값을 폼데이터 라는 형식으로 담음
-        const formData = new FormData();
-        formData.append('hour', hourtime);
-        formData.append('min', mintime);
-        formData.append('sec', sectime);
-        formData.append('dist', distance);
-        formData.append('actname', actname);
-        formData.append('actmemo', actmemo);
-
-        const data = axios({
-            url: 'act',
-            method: 'post',
-            data: formData
+            timerStart = setInterval(function () {
+                var nowTime = new Date(Date.now() - stTime)
+                hour = addZero(nowTime.getHours() - 9)
+                min = addZero(nowTime.getMinutes())
+                sec = addZero(nowTime.getSeconds())
+                milisec = addZero(Math.floor(nowTime.getMilliseconds() / 10))
+                document.getElementById('postTestHour').innerText = hour
+                document.getElementById('postTestMin').innerText = min
+                document.getElementById('postTestSec').innerText = sec
+                document.getElementById('postTestMilisec').innerText = milisec
+            }, 1)
         })
-            .then(function (result) {
-                console.log(result);
-            })
-            .catch(function (error) {
-                console.log(error.message);
-            });
-    });
 
-</script>
+        stopBtn.addEventListener('click', function () {
+            if (timerStart) {
+                clearInterval(timerStart)	// STOP  
+                if (this.innerText == 'STOP') {
+                    endTime = Date.now()
+                    this.innerText = 'RESET'
+                    startBtn.innerText = 'RESTART'
+                } else {	// RESET       
+                    stTime = 0
+                    hour = 0
+                    min = 0
+                    sec = 0
+                    milisec = 0
+                    document.getElementById('postTestHour').innerText = '00'
+                    document.getElementById('postTestMin').innerText = '00'
+                    document.getElementById('postTestSec').innerText = '00'
+                    document.getElementById('postTestMilisec').innerText = '00'
+                    startBtn.innerText = 'START'
+                    this.innerText = 'STOP'
+                    timerStart = null
+                    recordList.innerHTML = ''
+                }
+            }
+        })
+        function addZero(num) {
+            return (num < 10 ? '0' + num : '' + num)
+        }
+
+    </script>
+
+
+
+    <!-- DB저장버튼 스크립트 -->
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script>
+
+        const a = document.getElementById("timedb");
+        a.addEventListener("click", () => {
+
+            // 스톱워치의 분과 초 부분을 선택
+            const hourtime = document.getElementById("postTestHour").innerText;
+            const mintime = document.getElementById("postTestMin").innerText;
+            const sectime = document.getElementById("postTestSec").innerText;
+            const distance = document.getElementById("dist").innerText;
+            const actname = document.getElementById("actname").value;
+            const actmemo = document.getElementById("actmemo").value;
+            console.log(hourtime);
+            console.log(mintime);
+            console.log(sectime);
+            console.log(distance);
+            console.log(actname);
+
+            //선택한 값을 폼데이터 라는 형식으로 담음
+            const formData = new FormData();
+            formData.append('hour', hourtime);
+            formData.append('min', mintime);
+            formData.append('sec', sectime);
+            formData.append('dist', distance);
+            formData.append('actname', actname);
+            formData.append('actmemo', actmemo);
+
+            const data = axios({
+                url: 'act',
+                method: 'post',
+                data: formData
+            })
+                .then(function (result) {
+                    console.log(result);
+                })
+                .catch(function (error) {
+                    console.log(error.message);
+                });
+        });
+
+    </script>
 </body>
 
 </html>

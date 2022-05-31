@@ -12,24 +12,16 @@ import lombok.Data;
 @Data
 @Entity
 public class Activity {
-    
+
     @GeneratedValue
     @Id
     Long id;
-
-    Date createDate;
-
     String actDistance;
-
-    String actName;
-
     String actTime;
-
+    String actName;
     String actMemo;
-
+    Date createDate;
     int visibility;
-    
-
 
     @ManyToOne
     User user;

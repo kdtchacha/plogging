@@ -12,7 +12,6 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   <link rel="stylesheet" type="text/css" href="/css/index.css">
-  <link rel="stylesheet" type="text/css" href="/css/scss/index.scss">
 
 </head>
 
@@ -164,7 +163,8 @@
       </div>
     </div><br>
 
-    <h2>What our customers say</h2>
+    <h2>플로깅 뉴스</h2>
+    <h5>( 출처 : 네이버 뉴스 )</h5>
     <div id="myCarousel" class="carousel slide text-center" data-ride="carousel">
       <!-- Indicators -->
       <ol class="carousel-indicators">
@@ -176,7 +176,8 @@
       <!-- Wrapper for slides -->
       <div class="carousel-inner" role="listbox">
         <div class="item active">
-          <h4>"This company is the best. I am so happy with the result!"<br><span>Michael Roe, Vice President, Comment
+          <h4><a th:href="@{/#}">"This company is the best. I am so happy with the result!"</a><br><span>Michael Roe,
+              Vice President, Comment
               Box</span></h4>
         </div>
         <div class="item">
@@ -303,6 +304,8 @@
       </div>
     </div>
   </div>
+  <div id="nvnews">
+  </div>
 
 
 
@@ -354,6 +357,46 @@
       });
     })
   </script>
+
+  <script src="http://unpkg.com/axios/dist/axios.min.js"></script>
+  <script>
+
+    const data = axios({
+      url: 'navernews?query=플로깅',
+      method: 'get',
+    });
+    data.then((res) => {
+
+      console.log(res);
+
+      const newsdata = res;
+
+      // let newscode = '<div class="item active">'
+      let newscode = '<table border = 1>';
+      newscode += '<tr><td>제목</td><td>내용</td><td>일시</td></tr>';
+      const newslist = newsdata.data.items;
+      console.log(newslist);
+
+      for (let key in newslist) {
+        const abc = newslist[key];
+        const title = abc.title;
+        const desc = abc.description;
+        const publishedAt = abc.pubDate;
+
+        newscode += `<tr>
+                <td>${title}</td>
+                <td>${desc}</td>
+                <td>${publishedAt}</td></tr>`;
+      }
+      newscode += '</table>';
+      document.getElementById("nvnews").innerHTML += newscode;
+
+    })
+
+
+  </script>
+
+
 
 </body>
 
