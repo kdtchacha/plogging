@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 
 
-<!-- 
-<form action="/signup" method="post">
-	이메일:<input type="email" name="email" placeholder="Email"/><br>
-	비밀번호:<input type="password" name="pwd" placeholder="this your password"/><br>
-	닉네임:<input type="text" name="nickname" placeholder="Enter your full name"/><br>
-	<input type="submit" value="전송"/>
+
+<form action="/user_info/update" method="post">
+	<!-- 이메일:<input type="email" name="email" placeholder="Email"/><br>
+	비밀번호:<input type="password" name="pwd" placeholder="this your password"/><br> -->
+	닉네임 : <input type="text" name="nickname" th:value="${session.user.nickname}"/><br><br>
+	<input type="submit" value="수정"/>
     <button type="button">탈퇴</button>
-</form> -->
+</form> 
 
 
 
-<!-- <div class="container">
+ <!-- <div class="container">
     <form id="signup" class="signup" action="/signup" method="post">
             <li>
                 <span><label for="name">Hi, What is your Name?</label></span>
@@ -29,4 +29,4 @@
                 <span id="show-pwd" class="view"></span>
             </li>      
     </form>
-<h1 id="wf" style="opacity:0;width: 600px; margin-top:1.1em;display:none; margin-bottom:1em">Thank you</h1> -->
+<h1 id="wf" style="opacity:0;width: 600px; margin-top:1.1em;display:none; margin-bottom:1em">Thank you</h1>  -->
