@@ -15,6 +15,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RequestBody;
+
 
 @Controller
 public class ActivityController {
@@ -67,24 +69,23 @@ public class ActivityController {
         return "camera";
     }
 
-    @GetMapping("/changevisibility")
-    public String changeVisibility(Long actid) {
+    @GetMapping(value="/visibility")
+    public String visibility(Long id) {
 
-        Optional<Activity> actFromdb = actRepository.findById(actid);
+       Optional<Activity> actidd = actRepository.findById(id);
 
-        if(actFromdb.isPresent()){
-            Activity dbact = actFromdb.get();
-            
-            if(actFromdb.get().getVisibility() == 0){
-                dbact.setVisibility(1);
-                actRepository.save(dbact);
-            }else{
-                dbact.setVisibility(0);
-                actRepository.save(dbact);
-            }
+       Activity vv = actidd.get();
 
-        }
+      if (vv.getVisibility() ==0) {
+          vv.setVisibility(1);
+          actRepository.save(vv);
+      } else {
+          vv.setVisibility(0);
+          actRepository.save(vv);
+      }
+        
         return "redirect:/mypage";
     }
+    
 
 }
