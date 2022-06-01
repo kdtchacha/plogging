@@ -42,7 +42,7 @@
     
 
 
-
+    <!-- thymeleaf 문법 -->
     <h2>나의 플로깅 기록</h2>
     <table border="1">
         <tr>
@@ -59,8 +59,9 @@
             <td th:text="${act.actDistance}"></td>
             <td th:text="${act.actMemo}"></td>
             <td th:text="${act.createDate}"></td>
-            <td th:if="${act.visibility == 0}"><a th:href="@{/changevisibility(actid=${act.id})}" th:text="비공개"></a></td>
-            <td th:unless="${act.visibility == 0}"><a th:href="@{/changevisibility(actid=${act.id})}" th:text="공개"></a></td>
+            <td th:if="${act.visibility == 0}"> <a th:href="@{/visibility(id=${act.id})}" th:text="공개"></a></td>
+            <td th:unless="${act.visibility == 0}"> <a th:href="@{/visibility(id=${act.id})}" th:text="비공개"></a></td>
+  
         </tr>
     </table>
 
