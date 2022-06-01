@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport"
+        content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <title>title</title>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <!-- 화면 캡쳐 CDN -->
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+</head>
+
+<body><button id="shot">screen shot</button>
+    <!-- 캡쳐할 영역 -->
+    <div id="capture" style="padding: 10px; background: #f5da55">
+        <h4 style="color: #000; ">Hello world!</h4>
+    </div>
+    <script>
+        $(function () {
+            $("#shot").on("click", function () {
+                // 캡쳐 라이브러리를 통해서 canvas 오브젝트를 받고 이미지 파일로 리턴한다.     
+                html2canvas(document.querySelector("#capture")).then(canvas => {
+                    saveAs(canvas.toDataURL('image/png'), "capture-test.png");
+                });
+            });
+            function saveAs(uri, filename) {
+                // 캡쳐된 파일을 이미지 파일로 내보낸다.   
+                var link = document.createElement('a');
+                if (typeof link.download === 'string') {
+                    link.href = uri; link.download = filename;
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
+                } else {
+                    window.open(uri);
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>
