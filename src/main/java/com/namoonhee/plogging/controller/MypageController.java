@@ -47,11 +47,11 @@ public class MypageController {
     @GetMapping(value="/mypage_new")
     public String mypagenew(HttpSession session, Model model) {
 
-        // User user = (User) session.getAttribute("user");
+        User user = (User) session.getAttribute("user");
 
-        // List<Activity> myActList = userService.myActList(user);
+        List<Activity> myActList = userService.myActList(user);
 
-        // model.addAttribute("list", myActList);
+        model.addAttribute("list", myActList);
 
         return "mypage_new";
     }

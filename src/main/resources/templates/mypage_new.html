@@ -49,6 +49,7 @@
     padding: 0 0 15px 0;
     border: none;
     border-radius: 0;
+    display: inline-block;
   }
   .thumbnail img {
     width: 100%;
@@ -91,12 +92,12 @@
   .panel-heading {
     color: #fff !important;
     background-color: gainsboro !important;
-    padding: 25px;
+    padding: 20px;
     border-bottom: 1px solid transparent;
-    border-top-left-radius: 0px;
-    border-top-right-radius: 0px;
-    border-bottom-left-radius: 0px;
-    border-bottom-right-radius: 0px;
+    border-top-left-radius: 100px;
+    border-top-right-radius: 100px;
+    border-bottom-left-radius: 100px;
+    border-bottom-right-radius: 100px;
   }
   .panel-footer {
     background-color: white !important;
@@ -195,14 +196,14 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>                        
       </button>
-      <a class="navbar-brand" href="#myPage">Logo</a>
+      <a class="navbar-brand" href="/index">Logo</a>
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="/index #about">ABOUT</a></li>
-        <li><a href="#services">SERVICES</a></li>
-        <li><a href="#campaign">CAMPAIGN</a></li>
-        <li><a href="#contact">MYPAGE</a></li>
+        <li><a href="/index#about">ABOUT</a></li>
+        <li><a href="/index#services">SERVICES</a></li>
+        <li><a href="/index#campaign">CAMPAIGN</a></li>
+        <li><a href="/index#contact">MYPAGE</a></li>
         <li><a th:href="@{/signout}" th:if="${session.user != null}"><span class="glyphicon glyphicon-log-in"></span>
             [[${session.user.nickname}]]님 Logout</a></li>
         <li><a th:href="@{/signin}" th:unless="${session.user != null}"><span
@@ -213,67 +214,50 @@
 </nav>
 
 
-<!-- Container (About Section) -->
-<!-- <div id="about" class="container-fluid">
-  <div class="row">
-    <div class="col-sm-8">
-      <h2>About Company Page</h2><br>
-      <h4>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</h4><br>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-      <br><button class="btn btn-default btn-lg">Get in Touch</button>
-    </div>
-    <div class="col-sm-4">
-      <span class="glyphicon glyphicon-signal logo"></span>
-    </div>
-  </div>
-</div>
-
-<div class="container-fluid bg-grey">
-  <div class="row">
-    <div class="col-sm-4">
-      <span class="glyphicon glyphicon-globe logo slideanim"></span>
-    </div>
-    <div class="col-sm-8">
-      <h2>Our Values</h2><br>
-      <h4><strong>MISSION:</strong> Our mission lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</h4><br>
-      <p><strong>VISION:</strong> Our vision Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-    </div>
-  </div>
-</div> -->
-
 
 
 <!-- Container (Portfolio Section) -->
 <div id="campaign" class="container-fluid text-center bg-grey">
-  <h2>Portfolio</h2><br>
-  <h4>What we have created</h4>
-  <div class="row text-center slideanim">
+  <h2>MY PAGE</h2><br>
+  <h4>플로깅 피드들</h4>
+  <div class="row text-center slideanim" th:each="act : ${list}" >
     <div class="col-sm-4">
       <div class="thumbnail">
-        <img src="images/runday1.jpg" alt="run1" >
-        <p><strong>Day1</strong></p>
-        <p>플로깅 첫 날!</p>
-        <p>거리 : 5km</p>
-        <p>소요시간 : 38:11</p>
-        <div class="panel-heading">좋아요  |  댓글</div>
+        <img src="images/runday2.jpg" alt="run2" >
+     <div class="panel-body">
+      <p th:text="${act.createDate}"></p>
+      <strong><p th:text="${act.actName}"></p></strong></div>
+      <p th:text="${act.actDistance}"></p>
+      <p th:text="${act.actTime}"></p>
+      <p th:text="${act.actMemo}"></p>
+      <div class="panel-heading">좋아요|댓글</div>
+    </div>
+      </div>
       </div>
     </div>
-    <div class="col-sm-4">
-      <div class="thumbnail">
-        <img src="images/runday2.jpg" alt="run2" width="400" height="300">
-        <p><strong>Day2</strong></p>
-        <p>플로깅 두 번째!</p>
-      </div>
-    </div>
-    <div class="col-sm-4">
+
+
+
+    <br><br>
+
+    
+    <!-- <a href="deleteaccount">탈퇴하기</a> -->
+    
+    <button type="button" class="btn btn-default btn-lg" onclick="location.href='user_info/update'">회원정보수정</button>
+    
+    <button type="button" class="btn btn-warning btn-lg" onclick="location.href='deleteaccount'">탈퇴하기</button>
+
+
+   
+   
+    <!-- <div class="col-sm-4">
       <div class="thumbnail">
         <img src="images/runday3.jpg" alt="run3" width="400" height="300">
         <p><strong>Day3</strong></p>
         <p>우리동네 플로깅 코스</p>
       </div>
     </div>
-  </div><br>
+  </div><br> -->
   
   
 
