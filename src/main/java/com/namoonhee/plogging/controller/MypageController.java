@@ -18,6 +18,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 
 @Controller
@@ -41,6 +43,19 @@ public class MypageController {
         return "mypage";
 
     }
+
+    @GetMapping(value="/mypage_new")
+    public String mypagenew(HttpSession session, Model model) {
+
+        // User user = (User) session.getAttribute("user");
+
+        // List<Activity> myActList = userService.myActList(user);
+
+        // model.addAttribute("list", myActList);
+
+        return "mypage_new";
+    }
+    
 
     @GetMapping(value = "/deleteaccount")
     public String deleteAccountForm() {
