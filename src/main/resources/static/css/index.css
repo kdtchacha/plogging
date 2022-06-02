@@ -19,7 +19,7 @@
     margin-bottom: 30px;
   }  
   .jumbotron {
-    background-color: green;
+    background-color: #16ad1b;
     color: #fff;
     padding: 100px 25px;
     font-family: Montserrat, sans-serif;
@@ -69,7 +69,7 @@
     font-style: normal;
   }
   .panel {
-    border: 1px solid #f4511e; 
+    border: 1px solid gainsboro; 
     border-radius:0 !important;
     transition: box-shadow 0.5s;
   }
@@ -77,13 +77,13 @@
     box-shadow: 5px 0px 40px rgba(0,0,0, .2);
   }
   .panel-footer .btn:hover {
-    border: 1px solid #f4511e;
+    border: 1px solid green;
     background-color: #fff !important;
-    color: #f4511e;
+    color: green; 
   }
   .panel-heading {
     color: #fff !important;
-    background-color: #f4511e !important;
+    background-color: gainsboro !important;
     padding: 25px;
     border-bottom: 1px solid transparent;
     border-top-left-radius: 0px;
@@ -103,12 +103,12 @@
   }
   .panel-footer .btn {
     margin: 15px 0;
-    background-color: #f4511e;
+    background-color: green;
     color: #fff;
   }
   .navbar {
     margin-bottom: 0;
-    background-color: green;
+    background-color: #16ad1b;
     z-index: 9999;
     border: 0;
     font-size: 12px !important;
