@@ -4,6 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <!-- 화면 캡쳐 CDN -->
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
 </head>
 
 <!-- 지도 스타일 -->
@@ -30,6 +33,9 @@
 
 
     <div id="maptest" th:replace="maptest"></div>
+    <br>
+    <button id="shot">screen shot</button>
+    <br><hr>
 
 
     <div>
@@ -56,28 +62,29 @@
                 <button type="button" id="testStopBtn">STOP</button>
                 <!--스톱 버튼-->
             </div>
-
-
-            <div>
-                <p> 활동 이름 : <input id="actname" type="text"></p>
-            </div>
-
-            <div>
-                <p>활동 메모 : <textarea id="actmemo" cols="50" rows="10" style="resize: none;"
-                        placeholder="플로깅 메모를 입력해주세요"></textarea></p>
-            </div>
-
-
-            <div>
-                <button type="button" id="timedb">DB에저장</button>
-                <!-- id속성에 timedb 값을 설정  -->
-            </div>
-
-            <br><br>
-
-            <button type="button" id="camera" onclick="location.href='camera' ">카메라</button>
-
         </div>
+
+
+        <div>
+            <p> 활동 이름 : <input id="actname" type="text"></p>
+        </div>
+
+        <div>
+            <p>활동 메모 : <textarea id="actmemo" cols="50" rows="10" style="resize: none;"
+                    placeholder="플로깅 메모를 입력해주세요"></textarea></p>
+        </div>
+
+
+        <div>
+            <button type="button" id="timedb">DB에저장</button>
+            <!-- id속성에 timedb 값을 설정  -->
+        </div>
+
+        <br><br>
+
+        <button type="button" id="camera" onclick="location.href='camera' ">카메라</button>
+
+    </div>
     </div>
 
     <!-- 스톱워치 스크립트 -->
@@ -202,6 +209,32 @@
         });
 
     </script>
+
+    <script>
+        $(function () {
+            $("#shot").on("click", function () {
+                // 캡쳐 라이브러리를 통해서 canvas 오브젝트를 받고 이미지 파일로 리턴한다.     
+                html2canvas(document.querySelector("#map")).then(canvas => {
+                    saveAs(canvas.toDataURL('image/png'), "capture-test.png");
+                });
+            });
+            function saveAs(uri, filename) {
+                // 캡쳐된 파일을 이미지 파일로 내보낸다.   
+                var link = document.createElement('a');
+                if (typeof link.download === 'string') {
+                    link.href = uri; link.download = filename;
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
+                } else {
+                    window.open(uri);
+                }
+            }
+        });
+    </script>
+
+
+
 </body>
 
 </html>
