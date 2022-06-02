@@ -19,10 +19,6 @@
         padding: 0;
     } */
 
-    body {
-        background-color: aquamarine;
-    }
-
     #actname {
         width: 355px;
     }
@@ -78,8 +74,8 @@
         <form method="post" action="imgupload" enctype="multipart/form-data">
             <input type="file" name="photo" id="photos" multiple />
         </form>
-        
-        
+
+
         <div>
             <!-- id속성에 timedb 값을 설정  -->
             <button type="submit" id="timedb">DB에저장</button>
@@ -87,7 +83,7 @@
 
         <br><br>
 
-        <button type="button" id="camera" onclick="location.href='camera' ">카메라</button>
+        <button type="button" id="camera" onclick="location.href='camera'">카메라</button>
 
     </div>
     </div>
@@ -185,19 +181,10 @@
             const distance = document.getElementById("dist").innerText;
             const actname = document.getElementById("actname").value;
             const actmemo = document.getElementById("actmemo").value;
-            // const photos = document.getElementById("photos");
             // for(let i=0;i<dots.length;i++ ){
             //  var abcd = JSON.stringify(dots[i].circle.n);
             //     console.log(abcd);
             // }
-            // const dotdata = abcd;
-            console.log(hourtime);
-            console.log(mintime);
-            console.log(sectime);
-            console.log(distance);
-            console.log(actname);
-            // console.log(photos);
-            // console.log(dotdata);
 
             //선택한 값을 폼데이터 라는 형식으로 담음
             const formData = new FormData();
@@ -207,12 +194,9 @@
             formData.append('dist', distance);
             formData.append('actname', actname);
             formData.append('actmemo', actmemo);
-            // formData.append('photos', photos);
-            // formData.append('dotdata', dotdata);
 
             const photos = document.getElementById("photos");
-            for(const file of photos.files) {
-                console.log(file);
+            for (const file of photos.files) {
                 formData.append('photos', file);
             }
 
@@ -220,12 +204,13 @@
                 url: 'act',
                 method: 'post',
                 data: formData,
-                headers : {'Content-type' : 'multipart/form-data'}
+                headers: { 'Content-type': 'multipart/form-data' }
             })
                 .then(function (result) {
-                    console.log(result);
+                window.location.href = "/mypage"
                 })
                 .catch(function (error) {
+                    alert("활동 저장이 정상적으로 되지 않았습니다.")
                     console.log(error.message);
                 });
         });
@@ -236,7 +221,7 @@
         $(function () {
             $("#shot").on("click", function () {
                 // 캡쳐 라이브러리를 통해서 canvas 오브젝트를 받고 이미지 파일로 리턴한다.     
-                html2canvas(document.querySelector("#map"), {allowTaint:true}).then(canvas => {
+                html2canvas(document.querySelector("#map"), { allowTaint: true }).then(canvas => {
                     document.body.appendChild(canvas);
                     saveAs(canvas.toDataURL('image/png'), "capture-test.png");
                 });
