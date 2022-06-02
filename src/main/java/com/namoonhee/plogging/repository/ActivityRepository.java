@@ -12,7 +12,5 @@ public interface ActivityRepository extends JpaRepository<Activity, Long> {
     List<Activity> findByUser_id(Long id);
 
     List<Activity> findByVisibility(int i, Pageable p);
-
-    List<Activity> findByUser_id(Long id, Pageable p);
     
 }
