@@ -23,7 +23,7 @@ public class RestTemplateController {
       requestEntity = RequestEntity
           .get(
               new URI(
-                  "https://openapi.naver.com/v1/search/news.json?display=5&query=" +
+                  "https://openapi.naver.com/v1/search/news.json?display=6&query=" +
                       URLEncoder.encode(query, "utf-8")))
           .header("X-Naver-Client-Id", "luTWH2TgUj6WT_cIta1i")
           .header("X-Naver-Client-Secret", "DilYy6o8IQ")
