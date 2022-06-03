@@ -55,6 +55,7 @@ public class ActivityController {
         String dist = req.getParameter("dist");
         String actname = req.getParameter("actname");
         String actmemo = req.getParameter("actmemo");
+        String latlng = req.getParameter("latlng");
 
         System.out.println(a);
         System.out.println(b);
@@ -68,6 +69,7 @@ public class ActivityController {
         act.setActDistance(dist);
         act.setActName(actname);
         act.setActMemo(actmemo);
+        act.setLatlng(latlng);
 
         User user = (User) session.getAttribute("user");
         act.setUser(user);
@@ -183,9 +185,19 @@ public class ActivityController {
         return "redirect:/mypage";
     }
 
-    @GetMapping("/mapmap")
-    public String mapmap() {
-        return "kmbmaptest";
+    @ResponseBody
+    @GetMapping("linetest")
+    public String linedata() {
+
+        Optional<Activity> a = actRepository.findById(71L);
+
+        Activity b = a.get();
+
+        String c = b.getLatlng();
+
+        System.out.println(c);
+
+        return c;
     }
 
 }

@@ -43,4 +43,11 @@ public class PloggingController {
         return "maptest";
     }
 
+
+
+    @GetMapping("mapline")
+    public String mapline(){
+        return "mapline";
+    }
+
 }

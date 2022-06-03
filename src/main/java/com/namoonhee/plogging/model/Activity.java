@@ -29,6 +29,9 @@ public class Activity {
     Date createDate;
     int visibility;
 
+    @Lob
+    String latlng;
+
     @ManyToOne
     User user;
 

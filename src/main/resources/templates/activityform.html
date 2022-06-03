@@ -181,6 +181,9 @@
             const distance = document.getElementById("dist").innerText;
             const actname = document.getElementById("actname").value;
             const actmemo = document.getElementById("actmemo").value;
+            const latlng = JSON.stringify(mhlatlng);
+            console.log(latlng);
+
             // for(let i=0;i<dots.length;i++ ){
             //  var abcd = JSON.stringify(dots[i].circle.n);
             //     console.log(abcd);
@@ -194,6 +197,7 @@
             formData.append('dist', distance);
             formData.append('actname', actname);
             formData.append('actmemo', actmemo);
+            formData.append('latlng', latlng);
 
             const photos = document.getElementById("photos");
             for (const file of photos.files) {
