@@ -28,6 +28,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 @Controller
 public class ActivityController {
@@ -37,6 +39,9 @@ public class ActivityController {
 
     @Autowired
     ActFileRepository actFileRepository;
+
+
+
 
     @GetMapping("/activityform")
     public String actForm() {
@@ -167,6 +172,14 @@ public class ActivityController {
     public String camera() {
         return "camera";
     }
+
+
+    @GetMapping("/slide")
+    public String slide() {
+        return "slide";
+    }
+
+
 
     @GetMapping(value = "/visibility")
     public String visibility(Long id) {

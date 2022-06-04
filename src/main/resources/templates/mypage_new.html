@@ -109,7 +109,7 @@
     .panel-heading {
       color: #fff !important;
       background-color: gainsboro !important;
-      padding: 20px;
+      padding: 0px;
       border-bottom: 1px solid transparent;
       border-top-left-radius: 100px;
       border-top-right-radius: 100px;
@@ -266,7 +266,7 @@
       <div class="col-sm-4" th:each="act : ${list}">
         <div class="thumbnail">
           <img src="images/runday2.jpg" alt="run2">
-          <div class="panel-body">
+          <div class="panel-body" width="302px" height="250px">
             <p th:text="${act.createDate}"></p>
             <strong>
               <p th:text="${act.actName}"></p>
