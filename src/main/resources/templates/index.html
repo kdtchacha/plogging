@@ -33,7 +33,7 @@
           <li><a href="#about">ABOUT</a></li>
           <li><a href="#services">SERVICE</a></li>
           <li><a href="#campaign">CAMPAIGN</a></li>
-          <li><a th:href="@{/mypage_new}" th:if="${session.user != null}">MY PAGE</a></li> 
+          <li><a th:href="@{/mypage_new}" th:if="${session.user != null}">MY PAGE</a></li>
           <li><a th:href="@{/signout}" th:if="${session.user != null}"><span class="glyphicon glyphicon-log-in"></span>
               [[${session.user.nickname}]]님 Logout</a></li>
           <li><a th:href="@{/signin}" th:unless="${session.user != null}"><span
@@ -64,9 +64,9 @@
     <div class="row">
       <div class="col-sm-8">
         <h2>플로깅(Plogging)이란?</h2><br>
-        <h4>‘이삭을 줍는다’는 뜻인 스웨덴어 ‘plocka upp’과 영어 ‘jogging(조깅)’의 합성어로 2016년, 환경보호를 위해 스웨덴에서 처음 시작된 환경보호운동입니다. 
+        <h4>‘이삭을 줍는다’는 뜻인 스웨덴어 ‘plocka upp’과 영어 ‘jogging(조깅)’의 합성어로 2016년, 환경보호를 위해 스웨덴에서 처음 시작된 환경보호운동입니다.
           플로깅은 조깅하면서 쓰레기를 줍는 행동으로, 조깅이라는 대중적 운동(exercise)에 환경보호 운동(movement)이 더해진 개인이 자발적으로 실천할 수 있는 환경보호운동을 뜻합니다.
-          
+
           </p>
           <!-- <br><button class="btn btn-default btn-lg">Get in Touch</button> -->
       </div>
@@ -169,22 +169,25 @@
         <li data-target="#myCarousel" data-slide-to="1"></li>
         <li data-target="#myCarousel" data-slide-to="2"></li>
         <li data-target="#myCarousel" data-slide-to="3"></li>
+        <li data-target="#myCarousel" data-slide-to="4"></li>
+        <li data-target="#myCarousel" data-slide-to="5"></li>
+        <li data-target="#myCarousel" data-slide-to="6"></li>
       </ol>
 
       <!-- Wrapper for slides -->
       <div class="carousel-inner" role="listbox" id="nvnewslgh">
-        <!-- <div class="item active">
+        <div class="item active">
           <h4>"This company is the best. I am so happy with the result!"<br><span>Michael Roe,
               Vice President, Comment
               Box</span></h4>
         </div>
-        <div class="item active">
+        <!-- <div class="item">
           <h4>"One word... WOW!!"<br><span>John Doe, Salesman, Rep Inc</span></h4>
         </div>
-        <div class="item active">
+        <div class="item">
           <h4>"Could I... BE any more happy with this company?"<br><span>Chandler Bing, Actor, FriendsAlot</span></h4>
         </div>
-        <div class="item active">
+        <div class="item">
           <h4>가희님이 프론트를 너무 잘해주셨어요<br><span>Chandler Bing, Actor, FriendsAlot</span></h4>
         </div> -->
       </div>
@@ -206,7 +209,7 @@
 
   <!-- Container (Pricing Section) -->
   <!-- <div id="pricing" class="container-fluid"> -->
-    <!-- <div class="text-center">
+  <!-- <div class="text-center">
       <h2>공유 활동</h2>
     </div>
     <div class="row slideanim">
@@ -231,28 +234,28 @@
 
 
 
-      <div id="pricing" class="container-fluid text-center bg-grey">
-        <h2>MY PAGE</h2><br>
-        <h4>플로깅 피드들</h4>
-    
-        <div class="row text-center slideanim" >
-          <div class="col-sm-4" th:each="act : ${publist}">
-            <div class="thumbnail">
-              <img src="images/runday2.jpg" alt="run2">
-              <div class="panel-body">
-                <p th:text="${act.createDate}"></p>
-                <strong>
-                  <p th:text="${act.actName}"></p>
-                </strong>
-                <p th:text="${act.actDistance}"></p>
-                <p th:text="${act.actTime}"></p>
-                <p th:text="${act.actMemo}"></p>
-                <div class="panel-heading">좋아요|댓글</div>
-              </div>
-            </div>
+  <div id="pricing" class="container-fluid text-center bg-grey">
+    <h2>MY PAGE</h2><br>
+    <h4>플로깅 피드들</h4>
+
+    <div class="row text-center slideanim">
+      <div class="col-sm-4" th:each="act : ${publist}">
+        <div class="thumbnail">
+          <img src="images/runday2.jpg" alt="run2">
+          <div class="panel-body">
+            <p th:text="${act.createDate}"></p>
+            <strong>
+              <p th:text="${act.actName}"></p>
+            </strong>
+            <p th:text="${act.actDistance}"></p>
+            <p th:text="${act.actTime}"></p>
+            <p th:text="${act.actMemo}"></p>
+            <div class="panel-heading">좋아요|댓글</div>
           </div>
         </div>
       </div>
+    </div>
+  </div>
 
 
 
@@ -284,7 +287,7 @@
       </div>
     </div>
   </div>
-  
+
 
 
 
@@ -353,19 +356,25 @@
       //   </div>
 
 
-      let newscode = '<div class="item active">'
+      let newscode = "";
       const newslist = newsdata.data.items;
       console.log(newslist);
       for (let key in newslist) {
         const abc = newslist[key];
         const title = abc.title;
+        const pubdate = abc.pubDate;
+        const link = abc.link;
         // const desc = abc.description;
         // const publishedAt = abc.pubDate;
 
-        newscode += `<h4>${title}</h4>`;
+        newscode += '<div class="item">'
+        newscode += `<h4><a href="${link}">${title}</a><br>`;
+        newscode += `<span><h5>${pubdate}</h5></span>`;
+        newscode += '</h4>'
+        newscode += '</div>';
       }
-      newscode += '</div>';
-      document.getElementById("nvnewslgh").innerHTML = newscode;
+
+      document.getElementById("nvnewslgh").innerHTML += newscode;
 
     })
 
