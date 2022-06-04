@@ -2,6 +2,7 @@ package com.namoonhee.plogging.repository;
 
 import java.util.List;
 
+import com.namoonhee.plogging.model.ActFile;
 import com.namoonhee.plogging.model.Activity;
 
 import org.springframework.data.domain.Pageable;

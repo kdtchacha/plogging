@@ -241,7 +241,7 @@
     <div class="row text-center slideanim">
       <div class="col-sm-4" th:each="act : ${publist}">
         <div class="thumbnail">
-          <img src="images/runday2.jpg" alt="run2">
+          <img th:src="@{/nawarapic(id=${act.id})}" style="width: 300px;" onerror="this.src='/images/runday2.jpg'" alt="run2">
           <div class="panel-body">
             <p th:text="${act.createDate}"></p>
             <strong>
