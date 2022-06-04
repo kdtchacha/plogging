@@ -11,6 +11,9 @@ import com.namoonhee.plogging.repository.ActivityRepository;
 import com.namoonhee.plogging.repository.UserRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -51,8 +54,12 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<Activity> myActList(User user) {
+
+        Sort sort = Sort.by(Sort.Direction.DESC, "createDate");
+
+        Pageable p = PageRequest.of(0, 6, sort);
         
-         List<Activity> opt = activityRepository.findByUser_id(user.getId());
+         List<Activity> opt = activityRepository.findByUser_id(user.getId(), p);
 
         return opt;
     }

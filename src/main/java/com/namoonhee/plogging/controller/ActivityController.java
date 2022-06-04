@@ -201,9 +201,9 @@ public class ActivityController {
 
     @ResponseBody
     @GetMapping("linetest")
-    public String linedata() {
+    public String linedata(Long actid) {
 
-        Optional<Activity> a = actRepository.findById(71L);
+        Optional<Activity> a = actRepository.findById(actid);
 
         Activity b = a.get();
 

@@ -274,7 +274,9 @@
             <p th:text="${act.actDistance}"></p>
             <p th:text="${act.actTime}"></p>
             <p th:text="${act.actMemo}"></p>
-            <div class="panel-heading">좋아요|댓글</div>
+            <div class="panel-heading">좋아요|댓글
+              <a th:href="@{mapline(actid=${act.Id})}"><p th:text="경로보기"></p></a>
+            </div>
           </div>
         </div>
       </div>
