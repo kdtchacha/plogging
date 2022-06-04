@@ -11,4 +11,5 @@ public interface ActFileRepository extends JpaRepository<ActFile, Long> {
     
     List<ActFile> findByActivity(Activity act);
 
+
 }
