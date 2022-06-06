@@ -75,12 +75,12 @@ public class MypageController {
             userService.deleteAccount(user);
             httpSession.invalidate();
             model.addAttribute("deleteaccount_result", "success");
-            redir = "index";
+            redir = "redirect:/";
 
         } else {
             model.addAttribute("deleteaccount_result", "fail");
 
-            redir = "mypage";
+            redir = "redirect:/mypage_new";
         }
 
         return redir;
@@ -137,7 +137,7 @@ public class MypageController {
 
         // UserRepository.save(newNickname);
 
-        return "mypage";
+        return "redirect:/mypage_new";
     }
 
 }
