@@ -30,7 +30,7 @@ public class UserController {
 
         userService.signup(user);
 
-        return "redirect:/index";
+        return "redirect:/";
     }
 
     @PostMapping("/signin")
@@ -40,7 +40,7 @@ public class UserController {
 
         httpSession.setAttribute("user", opt.get());
 
-        return "index";
+        return "redirect:/";
     }
 
     @GetMapping("/signout")
@@ -48,7 +48,7 @@ public class UserController {
 
         httpSession.invalidate();
 
-        return "redirect:/index";
+        return "redirect:/";
 
     }
 

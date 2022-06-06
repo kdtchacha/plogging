@@ -196,7 +196,7 @@ public class ActivityController {
             actRepository.save(vv);
         }
 
-        return "redirect:/mypage";
+        return "redirect:/mypage_new";
     }
 
     @ResponseBody

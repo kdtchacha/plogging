@@ -4,39 +4,52 @@
 <head>
 
 <meta charset="UTF-8">
+<title>NMH PLOGGING</title>
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
 <link href="/css/sign2.css" rel="stylesheet">
 <script src = https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js></script>
 <script src = https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js></script>
 <script src = https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js></script>
+<link rel="shortcut icon" href="https://cdn-icons.flaticon.com/png/128/2391/premium/2391092.png?token=exp=1654523299~hmac=883039fe929538c756aa4bd0ff44e780">
 </head>
 
 
 <body>
+
   <div class="content">
     <!-- Nav pills -->
     <ul class="nav nav-pills" role="tablist">
       <li class="nav-item">
-        <a class="nav-link active" data-toggle="pill" href="#aaa">Login</a> 
+        <a class="nav-link active" data-toggle="pill" href="#aaa">로그인</a> 
       </li>
       <li class="nav-item">
-        <a class="nav-link" data-toggle="pill" href="#bbb">Register</a> 
+        <a class="nav-link" data-toggle="pill" href="#bbb">회원가입</a> 
       </li>
     </ul>
 
     <!-- Tab panes -->
     <div class="tab-content">
       <div id="aaa" class="container tab-pane active"> 
-        <form action="/signin" method="post">
+        <form action="/signin" method="post" class="was-validated">
           <div class="form-group">
+
+            <div class="welcome plogging" style="display: flex; justify-content: center;">
+              <img src="images/ecology.png"
+            style="width: 40px;"><h3>Let's Plogging !</h3>
+            </div><br>
+
             <label for="exampleFormControlInput1">이메일 주소</label>
-            <input name="email" type="email" class="form-control is-valid" id="exampleFormControlInput1" placeholder="name@example.com">
-            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+            <input name="email" type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com" required>
+            <div class="valid-feedback">💚</div>
+            <div class="invalid-feedback">이메일을 입력해주세요.</div>
+            <small id="emailHelp" class="form-text text-muted"></small>
           </div>
           <div class="form-group">
             <label for="exampleInputPassword1">비밀번호</label>
-            <input name="pwd" type="password" class="form-control is-invalid" id="exampleInputPassword1" placeholder="Password">
-            <small id="emailHelp" class="form-text text-muted">Password incorrect.</small>
+            <input name="pwd" type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" required>
+            <div class="valid-feedback">💚</div>
+            <div class="invalid-feedback">비밀번호를 입력해주세요.</div>
+            <small id="emailHelp" class="form-text text-muted"></small>
           </div>
           <button type="submit" class="btn btn-primary">Submit</button>
         </form>

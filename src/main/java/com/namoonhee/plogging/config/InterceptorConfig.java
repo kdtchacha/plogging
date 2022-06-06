@@ -18,7 +18,7 @@ public class InterceptorConfig implements WebMvcConfigurer{
         
         registry
         .addInterceptor(interceptor)
-        .addPathPatterns("/mypage", "/activityform");
+        .addPathPatterns("/mypage_new", "/activityform");
 
         WebMvcConfigurer.super.addInterceptors(registry);
     }

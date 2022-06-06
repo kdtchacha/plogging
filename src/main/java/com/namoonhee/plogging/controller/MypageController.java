@@ -31,18 +31,18 @@ public class MypageController {
     @Autowired
     UserRepository userRepository;
 
-    @GetMapping(value = "/mypage")
-    public String mypage(HttpSession session, Model model) {
+    // @GetMapping(value = "/mypage")
+    // public String mypage(HttpSession session, Model model) {
 
-        User user = (User) session.getAttribute("user");
+    //     User user = (User) session.getAttribute("user");
 
-        List<Activity> myActList = userService.myActList(user);
+    //     List<Activity> myActList = userService.myActList(user);
 
-        model.addAttribute("list", myActList);
+    //     model.addAttribute("list", myActList);
 
-        return "mypage";
+    //     return "mypage";
 
-    }
+    // }
 
     @GetMapping(value="/mypage_new")
     public String mypagenew(HttpSession session, Model model) {
@@ -75,12 +75,12 @@ public class MypageController {
             userService.deleteAccount(user);
             httpSession.invalidate();
             model.addAttribute("deleteaccount_result", "success");
-            redir = "index";
+            redir = "redirect:/";
 
         } else {
             model.addAttribute("deleteaccount_result", "fail");
 
-            redir = "mypage";
+            redir = "redirect:/mypage_new";
         }
 
         return redir;
@@ -137,7 +137,7 @@ public class MypageController {
 
         // UserRepository.save(newNickname);
 
-        return "mypage";
+        return "redirect:/mypage_new";
     }
 
 }
