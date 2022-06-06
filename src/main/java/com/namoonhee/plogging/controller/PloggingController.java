@@ -38,7 +38,7 @@ public class PloggingController {
     @Autowired
     ActFileRepository actFileRepository;
 
-    @GetMapping("/index")
+    @GetMapping("/")
     public String index(Model model) {
 
         Sort sort = Sort.by(Sort.Direction.DESC, "createDate");
