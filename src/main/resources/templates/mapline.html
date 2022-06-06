@@ -245,13 +245,10 @@
             </div>
             <div class="collapse navbar-collapse" id="myNavbar">
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#about">ABOUT</a></li>
-                    <li><a href="#services">SERVICE</a></li>
-                    <li><a href="#campaign">CAMPAIGN</a></li>
+                    <li><a href="/">MAIN</a></li>
                     <li><a th:href="@{/mypage_new}" th:if="${session.user != null}">MY PAGE</a></li>
                     <li><a th:href="@{/signout}" th:if="${session.user != null}"><span
-                                class="glyphicon glyphicon-log-in"></span>
-                            [[${session.user.nickname}]]님 Logout</a></li>
+                                class="glyphicon glyphicon-log-in"></span>[[${session.user.nickname}]]님 Logout</a></li>
                     <li><a th:href="@{/signin}" th:unless="${session.user != null}"><span
                                 class="glyphicon glyphicon-log-out"></span> Login</a></li>
                 </ul>
