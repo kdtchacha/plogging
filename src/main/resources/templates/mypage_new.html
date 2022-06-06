@@ -280,8 +280,8 @@
               <a th:href="@{mapline(actid=${act.Id})}">
                 <b th:text="경로보기"></b>
               </a><br>
-              <i th:if="${act.visibility == 0}"> <a th:href="@{/visibility(id=${act.id})}">✓ 비공개</a></i>
-              <i th:unless="${act.visibility == 0}"> <a th:href="@{/visibility(id=${act.id})}">✓ 공개</a></i>
+              <strong th:if="${act.visibility == 0}"> <a th:href="@{/visibility(id=${act.id})}">[✨ 비공개 ]</a></strong>
+              <strong th:unless="${act.visibility == 0}"> <a th:href="@{/visibility(id=${act.id})}">[✨ 공개 ]</a></strong>
             </div>
           </div>
         </div>
