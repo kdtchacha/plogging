@@ -26,7 +26,8 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a href="/index" class="navbar-brand" style="padding-top: 5px;"><img  src="images/ecology.png" style="width: 40px;"></a>
+        <a href="/index" class="navbar-brand" style="padding-top: 5px;"><img src="images/ecology.png"
+            style="width: 40px;"></a>
       </div>
       <div class="collapse navbar-collapse" id="myNavbar">
         <ul class="nav navbar-nav navbar-right">
@@ -241,7 +242,8 @@
     <div class="row text-center slideanim">
       <div class="col-sm-4" th:each="act : ${publist}">
         <div class="thumbnail">
-          <img th:src="@{/nawarapic(id=${act.id})}" style="width: 300px;" onerror="this.src='/images/runday2.jpg'" alt="run2">
+          <img th:src="@{/nawarapic(id=${act.id})}" style="width: auto;" onerror="this.src='/images/runday2.jpg'"
+            alt="run2">
           <div class="panel-body">
             <p th:text="${act.createDate}"></p>
             <strong>
@@ -250,136 +252,139 @@
             <p th:text="${act.actDistance}"></p>
             <p th:text="${act.actTime}"></p>
             <p th:text="${act.actMemo}"></p>
-            <div class="panel-heading">좋아요|댓글</div>
+            <div class="panel-heading">좋아요|댓글
+              <a th:href="@{mapline(actid=${act.Id})}">
+                <p th:text="경로보기"></p>
+              </a>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
 
 
 
-  <!-- Container (Contact Section) -->
-  <div id="contact" class="container-fluid bg-grey">
-    <h2 class="text-center">CONTACT</h2>
-    <div class="row">
-      <div class="col-sm-5">
-        <p>Contact us and we'll get back to you within 24 hours.</p>
-        <p><span class="glyphicon glyphicon-map-marker"></span> Chicago, US</p>
-        <p><span class="glyphicon glyphicon-phone"></span> +00 1515151515</p>
-        <p><span class="glyphicon glyphicon-envelope"></span> myemail@something.com</p>
-      </div>
-      <div class="col-sm-7 slideanim">
-        <div class="row">
-          <div class="col-sm-6 form-group">
-            <input class="form-control" id="name" name="name" placeholder="Name" type="text" required>
-          </div>
-          <div class="col-sm-6 form-group">
-            <input class="form-control" id="email" name="email" placeholder="Email" type="email" required>
-          </div>
+    <!-- Container (Contact Section) -->
+    <div id="contact" class="container-fluid bg-grey">
+      <h2 class="text-center">CONTACT</h2>
+      <div class="row">
+        <div class="col-sm-5">
+          <p>Contact us and we'll get back to you within 24 hours.</p>
+          <p><span class="glyphicon glyphicon-map-marker"></span> Chicago, US</p>
+          <p><span class="glyphicon glyphicon-phone"></span> +00 1515151515</p>
+          <p><span class="glyphicon glyphicon-envelope"></span> myemail@something.com</p>
         </div>
-        <textarea class="form-control" id="comments" name="comments" placeholder="Comment" rows="5"></textarea><br>
-        <div class="row">
-          <div class="col-sm-12 form-group">
-            <button class="btn btn-default pull-right" type="submit">Send</button>
+        <div class="col-sm-7 slideanim">
+          <div class="row">
+            <div class="col-sm-6 form-group">
+              <input class="form-control" id="name" name="name" placeholder="Name" type="text" required>
+            </div>
+            <div class="col-sm-6 form-group">
+              <input class="form-control" id="email" name="email" placeholder="Email" type="email" required>
+            </div>
+          </div>
+          <textarea class="form-control" id="comments" name="comments" placeholder="Comment" rows="5"></textarea><br>
+          <div class="row">
+            <div class="col-sm-12 form-group">
+              <button class="btn btn-default pull-right" type="submit">Send</button>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
 
 
 
 
 
-  <footer class="container-fluid text-center">
-    <a href="#myPage" title="To Top">
-      <span class="glyphicon glyphicon-chevron-up"></span>
-    </a>
-    <!-- <p>Bootstrap Theme Made By <a href="https://www.w3schools.com" title="Visit w3schools">www.w3schools.com</a></p> -->
-  </footer>
+    <footer class="container-fluid text-center">
+      <a href="#myPage" title="To Top">
+        <span class="glyphicon glyphicon-chevron-up"></span>
+      </a>
+      <!-- <p>Bootstrap Theme Made By <a href="https://www.w3schools.com" title="Visit w3schools">www.w3schools.com</a></p> -->
+    </footer>
 
-  <script>
-    $(document).ready(function () {
-      // Add smooth scrolling to all links in navbar + footer link
-      $(".navbar a, footer a[href='#myPage']").on('click', function (event) {
-        // Make sure this.hash has a value before overriding default behavior
-        if (this.hash !== "") {
-          // Prevent default anchor click behavior
-          event.preventDefault();
+    <script>
+      $(document).ready(function () {
+        // Add smooth scrolling to all links in navbar + footer link
+        $(".navbar a, footer a[href='#myPage']").on('click', function (event) {
+          // Make sure this.hash has a value before overriding default behavior
+          if (this.hash !== "") {
+            // Prevent default anchor click behavior
+            event.preventDefault();
 
-          // Store hash
-          var hash = this.hash;
+            // Store hash
+            var hash = this.hash;
 
-          // Using jQuery's animate() method to add smooth page scroll
-          // The optional number (900) specifies the number of milliseconds it takes to scroll to the specified area
-          $('html, body').animate({
-            scrollTop: $(hash).offset().top
-          }, 900, function () {
+            // Using jQuery's animate() method to add smooth page scroll
+            // The optional number (900) specifies the number of milliseconds it takes to scroll to the specified area
+            $('html, body').animate({
+              scrollTop: $(hash).offset().top
+            }, 900, function () {
 
-            // Add hash (#) to URL when done scrolling (default click behavior)
-            window.location.hash = hash;
-          });
-        } // End if
-      });
-
-      $(window).scroll(function () {
-        $(".slideanim").each(function () {
-          var pos = $(this).offset().top;
-
-          var winTop = $(window).scrollTop();
-          if (pos < winTop + 600) {
-            $(this).addClass("slide");
-          }
+              // Add hash (#) to URL when done scrolling (default click behavior)
+              window.location.hash = hash;
+            });
+          } // End if
         });
+
+        $(window).scroll(function () {
+          $(".slideanim").each(function () {
+            var pos = $(this).offset().top;
+
+            var winTop = $(window).scrollTop();
+            if (pos < winTop + 600) {
+              $(this).addClass("slide");
+            }
+          });
+        });
+      })
+    </script>
+
+    <script src="http://unpkg.com/axios/dist/axios.min.js"></script>
+    <script>
+
+      const data = axios({
+        url: 'navernews?query=플로깅',
+        method: 'get',
       });
-    })
-  </script>
+      data.then((res) => {
 
-  <script src="http://unpkg.com/axios/dist/axios.min.js"></script>
-  <script>
+        console.log(res);
 
-    const data = axios({
-      url: 'navernews?query=플로깅',
-      method: 'get',
-    });
-    data.then((res) => {
+        const newsdata = res;
 
-      console.log(res);
-
-      const newsdata = res;
-
-      // <div class="item active">
-      //     <h4>"This company is the best. I am so happy with the result!"<br><span>Michael Roe,
-      //         Vice President, Comment
-      //         Box</span></h4>
-      //   </div>
+        // <div class="item active">
+        //     <h4>"This company is the best. I am so happy with the result!"<br><span>Michael Roe,
+        //         Vice President, Comment
+        //         Box</span></h4>
+        //   </div>
 
 
-      let newscode = "";
-      const newslist = newsdata.data.items;
-      console.log(newslist);
-      for (let key in newslist) {
-        const abc = newslist[key];
-        const title = abc.title;
-        const pubdate = abc.pubDate;
-        const link = abc.link;
-        // const desc = abc.description;
-        // const publishedAt = abc.pubDate;
+        let newscode = "";
+        const newslist = newsdata.data.items;
+        console.log(newslist);
+        for (let key in newslist) {
+          const abc = newslist[key];
+          const title = abc.title;
+          const pubdate = abc.pubDate;
+          const link = abc.link;
+          // const desc = abc.description;
+          // const publishedAt = abc.pubDate;
 
-        newscode += '<div class="item">'
-        newscode += `<h4><a href="${link}">${title}</a><br>`;
-        newscode += `<span><h5>${pubdate}</h5></span>`;
-        newscode += '</h4>'
-        newscode += '</div>';
-      }
+          newscode += '<div class="item">'
+          newscode += `<h4><a href="${link}">${title}</a><br>`;
+          newscode += `<span><h5>${pubdate}</h5></span>`;
+          newscode += '</h4>'
+          newscode += '</div>';
+        }
 
-      document.getElementById("nvnewslgh").innerHTML += newscode;
+        document.getElementById("nvnewslgh").innerHTML += newscode;
 
-    })
+      })
 
 
-  </script>
+    </script>
 
 
 
