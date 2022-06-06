@@ -26,7 +26,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a href="/index"><img class="navbar-brand" src="images/ecology.png" width="30%"></a>
+        <a href="/index"><img class="navbar-brand" src="images/ecology.png" width="50%"></a>
       </div>
       <div class="collapse navbar-collapse" id="myNavbar">
         <ul class="nav navbar-nav navbar-right">
@@ -134,34 +134,37 @@
 
   <!-- Container (Portfolio Section) -->
   <div id="campaign" class="container-fluid text-center bg-grey">
-    <h2>캠페인 안내</h2><br>
-    <h4>What we have created</h4>
+    <h2>플로깅 캠페인 안내</h2><br>
     <div class="row text-center slideanim">
       <div class="col-sm-4">
-        <div class="thumbnail">
-          <img src="images/ansan.png" alt="Ansan" width="400px" height="300px">
+        <div class="thumbnails">
+          <img src="images/ansan.png" alt="Ansan">
           <p><strong>Ansan</strong></p>
           <p>Yes, we built Paris</p>
         </div>
       </div>
       <div class="col-sm-4">
-        <div class="thumbnail">
-          <img src="images/jejooo.jfif" alt="Jejooo" width="400px" height="300px">
+        <div class="thumbnails">
+          <img src="images/jejooo.jfif" alt="Jejooo">
           <p><strong>Jeju</strong></p>
           <p>We built New York</p>
         </div>
       </div>
       <div class="col-sm-4">
-        <div class="thumbnail">
-          <img src="images/adong.png" alt="adong" width="400px" height="300px">
+        <div class="thumbnails">
+          <img src="images/adong.png" alt="adong">
           <p><strong>adong</strong></p>
           <p>Yes, San Fran is ours</p>
         </div>
       </div>
-    </div><br>
+    </div><br><br><br><br>
 
-    <h2>플로깅 뉴스</h2>
-    <h5>( 출처 : 네이버 뉴스 )</h5>
+
+
+
+    <div class="news">
+    <h2>PLOGGING NEWS</h2>
+    <!-- <h5>( 출처 : NAVER NEWS )</h5> -->
     <div id="myCarousel" class="carousel slide text-center" data-ride="carousel">
       <!-- Indicators -->
       <ol class="carousel-indicators">
@@ -177,9 +180,7 @@
       <!-- Wrapper for slides -->
       <div class="carousel-inner" role="listbox" id="nvnewslgh">
         <div class="item active">
-          <h4>"This company is the best. I am so happy with the result!"<br><span>Michael Roe,
-              Vice President, Comment
-              Box</span></h4>
+          <h4>플로깅으로 검색된 최신 뉴스를 전달해드립니다.<br><span><h6>( 출처 : NAVER NEWS )</h6></span></h4>
         </div>
         <!-- <div class="item">
           <h4>"One word... WOW!!"<br><span>John Doe, Salesman, Rep Inc</span></h4>
@@ -206,50 +207,28 @@
 
   <div id="nvnews">
   </div>
+</div>
 
-  <!-- Container (Pricing Section) -->
-  <!-- <div id="pricing" class="container-fluid"> -->
-  <!-- <div class="text-center">
-      <h2>공유 활동</h2>
-    </div>
-    <div class="row slideanim">
-      <div th:each="act : ${publist}" class="col-sm-4 col-xs-12">
-        <div class="panel panel-default text-center">
-          <div class="panel-heading">
-            <img src="images/runday1.jpg" alt="runday1" width="400px" height="400px">
-          </div>
-          <div class="panel-body" width="400px">
-            <div>제목:<p th:text="${act.actName}"></p></div>
-            <p th:text="${act.actDistance}"></p>
-            <p th:text="${act.actTime}"></p>
-            <p th:text="${act.User.nickname}"></p>
-            <p th:text="${act.createDate}"></p>
-          </div>
-          <div class="panel-footer">
-            <h4>좋아요</h4>
-            <h4>댓글</h4>
-          </div>
-        </div>
-      </div> -->
-
+  
 
 
   <div id="pricing" class="container-fluid text-center bg-grey">
-    <h2>MY PAGE</h2><br>
-    <h4>플로깅 피드들</h4>
+    <h2>플로깅 피드</h2><br>
+    <!-- <h4></h4> -->
 
     <div class="row text-center slideanim">
       <div class="col-sm-4" th:each="act : ${publist}">
         <div class="thumbnail">
-          <img th:src="@{/nawarapic(id=${act.id})}" style="width: 300px;" onerror="this.src='/images/runday2.jpg'" alt="run2">
+          <img th:src="@{/nawarapic(id=${act.id})}" 
+            onerror="this.src='/images/runday2.jpg'" alt="">
           <div class="panel-body">
-            <p th:text="${act.createDate}"></p>
             <strong>
-              <p th:text="${act.actName}"></p>
+              <p th:text="${'[ '+act.actName+' ]'}"></p>
             </strong>
-            <p th:text="${act.actDistance}"></p>
-            <p th:text="${act.actTime}"></p>
-            <p th:text="${act.actMemo}"></p>
+            <p th:text="${act.createDate}"></p>
+            <p>총 거리 : <span th:text="${act.actDistance}"></span></p>
+            <p>총 시간 : <span th:text="${act.actTime}"></span></p>
+            <p>메모 : <span th:text="${act.actMemo}"></span></p>
             <div class="panel-heading">좋아요|댓글</div>
           </div>
         </div>

@@ -9,6 +9,7 @@ import com.namoonhee.plogging.model.ActFile;
 import com.namoonhee.plogging.model.Activity;
 import com.namoonhee.plogging.repository.ActFileRepository;
 import com.namoonhee.plogging.repository.ActivityRepository;
+import com.namoonhee.plogging.service.ActivityService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.InputStreamResource;
@@ -38,6 +39,9 @@ public class PloggingController {
     @Autowired
     ActFileRepository actFileRepository;
 
+    @Autowired
+    ActivityService activityService;
+
     @GetMapping("/index")
     public String index(Model model) {
 
@@ -64,12 +68,8 @@ public class PloggingController {
 
     @GetMapping(value = "/nawarapic")
     public ResponseEntity<Resource> download(@ModelAttribute Activity activity) throws Exception {
-        System.out.println("====================================");
-        System.out.println("====================================");
-        System.out.println(activity);
-        System.out.println("====================================");
-        System.out.println("====================================");
-        List<ActFile> fList = actFileRepository.findByActivity(activity);
+      
+        List<ActFile> fList = activityService.download(activity);
 
         String fileName = fList.get(0).getSaveFileName();
         File file = new File("c:/project/" + fileName);
