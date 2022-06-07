@@ -54,14 +54,15 @@
     }
 
     .thumbnail {
-      padding: 0 0 15px 0;
+      padding: 0 0 25px 0;
       border: none;
       border-radius: 0;
+      height: 650px;
     }
 
     .thumbnail img {
       width: 100%;
-      height: 100%;
+      height: 400px;
       margin-bottom: 10px;
     }
 
@@ -268,7 +269,7 @@
         <div class="thumbnail">
           <img th:src="@{/nawarapic(id=${act.id})}" style="width: auto;" onerror="this.src='/images/runday2.jpg'"
             alt="run2">
-          <div class="panel-body" width="302px" height="250px">
+          <div class="panel-body">
             <p th:text="${act.createDate}"></p>
             <strong>
               <p th:text="${act.actName}"></p>
@@ -279,112 +280,65 @@
             <div class="panel-heading">좋아요|댓글<br>
               <a th:href="@{mapline(actid=${act.Id})}">
                 <b th:text="경로보기"></b>
-              </a><br>
+              </a>&nbsp&nbsp&nbsp&nbsp
               <strong th:if="${act.visibility == 0}"> <a th:href="@{/visibility(id=${act.id})}">[✨ 비공개 ]</a></strong>
               <strong th:unless="${act.visibility == 0}"> <a th:href="@{/visibility(id=${act.id})}">[✨ 공개 ]</a></strong>
-              <a th:href="@{/delete_activity(id=${act.id})}">&nbsp&nbsp삭제하기</a>
-
+              <a th:href="@{/delete_activity(id=${act.id})}">&nbsp&nbsp&nbsp&nbsp삭제하기</a>
+  
+              <!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">&nbsp&nbsp삭제하기</button> -->
             </div>
           </div>
         </div>
       </div>
     </div>
+  
+  
+  
+  
+  
+  
   </div>
-
-
-
-  <br><br>
-
 
   
-
+  
+  
+  <br><br>
+  
+  
+  <div style="display:flex; justify-content:center;" >
+  
   <button type="button" class="btn btn-default btn-lg" onclick="location.href='user_info/update'">회원정보수정</button>
+  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+  <button type="button" class="btn btn-warning btn-lg" onclick="location.href='deleteaccount'"
+  data-bs-toggle="modal" data-bs-target="#myModal">탈퇴하기</button>
+  
+  </div>
+  
+  <!-- The Modal -->
+<div class="modal" id="myModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
 
-  <button type="button" class="btn btn-warning btn-lg" onclick="location.href='deleteaccount'">탈퇴하기</button>
-
-
-
-
-  <!-- <div class="col-sm-4">
-      <div class="thumbnail">
-        <img src="images/runday3.jpg" alt="run3" width="400" height="300">
-        <p><strong>Day3</strong></p>
-        <p>우리동네 플로깅 코스</p>
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">활동 피드를 삭제하시겠습니까?</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
       </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+       삭제를 원하시면 아래 버튼을 눌러주세요.</div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">삭제</button>
+      </div>
+
     </div>
-  </div><br> -->
-
-
-
-
-
-
-  <!-- Container (Pricing Section) -->
-  <!-- <div id="pricing" class="container-fluid">
-  <div class="text-center">
-    <h2>Pricing</h2>
-    <h4>Choose a payment plan that works for you</h4>
   </div>
-  <div class="row slideanim">
-    <div class="col-sm-4 col-xs-12">
-      <div class="panel panel-default text-center">
-        <div class="panel-heading">
-          <h1>Basic</h1>
-        </div>
-        <div class="panel-body">
-          <p><strong>20</strong> Lorem</p>
-          <p><strong>15</strong> Ipsum</p>
-          <p><strong>5</strong> Dolor</p>
-          <p><strong>2</strong> Sit</p>
-          <p><strong>Endless</strong> Amet</p>
-        </div>
-        <div class="panel-footer">
-          <h3>$19</h3>
-          <h4>per month</h4>
-          <button class="btn btn-lg">Sign Up</button>
-        </div>
-      </div>      
-    </div>     
-    <div class="col-sm-4 col-xs-12">
-      <div class="panel panel-default text-center">
-        <div class="panel-heading">
-          <h1>Pro</h1>
-        </div>
-        <div class="panel-body">
-          <p><strong>50</strong> Lorem</p>
-          <p><strong>25</strong> Ipsum</p>
-          <p><strong>10</strong> Dolor</p>
-          <p><strong>5</strong> Sit</p>
-          <p><strong>Endless</strong> Amet</p>
-        </div>
-        <div class="panel-footer">
-          <h3>$29</h3>
-          <h4>per month</h4>
-          <button class="btn btn-lg">Sign Up</button>
-        </div>
-      </div>      
-    </div>       
-    <div class="col-sm-4 col-xs-12">
-      <div class="panel panel-default text-center">
-        <div class="panel-heading">
-          <h1>Premium</h1>
-        </div>
-        <div class="panel-body">
-          <p><strong>100</strong> Lorem</p>
-          <p><strong>50</strong> Ipsum</p>
-          <p><strong>25</strong> Dolor</p>
-          <p><strong>10</strong> Sit</p>
-          <p><strong>Endless</strong> Amet</p>
-        </div>
-        <div class="panel-footer">
-          <h3>$49</h3>
-          <h4>per month</h4>
-          <button class="btn btn-lg">Sign Up</button>
-        </div>
-      </div>      
-    </div>    
-  </div>
-</div> -->
+</div>
+
+  <br><br>
 
   <!-- Container (Contact Section) -->
   <div id="contact" class="container-fluid bg-grey">

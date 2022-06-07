@@ -49,12 +49,12 @@ h4 {
   padding: 0 0 15px 0;
   border: none;
   border-radius: 0;
-  height: 650px;
+  height: 750px;
 }
 
 .thumbnail img {
   width: 100%;
-  height: 400px;
+  height: 350px;
   margin-bottom: 10px;
 }
 .thumbnails {
@@ -99,7 +99,7 @@ h4 {
   font-style: normal;
 }
 
-.panel {
+.panel { 
   border: 1px solid #f4511e;
   border-radius: 0 !important;
   transition: box-shadow 0.5s;

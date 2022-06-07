@@ -10,6 +10,7 @@ import javax.servlet.http.HttpSession;
 
 import com.namoonhee.plogging.model.Activity;
 import com.namoonhee.plogging.model.User;
+import com.namoonhee.plogging.repository.ActivityRepository;
 import com.namoonhee.plogging.repository.UserRepository;
 import com.namoonhee.plogging.service.ActivityService;
 import com.namoonhee.plogging.service.UserService;
@@ -37,6 +38,9 @@ public class MypageController {
 
     @Autowired
     ActivityService activityService;
+
+    @Autowired
+    ActivityRepository activityRepository;
 
     // @GetMapping(value = "/mypage")
     // public String mypage(HttpSession session, Model model) {
@@ -69,8 +73,16 @@ public class MypageController {
     }
     
     @PostMapping(value="delete_activity")
-    public String deleteActivity(@RequestParam Long id) {
-        activityService.delete_activity(id); 
+    public String deleteActivity(@RequestParam Long id, HttpSession session) {
+        User suser  = (User) session.getAttribute("user");
+
+        Optional<Activity> dbact = activityRepository.findById(id);
+
+        if ( suser.getId() == dbact.get().getUser().getId() ) {
+
+            activityService.delete_activity(id); 
+        } 
+
         return "redirect:/mypage_new";
     }
 
