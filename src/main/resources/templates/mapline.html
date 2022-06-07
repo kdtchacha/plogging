@@ -38,9 +38,9 @@
             margin-bottom: 30px;
         }
 
-        .container-fluid {
+        /* .container-fluid {
             padding: 60px 50px;
-        }
+        } */
 
         .bg-grey {
             background-color: #f6f6f6;
@@ -60,6 +60,8 @@
             padding: 0 0 15px 0;
             border: none;
             border-radius: 0;
+            width: 200px;
+            height: 200px;
         }
 
         .thumbnail img {
@@ -175,7 +177,8 @@
         }
 
         .slideanim {
-            visibility: hidden;
+            display: flex; 
+            justify-content: center;
         }
 
         .slide {
@@ -247,7 +250,7 @@
             </div>
             <div class="collapse navbar-collapse" id="myNavbar">
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="/">MAIN</a></li>
+                    <li><a href="/#campaign">campaign</a></li>
                     <li><a th:href="@{/mypage_new}" th:if="${session.user != null}">MY PAGE</a></li>
                     <li><a th:href="@{/signout}" th:if="${session.user != null}"><span
                                 class="glyphicon glyphicon-log-in"></span>[[${session.user.nickname}]]님 Logout</a></li>
@@ -257,9 +260,44 @@
             </div>
         </div>
     </nav>
+    <br>
+    <br><br>
 
-    <div id="map" style="width:100%;height:350px;"></div>
 
+<!-- <지도> --><!-- <지도> --><!-- <지도> --><!-- <지도> -->
+    
+    <div style="display: flex; justify-content: center;">
+        <div id="map" style="width:90%; height:500px; border-radius: 25px;"></div>
+    </div>
+    <br>
+
+
+
+
+    <div id="picture" class="container-fluid text-center bg-grey">
+        <h2>플로깅 사진</h2><br>
+        <div class="row text-center slideanim">
+        <!-- <div style="width: 500px; height: 200px; display: flex; justify-content: center;"> -->
+            
+            <div class="thumbnail">
+                
+                <a class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal1"
+            style="background-color: white; border: #16ad1b;"><img th:src="@{/nawarapic(id=${param.actid})}"
+            style="width:100%; padding: 10px; margin-left: 8px; margin-right: 8px;"></a></div>
+
+                <div class="thumbnail">
+        <a class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal2"
+            style="background-color: white; border: #16ad1b ;"><img th:src="@{/nawarapic2(id=${param.actid})}"
+                style="width:100%; padding: 10px; margin-left: 8px; margin-right: 8px;"></a></div>
+
+                <div class="thumbnail">
+        <a class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal3"
+            style="background-color: white; border: #16ad1b ;"><img th:src="@{/nawarapic3(id=${param.actid})}"
+                style="width:100%; padding: 10px; margin-left: 8px; margin-right: 8px;"></a></div>
+    </div>
+    </div>
+
+    <hr>
     <div>
         <h5 class="border-bottom my-3 py-2" th:text="${#lists.size(act.answers)} + '개의 답변이 있습니다.'"></h5>
         <th:block th:each="answer : ${act.answers}">
@@ -267,21 +305,94 @@
 
             <div th:text="${answer.user.nickname}"></div>
             <div th:text="${answer.createDate}"></div>
-            <div th:if="${session.user.nickname} == ${answer.user.nickname}" class="my-3">
-                <a>수정</a>
-                <a>삭제</a>
+            <div th:if="${session.user != null}">
+                <div th:if="${session.user.nickname} == ${answer.user.nickname}" class="my-3">
+                    <a>수정</a>
+                    <a>삭제</a>
+                </div>
             </div>
         </th:block>
 
         <form action="/actanswer/create" method="post" class="my-3">
             <input type="hidden" name="actid" th:value="${act.id}">
             <input type="hidden" th:value="${param.actid}"> <!--  왜 쓰는지 도통 모르겠음. 이름도 없고. -->
-            <div class="form-group">
-                <textarea name="content" id="content" class="form-control" rows="2"></textarea>
+            <div th:if="${session.user != null}">
+                <div class="form-group">
+                    <textarea name="content" id="content" class="form-control" rows="2"></textarea>
+                </div>
+                <input type="submit" value="답변등록" class="btn btn-primary">
             </div>
-            <input type="submit" value="답변등록" class="btn btn-primary">
         </form>
     </div>
+
+
+
+    <!-- Modal 1 -->
+    <div id="myModal1" class="modal fade" role="dialog">
+        <br><br><br><br>
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <!-- <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Modal Header</h4>
+                </div> -->
+                <div class="modal-body">
+                    <img th:src="@{/nawarapic(id=${param.actid})}">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Modal 2 -->
+    <div id="myModal2" class="modal fade" role="dialog">
+        <br><br><br><br>
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <!-- <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Modal Header</h4>
+                </div> -->
+                <div class="modal-body">
+                    <img th:src="@{/nawarapic2(id=${param.actid})}">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Modal 3 -->
+    <div id="myModal3" class="modal fade" role="dialog">
+        <br><br><br><br>
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <!-- <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Modal Header</h4>
+                </div> -->
+                <div class="modal-body">
+                    <img th:src="@{/nawarapic3(id=${param.actid})}">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
 
 
 

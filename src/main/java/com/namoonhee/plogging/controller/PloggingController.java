@@ -88,5 +88,39 @@ public class PloggingController {
                         MediaType.parseMediaType("application/octet-stream"))
                 .body(resource);
     }
+    @GetMapping(value = "/nawarapic2")
+    public ResponseEntity<Resource> download2(@ModelAttribute Activity activity) throws Exception {
+      
+        List<ActFile> fList = activityService.download(activity);
+
+        String fileName = fList.get(1).getSaveFileName();
+        File file = new File("c:/project/" + fileName);
+
+        InputStreamResource resource = new InputStreamResource(new FileInputStream(file));
+
+        return ResponseEntity.ok()
+                .header("content-disposition", "filename=" + URLEncoder.encode(file.getName(), "utf-8"))
+                .contentLength(file.length())
+                .contentType(
+                        MediaType.parseMediaType("application/octet-stream"))
+                .body(resource);
+    }
+    @GetMapping(value = "/nawarapic3")
+    public ResponseEntity<Resource> download3(@ModelAttribute Activity activity) throws Exception {
+      
+        List<ActFile> fList = activityService.download(activity);
+
+        String fileName = fList.get(2).getSaveFileName();
+        File file = new File("c:/project/" + fileName);
+
+        InputStreamResource resource = new InputStreamResource(new FileInputStream(file));
+
+        return ResponseEntity.ok()
+                .header("content-disposition", "filename=" + URLEncoder.encode(file.getName(), "utf-8"))
+                .contentLength(file.length())
+                .contentType(
+                        MediaType.parseMediaType("application/octet-stream"))
+                .body(resource);
+    }
 
 }

@@ -34,6 +34,7 @@
           <li><a href="#about">ABOUT</a></li>
           <li><a href="#services">SERVICE</a></li>
           <li><a href="#campaign">CAMPAIGN</a></li>
+          <li><a href="#feed">FEED</a></li>
           <li><a th:href="@{/mypage_new}" th:if="${session.user != null}">MY PAGE</a></li>
           <li><a th:href="@{/signout}" th:if="${session.user != null}"><span class="glyphicon glyphicon-log-in"></span>
               [[${session.user.nickname}]]님 Logout</a></li>
@@ -158,7 +159,8 @@
           <p>Yes, San Fran is ours</p>
         </div>
       </div>
-    </div><br><br><br><br>
+    </div>
+    <br><br><br><br>
 
 
 
@@ -213,7 +215,7 @@
   
 
 
-  <div id="pricing" class="container-fluid text-center bg-grey">
+  <div id="feed" class="container-fluid text-center bg-grey">
     <h2>플로깅 피드</h2><br>
     <div class="row text-center slideanim">
       <div class="col-sm-4" th:each="act : ${publist}">
