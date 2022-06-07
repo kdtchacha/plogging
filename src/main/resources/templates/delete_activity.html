@@ -6,13 +6,10 @@
     <a href="/mypage_new">마이페이지</a>
     <br><br>
     <form action="/delete_activity" method="post" >
- 
         <input type="hidden" name="id" th:value="${param.id}">
         <br><br>
         이 글을 삭제하시겠습니까?
         <br><br>
-        <!-- 게시글 <input type="checkbox" class="checkbox" name="choice" value="board">
-    댓글 <input type="checkbox" class="checkbox" name="choice" value="comment"> -->
         <button type="submit" class="btn-deleteactivity">삭제하기</button>
     </form>
     <br><br>

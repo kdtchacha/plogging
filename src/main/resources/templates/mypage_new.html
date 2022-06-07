@@ -283,7 +283,6 @@
               <strong th:if="${act.visibility == 0}"> <a th:href="@{/visibility(id=${act.id})}">[✨ 비공개 ]</a></strong>
               <strong th:unless="${act.visibility == 0}"> <a th:href="@{/visibility(id=${act.id})}">[✨ 공개 ]</a></strong>
               <a th:href="@{/delete_activity(id=${act.id})}">&nbsp&nbsp삭제하기</a>
-
             </div>
           </div>
         </div>
