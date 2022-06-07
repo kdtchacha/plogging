@@ -2,7 +2,6 @@ package com.namoonhee.plogging.repository;
 
 import java.util.List;
 
-import com.namoonhee.plogging.model.ActFile;
 import com.namoonhee.plogging.model.Activity;
 
 import org.springframework.data.domain.Pageable;
@@ -15,5 +14,7 @@ public interface ActivityRepository extends JpaRepository<Activity, Long> {
     List<Activity> findByVisibility(int i, Pageable p);
 
     List<Activity> findByUser_id(Long id, Pageable p);
+
+    void deleteById(Long id);
     
 }

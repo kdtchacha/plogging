@@ -1,6 +1,7 @@
 package com.namoonhee.plogging.controller;
 
 import java.io.Console;
+import java.math.BigInteger;
 import java.util.List;
 import java.util.Optional;
 
@@ -10,6 +11,7 @@ import javax.servlet.http.HttpSession;
 import com.namoonhee.plogging.model.Activity;
 import com.namoonhee.plogging.model.User;
 import com.namoonhee.plogging.repository.UserRepository;
+import com.namoonhee.plogging.service.ActivityService;
 import com.namoonhee.plogging.service.UserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +21,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestBody;
+
 
 
 
@@ -30,6 +34,9 @@ public class MypageController {
 
     @Autowired
     UserRepository userRepository;
+
+    @Autowired
+    ActivityService activityService;
 
     // @GetMapping(value = "/mypage")
     // public String mypage(HttpSession session, Model model) {
@@ -55,7 +62,17 @@ public class MypageController {
 
         return "mypage_new";
     }
+
+    @GetMapping(value="/delete_activity")
+    public String deleteActivityForm() {
+        return "delete_activity";
+    }
     
+    @PostMapping(value="delete_activity")
+    public String deleteActivity(@RequestParam Long id) {
+        activityService.delete_activity(id); 
+        return "redirect:/mypage_new";
+    }
 
     @GetMapping(value = "/deleteaccount")
     public String deleteAccountForm() {

@@ -8,4 +8,8 @@ import com.namoonhee.plogging.model.Activity;
 public interface ActivityService {
     
     List<ActFile> download(Activity activity);
+
+    void delete_activity(Long id);
+
+
 }
