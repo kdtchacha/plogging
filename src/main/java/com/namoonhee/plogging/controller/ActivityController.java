@@ -10,9 +10,11 @@ import java.util.Optional;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import com.namoonhee.plogging.model.ActAnswer;
 import com.namoonhee.plogging.model.ActFile;
 import com.namoonhee.plogging.model.Activity;
 import com.namoonhee.plogging.model.User;
+import com.namoonhee.plogging.repository.ActAnswerRepository;
 import com.namoonhee.plogging.repository.ActFileRepository;
 import com.namoonhee.plogging.repository.ActivityRepository;
 
@@ -39,6 +41,9 @@ public class ActivityController {
 
     @Autowired
     ActFileRepository actFileRepository;
+
+    @Autowired
+    ActAnswerRepository actAnswerRepository;
 
 
 
@@ -213,5 +218,30 @@ public class ActivityController {
 
         return c;
     }
+
+
+    @PostMapping("/actanswer/create")
+    public String answercreate(String content, long actid, HttpSession session) {
+        
+        System.out.println(content);
+        System.out.println(actid);
+        
+        ActAnswer answer = new ActAnswer();
+        answer.setContent(content);
+        answer.setCreateDate(new Date());
+
+        Activity act = new Activity();
+        act.setId(actid);
+ 
+       User user = (User) session.getAttribute("user");
+        answer.setUser(user);
+
+        answer.setActivity(act);
+
+        actAnswerRepository.save(answer);
+
+        return "redirect:/mapline?actid="+actid;
+    }
+
 
 }

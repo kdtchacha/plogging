@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.net.URLEncoder;
 import java.util.List;
+import java.util.Optional;
 
 import com.namoonhee.plogging.model.ActFile;
 import com.namoonhee.plogging.model.Activity;
@@ -61,7 +62,12 @@ public class PloggingController {
     }
 
     @GetMapping("mapline")
-    public String mapline() {
+    public String mapline(Long actid, Model model) {
+
+        Optional<Activity> opt = activityRepository.findById(actid);
+
+        model.addAttribute("act",opt.get());
+
         return "mapline";
     }
 

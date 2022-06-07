@@ -38,4 +38,9 @@ public class Activity {
     @OneToMany(mappedBy = "activity", cascade = CascadeType.REMOVE)
     List<ActFile> actFiles = new ArrayList<>();
 
+
+    @OneToMany(mappedBy = "activity", cascade = CascadeType.REMOVE)
+    List<ActAnswer> answers = new ArrayList<>();
+
+
 }
