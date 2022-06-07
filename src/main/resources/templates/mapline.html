@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>NMH PLOGGING</title>
+    <title>PLOGGING</title>
     <!-- Theme Made By www.w3schools.com -->
     <title>Bootstrap Theme Company Page</title>
     <meta charset="utf-8">
@@ -177,7 +177,7 @@
         }
 
         .slideanim {
-            display: flex; 
+            display: flex;
             justify-content: center;
         }
 
@@ -264,8 +264,11 @@
     <br><br>
 
 
-<!-- <지도> --><!-- <지도> --><!-- <지도> --><!-- <지도> -->
-    
+    <!-- <지도> -->
+    <!-- <지도> -->
+    <!-- <지도> -->
+    <!-- <지도> -->
+
     <div style="display: flex; justify-content: center;">
         <div id="map" style="width:90%; height:500px; border-radius: 25px;"></div>
     </div>
@@ -277,24 +280,27 @@
     <div id="picture" class="container-fluid text-center bg-grey">
         <h2>플로깅 사진</h2><br>
         <div class="row text-center slideanim">
-        <!-- <div style="width: 500px; height: 200px; display: flex; justify-content: center;"> -->
-            
+            <!-- <div style="width: 500px; height: 200px; display: flex; justify-content: center;"> -->
+
             <div class="thumbnail">
-                
+
                 <a class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal1"
-            style="background-color: white; border: #16ad1b;"><img th:src="@{/nawarapic(id=${param.actid})}"
-            style="width:100%; padding: 10px; margin-left: 8px; margin-right: 8px;"></a></div>
+                    style="background-color: white; border: #16ad1b;"><img th:src="@{/nawarapic(id=${param.actid})}"
+                        style="width:100%; padding: 10px; margin-left: 8px; margin-right: 8px;"></a>
+            </div>
 
-                <div class="thumbnail">
-        <a class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal2"
-            style="background-color: white; border: #16ad1b ;"><img th:src="@{/nawarapic2(id=${param.actid})}"
-                style="width:100%; padding: 10px; margin-left: 8px; margin-right: 8px;"></a></div>
+            <div class="thumbnail">
+                <a class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal2"
+                    style="background-color: white; border: #16ad1b ;"><img th:src="@{/nawarapic2(id=${param.actid})}"
+                        style="width:100%; padding: 10px; margin-left: 8px; margin-right: 8px;"></a>
+            </div>
 
-                <div class="thumbnail">
-        <a class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal3"
-            style="background-color: white; border: #16ad1b ;"><img th:src="@{/nawarapic3(id=${param.actid})}"
-                style="width:100%; padding: 10px; margin-left: 8px; margin-right: 8px;"></a></div>
-    </div>
+            <div class="thumbnail">
+                <a class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal3"
+                    style="background-color: white; border: #16ad1b ;"><img th:src="@{/nawarapic3(id=${param.actid})}"
+                        style="width:100%; padding: 10px; margin-left: 8px; margin-right: 8px;"></a>
+            </div>
+        </div>
     </div>
 
     <hr>
