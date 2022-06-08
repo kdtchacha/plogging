@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <title>PLOGGING</title>
+</head>
+
+<body>
+
+    <h1>관리자 페이지입니다.</h1>
+
+    <button id="aaa">안녕 난 유저 전체를 부르는 버튼이야</button>
+
+    <br><br>
+
+    <dvi id="vvv"></dvi>
+
+
+    <script src="http://unpkg.com/axios/dist/axios.min.js"></script>
+
+    <script>
+
+        const userBtn = document.getElementById(aaa);
+        aaa.addEventListener("click", () => {
+
+            const data = axios({
+                url: 'adminUser',
+                method: 'get',
+            });
+            data.then((res) => {
+                console.log(res);
+                const userdata = res;
+
+                let usercode = "<table border=1px;>";
+                usercode += "<tr><th>이메일</th><th>닉네임</th><th>삭제</th></tr>"
+                const userlist = userdata.data;
+                console.log(userlist);
+                for (let key in userlist) {
+                    const abc = userlist[key];
+                    const email = abc.email;
+                    const nickname = abc.nickname;
+                    const userid = abc.id;
+                    // const desc = abc.description;
+                    // const publishedAt = abc.pubDate;
+                    usercode += `<tr>`
+                    usercode += `<td>${email}</td>`;
+                    usercode += `<td>${nickname}</td>`;
+                    usercode += `<td><a href="#"><img src="http://localhost/images/ecology.png" width=20px;></a></td>`;
+                    usercode += `</tr>`;
+                }
+                usercode += "</table>"
+                document.getElementById("vvv").innerHTML = usercode;
+            })
+        });
+    </script>
+</body>
+
+
+</html>

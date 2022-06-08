@@ -13,7 +13,10 @@ import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.Data;
+import lombok.ToString;
 
 @Data
 @Entity
@@ -33,13 +36,16 @@ public class Activity {
     String latlng;
 
     @ManyToOne
+    @ToString.Exclude
     User user;
 
     @OneToMany(mappedBy = "activity", cascade = CascadeType.REMOVE)
+    @JsonIgnore
     List<ActFile> actFiles = new ArrayList<>();
 
 
     @OneToMany(mappedBy = "activity", cascade = CascadeType.REMOVE)
+    @JsonIgnore
     List<ActAnswer> answers = new ArrayList<>();
 
 
