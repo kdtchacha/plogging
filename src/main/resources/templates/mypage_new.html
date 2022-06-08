@@ -9,10 +9,17 @@
 
 
 <body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
+  
+  <div class="container-fluid" style="display:flex; justify-content:flex-end;">
+    <button type="button" class="btn btn-default btn" data-toggle="modal" data-target="#myModal1" style="border:blue;">회원정보수정</button>
+    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+    <button type="button" class="btn btn-default btn" data-toggle="modal" data-target="#myModal2" style="border:blue;">탈퇴하기</button>
+  </div>
 
 
   <!-- Container (Portfolio Section) -->
   <div id="campaign" class="container-fluid text-center bg-grey">
+    
     <h2>MY PAGE</h2><br>
     <h4>플로깅 피드들</h4>
 
@@ -30,13 +37,13 @@
             <p th:text="${act.actDistance}"></p>
             <p th:text="${act.actTime}"></p>
             <p th:text="${act.actMemo}"></p>
-            <div class="panel-heading">좋아요|댓글<br>
+            <div class="panel-heading">💚 00개 |&nbsp&nbsp<br>
               <a th:href="@{mapline(actid=${act.Id})}">
                 <b th:text="경로보기"></b>
-              </a>&nbsp&nbsp&nbsp&nbsp
+              </a>&nbsp&nbsp
               <strong th:if="${act.visibility == 0}"> <a th:href="@{/visibility(id=${act.id})}">[✨ 비공개 ]</a></strong>
               <strong th:unless="${act.visibility == 0}"> <a th:href="@{/visibility(id=${act.id})}">[✨ 공개 ]</a></strong>
-              <a th:href="@{/delete_activity(id=${act.id})}">&nbsp&nbsp&nbsp&nbsp삭제하기</a>
+              <a th:href="@{/delete_activity(id=${act.id})}">&nbsp&nbsp삭제하기</a>
 
 
             </div>
@@ -44,25 +51,8 @@
         </div>
       </div>
     </div>
-
-
-
   </div>
-
-
-
-
-  <br><br>
-
-
-  <div class="container" style="display:flex; justify-content:center;">
-
-    <button type="button" class="btn btn-default btn-lg" data-toggle="modal" data-target="#myModal1">회원정보수정</button>
-    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-    <button type="button" class="btn btn-default btn-lg" data-toggle="modal" data-target="#myModal2">탈퇴하기</button>
-
-  </div>
-
+  
 
   <!-- 수정 Modal -->
   <div class="modal" id="myModal1" role="dialog">
@@ -100,9 +90,6 @@
     </div>
   </div>
   </div>
-
-  <br><br>
-
 
 <!-- <FOOTER> -->
   

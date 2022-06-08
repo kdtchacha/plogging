@@ -21,7 +21,8 @@ body {
   }
 
   .container-fluid {
-    padding: 60px 50px;
+    padding: 68px 50px;
+    padding-bottom: 10px;
   }
 
   .bg-grey {
@@ -81,6 +82,7 @@ body {
     border: 1px solid #f4511e;
     border-radius: 0 !important;
     transition: box-shadow 0.5s;
+    
   }
 
   .panel:hover {
@@ -102,6 +104,8 @@ body {
     border-top-right-radius: 100px;
     border-bottom-left-radius: 100px;
     border-bottom-right-radius: 100px;
+    display: flex;
+    flex-direction: row;
   }
 
   .panel-footer {
@@ -184,9 +188,13 @@ body {
 
   .modal-dialog {
     position: relative;
-    width: 300px;
+    width: 350px;
     margin-top: 15%;
     text-align: center;
+    }
+
+    button {
+      border-color: #16ad1b;
     }
 
 

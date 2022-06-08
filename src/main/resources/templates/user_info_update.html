@@ -3,8 +3,8 @@
 
 <body>
     <form action="/user_info/update" method="post">
-        닉네임 : &nbsp<input type="text" name="nickname" th:value="${session.user.nickname}" /><br><br>
-        비밀번호 : &nbsp<input type="password" name="pwd" placeholder="비밀번호를 입력하세요." /><br><br>
+        닉네임<input type="text" name="nickname" th:value="${session.user.nickname}"/><br><br>
+        비밀번호<input type="password" name="pwd" placeholder="새로운 비밀번호 입력하세요" /><br><br>
         <!-- <input type="submit" value="수정" /> -->
         <button type="submit" class="btn btn-info">수정</button>
     </form>

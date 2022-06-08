@@ -1,12 +1,22 @@
 <!DOCTYPE html>
+<style>
+    form {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        text-align: center;
+
+    }
+</style>
+
 <body>
     
     <br>
-    🔊 카페탈퇴시 작성된 게시글과 댓글은 자동으로 삭제됩니다. 
+    🔊 카페탈퇴시 작성된 게시글과 댓글은<br>자동으로 삭제됩니다. 
     <br><br>
     <form action="/deleteaccount" method="post">
-        <input type="email" name="email" placeholder="이메일을 입력해주세요"><br><br>
-        <input type="password" name="pwd" placeholder="비밀번호를 입력해주세요">
+        E - MAIL<input type="email" name="email" placeholder="이메일을 입력해주세요"><br><br>
+        PASSWORD<input type="password" name="pwd" placeholder="비밀번호를 입력해주세요">
     <br><br>
     <button type="submit" class="btn btn-danger">탈퇴</button>
     <!-- 탈퇴시 삭제하고싶은 글이 있다면 선택해주세요.
@@ -15,7 +25,5 @@
     댓글 <input type="checkbox" class="checkbox" name="choice" value="comment"> -->
    
     </form>
-    <br><br>
-    
     </body>
 </body>
