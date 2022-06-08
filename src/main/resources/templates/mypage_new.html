@@ -1,26 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<<<<<<< HEAD
-<head>
-  <!-- Theme Made By www.w3schools.com -->
-  <title>PLOGGING</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
-  <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-  <link rel="shortcut icon" href="http://localhost/images/ecology.png">
-  <style>
-    body {
-      font: 400 15px Lato, sans-serif;
-      line-height: 1.8;
-      color: #818181;
-    }
-=======
->>>>>>> 02294c2d5f24ba99420ac4fba8cb7c0907489b47
 
 <head th:replace="common/head">
   <link rel="stylesheet" type="text/css" href="/css/mypage_new.css">
@@ -85,14 +65,8 @@
               <strong th:if="${act.visibility == 0}"> <a th:href="@{/visibility(id=${act.id})}">[✨ 비공개 ]</a></strong>
               <strong th:unless="${act.visibility == 0}"> <a th:href="@{/visibility(id=${act.id})}">[✨ 공개 ]</a></strong>
               <a th:href="@{/delete_activity(id=${act.id})}">&nbsp&nbsp&nbsp&nbsp삭제하기</a>
-<<<<<<< HEAD
-              <a></a>
-
-              <!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">&nbsp&nbsp삭제하기</button> -->
-=======
 
 
->>>>>>> 02294c2d5f24ba99420ac4fba8cb7c0907489b47
             </div>
           </div>
         </div>
@@ -101,12 +75,6 @@
 
 
 
-<<<<<<< HEAD
-
-
-
-=======
->>>>>>> 02294c2d5f24ba99420ac4fba8cb7c0907489b47
   </div>
 
 
@@ -115,48 +83,15 @@
   <br><br>
 
 
-<<<<<<< HEAD
-  <div style="display:flex; justify-content:center;">
-
-    <button type="button" class="btn btn-default btn-lg" onclick="location.href='user_info/update'">회원정보수정</button>
-    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-    <button type="button" class="btn btn-warning btn-lg" onclick="location.href='deleteaccount'" data-bs-toggle="modal"
-      data-bs-target="#myModal">탈퇴하기</button>
-=======
   <div class="container" style="display:flex; justify-content:center;">
 
     <button type="button" class="btn btn-default btn-lg" onclick="location.href='user_info/update'">회원정보수정</button>
     &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
     <button type="button" class="btn btn-default btn-lg" data-toggle="modal" data-target="#myModal">탈퇴하기</button>
->>>>>>> 02294c2d5f24ba99420ac4fba8cb7c0907489b47
 
   </div>
 
   <!-- The Modal -->
-<<<<<<< HEAD
-  <div class="modal" id="myModal">
-    <div class="modal-dialog">
-      <div class="modal-content">
-
-        <!-- Modal Header -->
-        <div class="modal-header">
-          <h4 class="modal-title">활동 피드를 삭제하시겠습니까?</h4>
-          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-        </div>
-
-        <!-- Modal body -->
-        <div class="modal-body">
-          삭제를 원하시면 아래 버튼을 눌러주세요.</div>
-
-        <!-- Modal footer -->
-        <div class="modal-footer">
-          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">삭제</button>
-        </div>
-
-      </div>
-    </div>
-  </div>
-=======
   <div class="modal" id="myModal" role="dialog">
     <div class="modal-dialog ">
 
@@ -175,7 +110,6 @@
     </div>
   </div>
   </div>
->>>>>>> 02294c2d5f24ba99420ac4fba8cb7c0907489b47
 
   <br><br>
 
