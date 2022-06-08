@@ -11,7 +11,7 @@
   <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-  <link rel="shortcut icon" href="https://cdn-icons.flaticon.com/png/128/2391/premium/2391092.png?token=exp=1654523299~hmac=883039fe929538c756aa4bd0ff44e780">
+  <link rel="shortcut icon" href="http://localhost/images/ecology.png">
   <style>
     body {
       font: 400 15px Lato, sans-serif;
@@ -264,13 +264,13 @@
     <h4>플로깅 피드들</h4>
 
     <!-- <div class="row text-center slideanim"> -->
-    <div >
+    <div>
       <div class="col-sm-4" th:each="act : ${list}">
         <div class="thumbnail">
           <img th:src="@{/nawarapic(id=${act.id})}" style="width: auto;" onerror="this.src='/images/runday2.jpg'"
             alt="run2">
           <div class="panel-body">
-            <p th:text="${act.createDate}"></p>
+            <p th:text="${#dates.format(act.createDate, 'yyyy-MM-dd HH:mm')}"></p>
             <strong>
               <p th:text="${act.actName}"></p>
             </strong>
@@ -284,59 +284,60 @@
               <strong th:if="${act.visibility == 0}"> <a th:href="@{/visibility(id=${act.id})}">[✨ 비공개 ]</a></strong>
               <strong th:unless="${act.visibility == 0}"> <a th:href="@{/visibility(id=${act.id})}">[✨ 공개 ]</a></strong>
               <a th:href="@{/delete_activity(id=${act.id})}">&nbsp&nbsp&nbsp&nbsp삭제하기</a>
-  
+              <a></a>
+
               <!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">&nbsp&nbsp삭제하기</button> -->
             </div>
           </div>
         </div>
       </div>
     </div>
-  
-  
-  
-  
-  
-  
+
+
+
+
+
+
   </div>
 
-  
-  
-  
+
+
+
   <br><br>
-  
-  
-  <div style="display:flex; justify-content:center;" >
-  
-  <button type="button" class="btn btn-default btn-lg" onclick="location.href='user_info/update'">회원정보수정</button>
-  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-  <button type="button" class="btn btn-warning btn-lg" onclick="location.href='deleteaccount'"
-  data-bs-toggle="modal" data-bs-target="#myModal">탈퇴하기</button>
-  
+
+
+  <div style="display:flex; justify-content:center;">
+
+    <button type="button" class="btn btn-default btn-lg" onclick="location.href='user_info/update'">회원정보수정</button>
+    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+    <button type="button" class="btn btn-warning btn-lg" onclick="location.href='deleteaccount'" data-bs-toggle="modal"
+      data-bs-target="#myModal">탈퇴하기</button>
+
   </div>
-  
+
   <!-- The Modal -->
-<div class="modal" id="myModal">
-  <div class="modal-dialog">
-    <div class="modal-content">
+  <div class="modal" id="myModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
 
-      <!-- Modal Header -->
-      <div class="modal-header">
-        <h4 class="modal-title">활동 피드를 삭제하시겠습니까?</h4>
-        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">활동 피드를 삭제하시겠습니까?</h4>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+
+        <!-- Modal body -->
+        <div class="modal-body">
+          삭제를 원하시면 아래 버튼을 눌러주세요.</div>
+
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">삭제</button>
+        </div>
+
       </div>
-
-      <!-- Modal body -->
-      <div class="modal-body">
-       삭제를 원하시면 아래 버튼을 눌러주세요.</div>
-
-      <!-- Modal footer -->
-      <div class="modal-footer">
-        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">삭제</button>
-      </div>
-
     </div>
   </div>
-</div>
 
   <br><br>
 

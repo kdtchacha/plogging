@@ -13,8 +13,7 @@
     <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    <link rel="shortcut icon"
-        href="https://cdn-icons.flaticon.com/png/128/2391/premium/2391092.png?token=exp=1654523299~hmac=883039fe929538c756aa4bd0ff44e780">
+    <link rel="shortcut icon" href="http://localhost/images/ecology.png">
     <style>
         body {
             font: 400 15px Lato, sans-serif;
@@ -307,18 +306,18 @@
     <div>
         <h5 class="border-bottom my-3 py-2" th:text="${#lists.size(act.answers)} + '개의 답변이 있습니다.'"></h5>
         <th:block th:each="answer : ${act.answers}">
-            <div th:text="${answer.content}"></div>
-
-            <div th:text="${answer.user.nickname}"></div>
-            <div th:text="${answer.createDate}"></div>
-            <div th:if="${session.user != null}">
-                <div th:if="${session.user.nickname} == ${answer.user.nickname}" class="my-3">
-                    <a>수정</a>
-                    <a>삭제</a>
+            <div style=" margin: 15px; width: 370px; height: 120px;">
+                <div th:text="${answer.content}" style="word-break: break-all;"></div>
+                <div th:text="${answer.user.nickname}"></div>
+                <div th:text="${#dates.format(answer.createDate, 'MM-dd HH:mm')}"></div>
+                <div th:if="${session.user != null}">
+                    <div th:if="${session.user.nickname} == ${answer.user.nickname}" class="my-3">
+                        <a th:href="@{/delanswer(id=${answer.id})}">삭제</a>
+                    </div>
                 </div>
             </div>
+            <hr>
         </th:block>
-
         <form action="/actanswer/create" method="post" class="my-3">
             <input type="hidden" name="actid" th:value="${act.id}">
             <input type="hidden" th:value="${param.actid}"> <!--  왜 쓰는지 도통 모르겠음. 이름도 없고. -->

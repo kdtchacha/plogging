@@ -3,7 +3,6 @@ package com.namoonhee.plogging.controller;
 import java.io.File;
 import java.io.IOException;
 import java.util.Date;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 
@@ -19,17 +18,11 @@ import com.namoonhee.plogging.repository.ActFileRepository;
 import com.namoonhee.plogging.repository.ActivityRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.bind.annotation.RequestParam;
 
 
@@ -243,5 +236,20 @@ public class ActivityController {
         return "redirect:/mapline?actid="+actid;
     }
 
+
+
+    @GetMapping(value="delanswer")
+    public String deleteActivity(@RequestParam Long id, HttpSession session) {
+        User suser  = (User) session.getAttribute("user");
+
+        Optional<ActAnswer> dbanswer = actAnswerRepository.findById(id);
+
+        if ( suser.getId() == dbanswer.get().getUser().getId() ) {
+
+            actAnswerRepository.deleteById(id);
+        } 
+
+        return "redirect:/mapline?actid="+dbanswer.get().getActivity().getId();
+    }
 
 }

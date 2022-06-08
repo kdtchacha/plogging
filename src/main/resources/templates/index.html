@@ -12,7 +12,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   <link rel="stylesheet" type="text/css" href="/css/index.css">
-  <link rel="shortcut icon" href="https://cdn-icons.flaticon.com/png/128/2391/premium/2391092.png?token=exp=1654523299~hmac=883039fe929538c756aa4bd0ff44e780">
+  <link rel="shortcut icon" href="http://localhost/images/ecology.png">
 </head>
 
 
@@ -226,7 +226,7 @@
             <strong>
               <p th:text="${'[ '+act.actName+' ]'}"></p>
             </strong>
-            <p th:text="${act.createDate}"></p>
+            <p th:text="${#dates.format(act.createDate, 'yyyy-MM-dd HH:mm')}"></p>
             <p>총 거리 : <span th:text="${act.actDistance}"></span></p>
             <p>총 시간 : <span th:text="${act.actTime}"></span></p>
             <p>메모 : <span th:text="${act.actMemo}"></span></p>
