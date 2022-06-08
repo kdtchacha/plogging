@@ -1,50 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-  <!-- Theme Made By www.w3schools.com -->
-  <title>PLOGGING</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
-  <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-  <link rel="stylesheet" type="text/css" href="/css/index.css">
-  <link rel="shortcut icon" href="http://localhost/images/ecology.png">
-</head>
-
 
 <body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
 
-  <nav class="navbar navbar-default navbar-fixed-top">
-    <div class="container">
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-        <a href="/" class="navbar-brand" style="padding-top: 5px;"><img src="images/ecology.png"
-            style="width: 40px;"></a>
-      </div>
-      <div class="collapse navbar-collapse" id="myNavbar">
-        <ul class="nav navbar-nav navbar-right">
-          <li><a href="#about">ABOUT</a></li>
-          <li><a href="#services">SERVICE</a></li>
-          <li><a href="#campaign">CAMPAIGN</a></li>
-          <li><a href="#feed">FEED</a></li>
-          <li><a th:href="@{/mypage_new}" th:if="${session.user != null}">MY PAGE</a></li>
-          <li><a th:href="@{/signout}" th:if="${session.user != null}"><span class="glyphicon glyphicon-log-in"></span>
-              [[${session.user.nickname}]]님 Logout</a></li>
-          <li><a th:href="@{/signin}" th:unless="${session.user != null}"><span
-                class="glyphicon glyphicon-log-out"></span> Login</a></li>
-        </ul>
-      </div>
-    </div>
-  </nav>
-
+  
+<div th:replace="common/head"></div>
 
 
 

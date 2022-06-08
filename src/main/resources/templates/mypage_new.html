@@ -2,41 +2,13 @@
 <html lang="en">
 
 
-<head th:replace="common/head">
-  <link rel="stylesheet" type="text/css" href="/css/mypage_new.css">
-</head>
+<head th:replace="common/head"></head>
+<link rel="stylesheet" type="text/css" href="/css/mypage_new.css">
 
 
 
 
 <body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
-
-
-  <nav class="navbar navbar-default navbar-fixed-top">
-    <div class="container">
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-        <a href="/" class="navbar-brand" style="padding-top: 5px;"><img src="images/ecology.png"
-            style="width: 40px;"></a>
-      </div>
-      <div class="collapse navbar-collapse" id="myNavbar">
-        <ul class="nav navbar-nav navbar-right">
-          <li><a href="/">MAIN</a></li>
-          <li><a href="/mypage_new">MY PAGE</a></li>
-          <li><a th:href="@{/signout}" th:if="${session.user != null}"><span class="glyphicon glyphicon-log-in"></span>
-              [[${session.user.nickname}]]님 Logout</a></li>
-          <li><a th:href="@{/signin}" th:unless="${session.user != null}"><span
-                class="glyphicon glyphicon-log-out"></span> Login</a></li>
-        </ul>
-      </div>
-    </div>
-  </nav>
-
-
 
 
   <!-- Container (Portfolio Section) -->
@@ -51,7 +23,7 @@
           <img th:src="@{/nawarapic(id=${act.id})}" style="width: auto;" onerror="this.src='/images/runday2.jpg'"
             alt="run2">
           <div class="panel-body">
-            <p th:text="${#dates.format(act.createDate, 'yyyy-MM-dd HH:mm')}"></p>
+            <p th:text="${#dates.format(act.createDate, 'yyyy년 MM월 dd일 HH:mm')}"></p>
             <strong>
               <p th:text="${act.actName}"></p>
             </strong>
@@ -85,24 +57,42 @@
 
   <div class="container" style="display:flex; justify-content:center;">
 
-    <button type="button" class="btn btn-default btn-lg" onclick="location.href='user_info/update'">회원정보수정</button>
+    <button type="button" class="btn btn-default btn-lg" data-toggle="modal" data-target="#myModal1">회원정보수정</button>
     &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-    <button type="button" class="btn btn-default btn-lg" data-toggle="modal" data-target="#myModal">탈퇴하기</button>
+    <button type="button" class="btn btn-default btn-lg" data-toggle="modal" data-target="#myModal2">탈퇴하기</button>
 
   </div>
 
-  <!-- The Modal -->
-  <div class="modal" id="myModal" role="dialog">
-    <div class="modal-dialog ">
 
-      <!-- Modal Header -->
+  <!-- 수정 Modal -->
+  <div class="modal" id="myModal1" role="dialog">
+    <div class="modal-dialog">
+
+      <!-- 수정 Modal Content -->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">비밀번호를<br>수정하시겠습니까?</h4>
+        </div>
+        <div class="modal-body">
+          <div th:replace="user_info_update"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <!-- 탈퇴 Modal -->
+  <div class="modal" id="myModal2" role="dialog">
+    <div class="modal-dialog">
+
+      <!-- 탈퇴 Content -->
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
           <h4 class="modal-title">탈퇴하시겠습니까?</h4>
         </div>
-
-        <!-- Modal body -->
         <div class="modal-body">
           <div th:replace="deleteaccount"></div>
         </div>
@@ -114,9 +104,9 @@
   <br><br>
 
 
-
+<!-- <FOOTER> -->
+  
   <div th:replace="common/contact"></div>
-
   <footer class="container-footer text-center">
     <a href="#myPage" title="To Top">
       <span class="glyphicon glyphicon-chevron-up"></span>

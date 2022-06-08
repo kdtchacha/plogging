@@ -12,17 +12,19 @@
 
 <!-- 지도 스타일 -->
 <style>
-    /* #maptest {
-
-        width: 300px;
-        height: 350px;
-        margin: 0;
-        padding: 0;
-    } */
-
     #actname {
         width: 355px;
     }
+
+    .active_content {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        align-content: space-around;
+        align-items: center;
+       
+    }
+
 </style>
 
 <body>
@@ -31,12 +33,10 @@
 
     <div id="maptest" th:replace="maptest"></div>
     <br>
-    <button id="shot">screen shot</button>
     <br>
-    <hr>
 
 
-    <div>
+    <div class="active_content">
         <div class="stopwatch">
             <div>
                 <span id="postTestHour">00</span>
@@ -55,14 +55,14 @@
                 <ul id="testRecordList"></ul>
                 <!--중간 기록할 리스트-->
             </div>
-            <div> <button type="button" id="testStartBtn">START</button>
+            <div> <button type="button" id="testStartBtn" class="btn btn-success">START</button>
                 <!--시작/재시작/기록 버튼-->
-                <button type="button" id="testStopBtn">STOP</button>
+                <button type="button" id="testStopBtn" class="btn btn-danger">STOP</button>
                 <!--스톱 버튼-->
             </div>
         </div>
 
-
+    <div class="memo">
         <div>
             <p> 활동 이름 : <input id="actname" type="text"></p>
         </div>
@@ -71,6 +71,7 @@
             <p>활동 메모 : <textarea id="actmemo" cols="50" rows="10" style="resize: none;"
                     placeholder="플로깅 메모를 입력해주세요"></textarea></p>
         </div>
+    </div>
 
         <form method="post" action="imgupload" enctype="multipart/form-data">
             <input type="file" name="photo" id="photos" multiple />

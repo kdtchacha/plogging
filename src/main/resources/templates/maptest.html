@@ -84,51 +84,35 @@
             color: #888;
             font-size: 12px;
         }
+
+        .btn {
+            padding-left: 10px; 
+            padding-right: 10px;
+        }
     </style>
 </head>
 
 
 
 <body>
+    <head th:replace="common/head"></head>
+   
+    <br><br><br>
 
-    <nav class="navbar navbar-default navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a href="/" class="navbar-brand" style="padding-top: 5px;"><img src="images/ecology.png"
-                        style="width: 40px;"></a>
-            </div>
-            <div class="collapse navbar-collapse" id="myNavbar">
-                <ul class="nav navbar-nav navbar-right">
-                    <li><a href="/">MAIN</a></li>
-                    <li><a href="/index#contact">MY PAGE</a></li>
-                    <li><a th:href="@{/signout}" th:if="${session.user != null}"><span
-                                class="glyphicon glyphicon-log-in"></span>
-                            [[${session.user.nickname}]]님 Logout</a></li>
-                    <li><a th:href="@{/signin}" th:unless="${session.user != null}"><span
-                                class="glyphicon glyphicon-log-out"></span> Login</a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-
+    <div style="display: flex; justify-content: center;">
+        <div id="map" style="width:90%; height:500px; border-radius: 25px;"></div>
+    </div>
 
     <br><br><br>
 
 
-    <p style="margin-top:-12px"><b>나의 플로깅 맵</b></p>
-    <div id="map" style="width:90vw; height: 400px; position:relative; overflow:hidden;"></div>
-    <p>
-        <button onclick="selectOverlay('MARKER')">마커</button>
-        <button onclick="selectOverlay('POLYLINE')">선</button>
-        <button onclick="selectOverlay('CIRCLE')">원</button>
-        <button onclick="selectOverlay('RECTANGLE')">사각형</button>
-        <button onclick="selectOverlay('POLYGON')">다각형</button>
-    </p>
+    <div style="display: flex; justify-content: center;">
+        <button class="btn btn-warning" onclick="selectOverlay('MARKER')">마커</button>
+        <button class="btn-default" onclick="selectOverlay('POLYLINE')">선</button>
+        <button class="btn btn-primary" onclick="selectOverlay('CIRCLE')">원</button>
+        <button class="btn btn-info" onclick="selectOverlay('RECTANGLE')">사각형</button>
+        <button class="btn btn-secondary" onclick="selectOverlay('POLYGON')">다각형</button>
+    </div>
 
 
 
