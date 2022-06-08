@@ -1,78 +1,14 @@
 <!DOCTYPE html>
 
 
-<head>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="/css/index.css">
-</head>
-
-
 <body>
-
-
-
-    <nav class="navbar navbar-default navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="/">Logo</a>
-            </div>
-            <div class="collapse navbar-collapse" id="myNavbar">
-                <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#about">ABOUT</a></li>
-                    <li><a href="#services">SERVICE</a></li>
-                    <li><a href="#portfolio">CAMPAIGN</a></li>
-                    <li><a href="#pricing">PRICING</a></li>
-                    <li><a href="/activityform">MAP</a></li>
-                    <li><a class="#mypage" href="/mypage">MY PAGE</a></li>
-                    <li><a th:href="@{/signout}" th:if="${session.user != null}"><span
-                                class="glyphicon glyphicon-log-in"></span> [[${session.user.nickname}]]님 Logout</a></li>
-                    <li><a th:href="@{/signin}" th:unless="${session.user != null}"><span
-                                class="glyphicon glyphicon-log-out"></span> Login</a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-
-
-
-
-
-
     <form action="/user_info/update" method="post">
-        <!-- 이메일:<input type="email" name="email" placeholder="Email"/><br> -->
-        <br><br><br><br>
-        &nbsp&nbsp&nbsp&nbsp 비밀번호 : &nbsp<input type="password" name="pwd" placeholder="비밀번호를 입력하세요." /><br><br>
+        <br><br>
         &nbsp&nbsp&nbsp&nbsp 닉네임 : &nbsp<input type="text" name="nickname" th:value="${session.user.nickname}" /><br><br>
+        &nbsp&nbsp&nbsp&nbsp 비밀번호 : &nbsp<input type="password" name="pwd" placeholder="비밀번호를 입력하세요." /><br><br>
         &nbsp&nbsp&nbsp&nbsp <input type="submit" value="수정" />
         &nbsp&nbsp&nbsp&nbsp <button type="button">탈퇴</button>
     </form>
 
 </body>
 
-<!-- <div class="container">
-    <form id="signup" class="signup" action="/signup" method="post">
-            <li>
-                <span><label for="name">Hi, What is your Name?</label></span>
-                <input class="active" id="name" name="name" type="text" placeholder="Enter your full name" autofocus/>
-            </li>
-            <li>
-                <span><label for="email">Enter you email</label></span>
-                <input id="email" name="email" type="text" placeholder="Email"  autofocus/>
-            </li>
-            <li>
-                <span><label for="password">Choose a password</label></span>
-                <input id="viewpswd" name="password" type="text" placeholder="this your password"/>
-                <input id="password" name="password" type="password" placeholder="make sure you dont forget" autofocus/>
-                <span id="show-pwd" class="view"></span>
-            </li>      
-    </form>
-<h1 id="wf" style="opacity:0;width: 600px; margin-top:1.1em;display:none; margin-bottom:1em">Thank you</h1>  -->

@@ -1,7 +1,6 @@
 package com.namoonhee.plogging.controller;
 
 import java.io.Console;
-import java.math.BigInteger;
 import java.util.List;
 import java.util.Optional;
 
@@ -86,11 +85,6 @@ public class MypageController {
         return "redirect:/mypage_new";
     }
 
-    @GetMapping(value = "/deleteaccount")
-    public String deleteAccountForm() {
-        return "deleteaccount";
-
-    }
 
     @PostMapping(value = "/deleteaccount")
     public String deleteAccount(@ModelAttribute User user, HttpSession httpSession, Model model) {
