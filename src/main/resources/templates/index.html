@@ -175,13 +175,12 @@
 
   <div id="feed" class="container-fluid text-center bg-grey">
 
-    <h4>플로깅 피드</h4>
-
-    <div class="row text-center slideanim">
-      <div class="col-sm-4" th:each="act : ${publist}" style="width: 420px; height: auto;">
+    <h2>플로깅 피드</h2>
+    <br><br>
+    <div class="row text-center slideanim slide">
+      <div class="col-sm-4" th:each="act : ${publist}" style="width: 420px; height: auto;" >
         <div class="thumbnail" style="height: auto;">
-          <img th:src="@{/nawarapic(id=${act.id})}" style="width: auto;" onerror="this.src='/images/runday2.jpg'"
-            alt="run2">
+          <img th:src="@{/nawarapic(id=${act.id})}" style="width: auto;" onerror="this.src='/images/runday2.jpg'" alt="run2">
           <div class="panel-body">
             <p th:text="${#dates.format(act.createDate, 'yyyy년 MM월 dd일 HH:mm')}"></p>
             <strong>
@@ -189,10 +188,12 @@
             </strong>
             <p>총 거리 : <span th:text="${act.actDistance}"></span></p>
             <p>총 시간 : <span th:text="${act.actTime}"></span></p>
-            <p>메모 : <span th:text="${act.actMemo}"></span></p>
+            <p>메모 : <span th:text="${act.actMemo}"></span></p><br>
+            <div class="greybox">
             <div class="panel-heading"><a th:href="@{#}">💚</a> (00) &nbsp; 
               <a th:href="@{mapline(actid=${act.Id})}">
-                <b th:text="상세보기"></b></a>
+                🔍<b th:text="상세보기"></b></a>
+              </div>
             </div>
           </div>
         </div>

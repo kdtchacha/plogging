@@ -23,10 +23,16 @@
         align-content: space-around;
         align-items: center;
     }
-    .button {
-        display: inline-block;
-        margin: 2%;
+
+    .time {
+        display: flex;
+        justify-content: center;
     }
+    .stopwatch {
+        border: 2px solid gainsboro;
+        padding: 20px;
+    }
+    
    
 </style>
 
@@ -40,7 +46,7 @@
 
     <div class="active_content">
         <div class="stopwatch">
-            <div>
+            <div class="time">
                 <span id="postTestHour">00</span>
                 <!-- 시 -->
                 <span>:</span>
@@ -57,12 +63,14 @@
                 <ul id="testRecordList"></ul>
                 <!--중간 기록할 리스트-->
             </div>
-            <div> <button type="button" id="testStartBtn" class="btn btn-success">START</button>
+            <br>
+            <div> 
+                <button type="button" id="testStartBtn" class="btn btn-success">START</button>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
                 <!--시작/재시작/기록 버튼-->
                 <button type="button" id="testStopBtn" class="btn btn-danger">STOP</button>
                 <!--스톱 버튼-->
             </div>
-        </div>
+        </div><br><br>
 
         <div class="memo">
             <div>
@@ -76,14 +84,12 @@
             </div>
         </div>
         <br>
-        <form method="post" action="imgupload" enctype="multipart/form-data">
-            <input type="file" name="photo" id="photos" multiple />
-        </form>
         <br>
-
+        
         <div>
+            <input type="file" name="photo" id="photos" multiple style="display: inline-block; width: 250px;"/>
             <!-- id속성에 timedb 값을 설정  -->
-            <button type="submit" id="timedb">DB에저장</button>
+            <button type="submit" id="timedb" class="btn">DB에저장</button>
         </div>
 
         <br><br>

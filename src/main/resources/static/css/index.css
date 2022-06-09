@@ -117,8 +117,11 @@ h4 {
 
 .panel-heading {
   color: #fff !important;
-  background-color: gainsboro !important;
-  padding: 15px;
+  background-color: #fff !important;
+  width: 60%;
+  display: flex;
+  justify-content: center;
+  padding: 10px;
   border-bottom: 1px solid transparent;
   border-top-left-radius: 100px;
   border-top-right-radius: 100px;
@@ -192,6 +195,14 @@ footer .glyphicon {
   visibility: visible;
 }
 
+.row {
+ display: flex;
+ flex-direction: row;
+ flex-wrap: wrap;
+ align-content: center;
+ justify-content: center;
+}
+
 .news {
   background: white;
   padding: 10px;
@@ -200,6 +211,11 @@ footer .glyphicon {
 .campaign_content {
   display: inline-block;
   margin: 5%;
+}
+
+.greybox {
+  display: flex;
+  justify-content: center;
 }
 
 /* #campaignimg{

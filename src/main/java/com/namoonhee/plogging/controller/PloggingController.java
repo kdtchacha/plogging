@@ -47,7 +47,7 @@ public class PloggingController {
 
         Sort sort = Sort.by(Sort.Direction.DESC, "createDate");
 
-        Pageable p = PageRequest.of(0, 6, sort);
+        Pageable p = PageRequest.of(0, 4, sort);
 
         List<Activity> publist = activityRepository.findByVisibility(1, p);
 
