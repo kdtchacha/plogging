@@ -185,12 +185,12 @@
           <div class="panel-body">
             <p th:text="${#dates.format(act.createDate, 'yyyy년 MM월 dd일 HH:mm')}"></p>
             <strong>
-              <p th:text="${act.actName}"></p>
+              <p th:text="${'[ '+act.actName+' ]'}"></p>
             </strong>
-            <p th:text="${act.actDistance}"></p>
-            <p th:text="${act.actTime}"></p>
-            <p th:text="${act.actMemo}"></p>
-            <div class="panel-heading"><a th:href="@{#}">💚</a> (00) <br>
+            <p>총 거리 : <span th:text="${act.actDistance}"></span></p>
+            <p>총 시간 : <span th:text="${act.actTime}"></span></p>
+            <p>메모 : <span th:text="${act.actMemo}"></span></p>
+            <div class="panel-heading"><a th:href="@{#}">💚</a> (00) &nbsp; 
               <a th:href="@{mapline(actid=${act.Id})}">
                 <b th:text="상세보기"></b></a>
             </div>
