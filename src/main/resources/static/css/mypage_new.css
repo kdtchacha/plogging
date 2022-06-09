@@ -105,7 +105,8 @@ body {
     border-bottom-left-radius: 100px;
     border-bottom-right-radius: 100px;
     display: flex;
-    flex-direction: row;
+    /* flex-direction: row;
+    justify-content: center; */
   }
 
   .panel-footer {
@@ -202,6 +203,11 @@ body {
       align-items: flex-end !important;
       justify-content: center !important;
       background: #f6f6f6;
+  }
+
+  .box {
+    display: flex;
+    justify-content: center;
   }
 
 
