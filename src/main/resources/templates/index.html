@@ -188,9 +188,12 @@
             </strong>
             <p>총 거리 : <span th:text="${act.actDistance}"></span></p>
             <p>총 시간 : <span th:text="${act.actTime}"></span></p>
-            <p>메모 : <span th:text="${act.actMemo}"></span></p><br>
-            <div class="greybox">
-            <div class="panel-heading"><a th:href="@{#}">💚</a> (00) &nbsp; 
+            <p style="overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            width: 90%;
+            height: 20px;">메모 : <span th:text="${act.actMemo}"></span></p>
+            <div class="panel-heading"><a th:href="@{#}">💚</a> (00) &nbsp;
               <a th:href="@{mapline(actid=${act.Id})}">
                 🔍<b th:text="상세보기"></b></a>
               </div>
