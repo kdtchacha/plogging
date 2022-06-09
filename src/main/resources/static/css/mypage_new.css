@@ -197,6 +197,13 @@ body {
       border-color: #16ad1b;
     }
 
+    .pagination {
+      display: flex !important;
+      align-items: flex-end !important;
+      justify-content: center !important;
+      background: #f6f6f6;
+  }
+
 
 
 
