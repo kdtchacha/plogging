@@ -88,7 +88,10 @@
         .btn {
             padding-left: 10px; 
             padding-right: 10px;
+            margin: 1%;
+            display: inline-block;
         }
+     
     </style>
 </head>
 
@@ -108,7 +111,7 @@
 
     <div style="display: flex; justify-content: center;">
         <button class="btn btn-warning" onclick="selectOverlay('MARKER')">마커</button>
-        <button class="btn-default" onclick="selectOverlay('POLYLINE')">선</button>
+        <button class="btn btn-default" onclick="selectOverlay('POLYLINE')">선</button>
         <button class="btn btn-primary" onclick="selectOverlay('CIRCLE')">원</button>
         <button class="btn btn-info" onclick="selectOverlay('RECTANGLE')">사각형</button>
         <button class="btn btn-secondary" onclick="selectOverlay('POLYGON')">다각형</button>
