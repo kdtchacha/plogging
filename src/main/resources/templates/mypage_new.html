@@ -40,17 +40,10 @@
             <div class="panel-heading">💚 00개 |&nbsp&nbsp<br>
               <a th:href="@{mapline(actid=${act.Id})}">
                 <b th:text="경로보기"></b>
-<<<<<<< HEAD
-              </a>&nbsp&nbsp
-              <strong th:if="${act.visibility == 0}"> <a th:href="@{/visibility(id=${act.id})}">[✨ 비공개 ]</a></strong>
-              <strong th:unless="${act.visibility == 0}"> <a th:href="@{/visibility(id=${act.id})}">[✨ 공개 ]</a></strong>
-              <a th:href="@{/delete_activity(id=${act.id})}">&nbsp&nbsp삭제하기</a>
-=======
               </a>&nbsp&nbsp&nbsp&nbsp
               <strong th:if="${act.visibility == 0}"> <a th:href="@{/visibility(id=${act.id})}">[비공개🙈]</a></strong>
               <strong th:unless="${act.visibility == 0}"> <a th:href="@{/visibility(id=${act.id})}">[공개중🙉]</a></strong>
               <a th:href="@{/delete_activity(id=${act.id})}">&nbsp&nbsp&nbsp&nbsp삭제하기</a>
->>>>>>> d5b474db0a40a933711325bc414359fb557f4adf
 
 
             </div>
