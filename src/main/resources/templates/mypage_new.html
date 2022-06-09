@@ -9,17 +9,19 @@
 
 
 <body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
-  
+
   <div class="container-fluid" style="display:flex; justify-content:flex-end;">
-    <button type="button" class="btn btn-default btn" data-toggle="modal" data-target="#myModal1" style="border:blue;">회원정보수정</button>
+    <button type="button" class="btn btn-default btn" data-toggle="modal" data-target="#myModal1"
+      style="border:white;">회원정보수정</button>
     &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-    <button type="button" class="btn btn-default btn" data-toggle="modal" data-target="#myModal2" style="border:blue;">탈퇴하기</button>
+    <button type="button" class="btn btn-default btn" data-toggle="modal" data-target="#myModal2"
+      style="border:white;">탈퇴하기</button>
   </div>
 
 
   <!-- Container (Portfolio Section) -->
   <div id="campaign" class="container-fluid text-center bg-grey">
-    
+
     <h2>MY PAGE</h2><br>
     <h4>플로깅 피드들</h4>
 
@@ -52,7 +54,7 @@
       </div>
     </div>
   </div>
-  
+
 
   <!-- 수정 Modal -->
   <div class="modal" id="myModal1" role="dialog">
@@ -89,18 +91,35 @@
       </div>
     </div>
   </div>
-  </div>
-
-<!-- <FOOTER> -->
-  
-  <div th:replace="common/contact"></div>
-  <footer class="container-footer text-center">
-    <a href="#myPage" title="To Top">
-      <span class="glyphicon glyphicon-chevron-up"></span>
-    </a>
-  </footer>
-
   <script>
+
+    let query = location.search;
+
+    let page = query.substring(query.indexOf("=") + 1);
+
+    let startPage = parseInt(page / 5) * 5 + 1;
+
+    let endPage = startPage + 4;
+
+
+
+    let html = '<ul class="pagination">';
+
+    html += `<li class="page-item"><a class="page-link" href="?page=${startPage - 5}">이전</a></li>`
+    for (let i = startPage; i <= endPage; i++) {
+
+      html +=
+        `<li class="page-item ${page == i ? 'active' : ' '}">
+          <a class="page-link" href= "?page=${i}">${i}</a></li>`;
+    }
+    html += `<li class="page-item"><a class="page-link" href="?page=${endPage + 1}">다음</a></li>`
+
+    html += '</ul>';
+    document.body.innerHTML += html;
+
+
+
+
     $(document).ready(function () {
       // Add smooth scrolling to all links in navbar + footer link
       $(".navbar a, footer a[href='#myPage']").on('click', function (event) {
@@ -136,6 +155,18 @@
       });
     })
   </script>
+  </div>
+
+  
+
+  <!-- <FOOTER> -->
+
+    <div th:replace="common/contact"></div>
+    <footer class="container-footer text-center">
+      <a href="#myPage" title="To Top">
+        <span class="glyphicon glyphicon-chevron-up"></span>
+      </a>
+    </footer>
 
 </body>
 
