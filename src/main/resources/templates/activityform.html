@@ -12,9 +12,9 @@
 
 <!-- 지도 스타일 -->
 <style>
-    #actname {
+    /* #actname {
         width: 355px;
-    }
+    } */
 
     .active_content {
         display: flex;
@@ -22,9 +22,8 @@
         flex-wrap: wrap;
         align-content: space-around;
         align-items: center;
-       
-    }
 
+    }
 </style>
 
 <body>
@@ -62,21 +61,22 @@
             </div>
         </div>
 
-    <div class="memo">
-        <div>
-            <p> 활동 이름 : <input id="actname" type="text"></p>
-        </div>
+        <div class="memo">
+            <div>
+                <b style="display: block;">활동 이름</b>
+                <textarea id="actname" cols="50" rows="1" style="resize: none;" placeholder=""></textarea>
+            </div>
 
-        <div>
-            <p>활동 메모 : <textarea id="actmemo" cols="50" rows="10" style="resize: none;"
-                    placeholder="플로깅 메모를 입력해주세요"></textarea></p>
+            <div>
+                <b style="display: block;">활동 메모</b>
+                <textarea id="actmemo" cols="50" rows="5" style="resize: none;" placeholder="플로깅 메모를 입력해주세요"></textarea>
+            </div>
         </div>
-    </div>
-
+        <br>
         <form method="post" action="imgupload" enctype="multipart/form-data">
             <input type="file" name="photo" id="photos" multiple />
         </form>
-
+        <br>
 
         <div>
             <!-- id속성에 timedb 값을 설정  -->
@@ -85,7 +85,7 @@
 
         <br><br>
 
-        <button type="button" id="camera" onclick="location.href='camera'">카메라</button>
+        <!-- <button type="button" id="camera" onclick="location.href='camera'">카메라</button> -->
 
     </div>
     </div>
@@ -213,7 +213,7 @@
                 headers: { 'Content-type': 'multipart/form-data' }
             })
                 .then(function (result) {
-                window.location.href = "/mypage_new"
+                    window.location.href = "/mypage_new"
                 })
                 .catch(function (error) {
                     alert("활동 저장이 정상적으로 되지 않았습니다.")
