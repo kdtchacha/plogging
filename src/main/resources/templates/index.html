@@ -178,8 +178,8 @@
     <h4>플로깅 피드</h4>
 
     <div class="row text-center slideanim">
-      <div class="col-sm-4" th:each="act : ${publist}">
-        <div class="thumbnail">
+      <div class="col-sm-4" th:each="act : ${publist}" style="width: 420px; height: auto;">
+        <div class="thumbnail" style="height: auto;">
           <img th:src="@{/nawarapic(id=${act.id})}" style="width: auto;" onerror="this.src='/images/runday2.jpg'"
             alt="run2">
           <div class="panel-body">
