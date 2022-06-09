@@ -116,7 +116,7 @@ h4 {
 }
 
 .panel-heading {
-  color: #fff !important;
+  color: #818181 !important;
   background-color: #fff !important;
   width: 60%;
   display: flex;
@@ -213,7 +213,7 @@ footer .glyphicon {
   margin: 5%;
 }
 
-.greybox {
+.box {
   display: flex;
   justify-content: center;
 }
