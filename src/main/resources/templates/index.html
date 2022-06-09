@@ -4,8 +4,8 @@
 
 <body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
 
-  
-<div th:replace="common/head"></div>
+
+  <div th:replace="common/head"></div>
 
 
 
@@ -99,21 +99,21 @@
   <div id="campaign" class="container-fluid text-center bg-grey">
     <h2>플로깅 캠페인 안내</h2><br>
     <div class="row text-center slideanim">
-      <div class="col-sm-4">
+      <div class="campaign_content">
         <div class="thumbnails">
           <img src="images/ansan.png" alt="Ansan">
           <p><strong>Ansan</strong></p>
           <p>Yes, we built Paris</p>
         </div>
       </div>
-      <div class="col-sm-4">
+      <div class="campaign_content">
         <div class="thumbnails">
           <img src="images/jejooo.jfif" alt="Jejooo">
           <p><strong>Jeju</strong></p>
           <p>We built New York</p>
         </div>
       </div>
-      <div class="col-sm-4">
+      <div class="campaign_content">
         <div class="thumbnails">
           <img src="images/adong.png" alt="adong">
           <p><strong>adong</strong></p>
@@ -121,212 +121,210 @@
         </div>
       </div>
     </div>
-    <br><br><br><br>
+    <br><br>
 
-
-
-
-    <div class="news">
+  </div>
+  <div class="news">
+    <div style="display: flex; justify-content: center;">
       <h2>PLOGGING NEWS</h2>
-      <!-- <h5>( 출처 : NAVER NEWS )</h5> -->
-      <div id="myCarousel" class="carousel slide text-center" data-ride="carousel">
-        <!-- Indicators -->
-        <ol class="carousel-indicators">
-          <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-          <li data-target="#myCarousel" data-slide-to="1"></li>
-          <li data-target="#myCarousel" data-slide-to="2"></li>
-          <li data-target="#myCarousel" data-slide-to="3"></li>
-          <li data-target="#myCarousel" data-slide-to="4"></li>
-          <li data-target="#myCarousel" data-slide-to="5"></li>
-          <li data-target="#myCarousel" data-slide-to="6"></li>
-        </ol>
+    </div>
+    <!-- <h5>( 출처 : NAVER NEWS )</h5> -->
+    <div id="myCarousel" class="carousel slide text-center" data-ride="carousel">
+      <!-- Indicators -->
+      <ol class="carousel-indicators">
+        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+        <li data-target="#myCarousel" data-slide-to="1"></li>
+        <li data-target="#myCarousel" data-slide-to="2"></li>
+        <li data-target="#myCarousel" data-slide-to="3"></li>
+        <li data-target="#myCarousel" data-slide-to="4"></li>
+        <li data-target="#myCarousel" data-slide-to="5"></li>
+        <li data-target="#myCarousel" data-slide-to="6"></li>
+      </ol>
 
-        <!-- Wrapper for slides -->
-        <div class="carousel-inner" role="listbox" id="nvnewslgh">
-          <div class="item active">
-            <h4>플로깅으로 검색된 최신 뉴스를 전달해드립니다.<br><span>
-                <h6>( 출처 : NAVER NEWS )</h6>
-              </span></h4>
+      <!-- Wrapper for slides -->
+      <div class="carousel-inner" role="listbox" id="nvnewslgh">
+        <div class="item active">
+          <h4>플로깅으로 검색된 최신 뉴스를 전달해드립니다.<br><span>
+              <h6>( 출처 : NAVER NEWS )</h6>
+            </span></h4>
+        </div>
+        <!-- <div class="item">
+        <h4>"One word... WOW!!"<br><span>John Doe, Salesman, Rep Inc</span></h4>
+      </div>
+      <div class="item">
+        <h4>"Could I... BE any more happy with this company?"<br><span>Chandler Bing, Actor, FriendsAlot</span></h4>
+      </div>
+      <div class="item">
+        <h4>가희님이 프론트를 너무 잘해주셨어요<br><span>Chandler Bing, Actor, FriendsAlot</span></h4>
+      </div> -->
+      </div>
+
+      <!-- Left and right controls -->
+      <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+      </a>
+    </div>
+  </div>
+
+  <br><br>
+
+  <div id="feed" class="container-fluid text-center bg-grey">
+
+    <h4>플로깅 피드</h4>
+
+    <div class="row text-center slideanim">
+      <div class="col-sm-4" th:each="act : ${publist}">
+        <div class="thumbnail">
+          <img th:src="@{/nawarapic(id=${act.id})}" style="width: auto;" onerror="this.src='/images/runday2.jpg'"
+            alt="run2">
+          <div class="panel-body">
+            <p th:text="${#dates.format(act.createDate, 'yyyy년 MM월 dd일 HH:mm')}"></p>
+            <strong>
+              <p th:text="${act.actName}"></p>
+            </strong>
+            <p th:text="${act.actDistance}"></p>
+            <p th:text="${act.actTime}"></p>
+            <p th:text="${act.actMemo}"></p>
+            <div class="panel-heading"><a th:href="@{#}">💚</a> (00) <br>
+              <a th:href="@{mapline(actid=${act.Id})}">
+                <b th:text="상세보기"></b></a>
+            </div>
           </div>
-          <!-- <div class="item">
-          <h4>"One word... WOW!!"<br><span>John Doe, Salesman, Rep Inc</span></h4>
         </div>
-        <div class="item">
-          <h4>"Could I... BE any more happy with this company?"<br><span>Chandler Bing, Actor, FriendsAlot</span></h4>
-        </div>
-        <div class="item">
-          <h4>가희님이 프론트를 너무 잘해주셨어요<br><span>Chandler Bing, Actor, FriendsAlot</span></h4>
-        </div> -->
-        </div>
-
-        <!-- Left and right controls -->
-        <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
-          <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-          <span class="sr-only">Previous</span>
-        </a>
-        <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
-          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-          <span class="sr-only">Next</span>
-        </a>
       </div>
     </div>
+  </div>
 
-    <div id="nvnews">
+
+
+  <!-- Container (Contact Section) -->
+  <div id="contact" class="container-fluid bg-grey">
+    <h2 class="text-center">CONTACT</h2>
+    <div class="row">
+      <div class="col-sm-5">
+        <p>Contact us and we'll get back to you within 24 hours.</p>
+        <p><span class="glyphicon glyphicon-map-marker"></span> Chicago, US</p>
+        <p><span class="glyphicon glyphicon-phone"></span> +00 1515151515</p>
+        <p><span class="glyphicon glyphicon-envelope"></span> myemail@something.com</p>
+      </div>
+      <div class="col-sm-7">
+        <form action="/contact" method="post">
+          <div class="row">
+            <div class="col-sm-6 form-group">
+              <input class="form-control" id="name" name="subject" placeholder="Name" type="text" required>
+            </div>
+            <div class="col-sm-6 form-group">
+              <input class="form-control" id="email" name="email" placeholder="Email" type="email" required>
+            </div>
+          </div>
+          <textarea class="form-control" id="comments" name="content" placeholder="Comment" rows="5"></textarea><br>
+          <div class="row">
+            <div class="col-sm-12 form-group">
+              <button class="btn btn-default pull-right" type="submit" id="emailsend">Send</button>
+            </div>
+          </div>
+        </form>
+      </div>
     </div>
   </div>
 
 
 
 
-  <div id="feed" class="container-fluid text-center bg-grey">
-    <h2>플로깅 피드</h2><br>
-    <div class="row text-center slideanim">
-      <div class="col-sm-4" th:each="act : ${publist}">
-        <div class="thumbnail">
-          <img th:src="@{/nawarapic(id=${act.id})}" onerror="this.src='/images/runday2.jpg'" alt="">
-          <div class="panel-body">
-            <strong>
-              <p th:text="${'[ '+act.actName+' ]'}"></p>
-            </strong>
-            <p th:text="${#dates.format(act.createDate, 'yyyy-MM-dd HH:mm')}"></p>
-            <p>총 거리 : <span th:text="${act.actDistance}"></span></p>
-            <p>총 시간 : <span th:text="${act.actTime}"></span></p>
-            <p>메모 : <span th:text="${act.actMemo}"></span></p>
-            <div class="panel-heading">좋아요|댓글
-              <a th:href="@{mapline(actid=${act.Id})}">
-                <b th:text="경로보기"></b>
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
 
+  <footer class="container-fluid text-center">
+    <a href="#myPage" title="To Top">
+      <span class="glyphicon glyphicon-chevron-up"></span>
+    </a>
+    <!-- <p>Bootstrap Theme Made By <a href="https://www.w3schools.com" title="Visit w3schools">www.w3schools.com</a></p> -->
+  </footer>
 
+  <script>
+    $(document).ready(function () {
+      // Add smooth scrolling to all links in navbar + footer link
+      $(".navbar a, footer a[href='#myPage']").on('click', function (event) {
+        // Make sure this.hash has a value before overriding default behavior
+        if (this.hash !== "") {
+          // Prevent default anchor click behavior
+          event.preventDefault();
 
-    <!-- Container (Contact Section) -->
-    <div id="contact" class="container-fluid bg-grey">
-      <h2 class="text-center">CONTACT</h2>
-      <div class="row">
-        <div class="col-sm-5">
-          <p>Contact us and we'll get back to you within 24 hours.</p>
-          <p><span class="glyphicon glyphicon-map-marker"></span> Chicago, US</p>
-          <p><span class="glyphicon glyphicon-phone"></span> +00 1515151515</p>
-          <p><span class="glyphicon glyphicon-envelope"></span> myemail@something.com</p>
-        </div>
-        <div class="col-sm-7">
-          <form action="/contact" method="post">
-            <div class="row">
-              <div class="col-sm-6 form-group">
-                <input class="form-control" id="name" name="subject" placeholder="Name" type="text" required>
-              </div>
-              <div class="col-sm-6 form-group">
-                <input class="form-control" id="email" name="email" placeholder="Email" type="email" required>
-              </div>
-            </div>
-            <textarea class="form-control" id="comments" name="content" placeholder="Comment" rows="5"></textarea><br>
-            <div class="row">
-              <div class="col-sm-12 form-group">
-                <button class="btn btn-default pull-right" type="submit" id="emailsend">Send</button>
-              </div>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
+          // Store hash
+          var hash = this.hash;
 
+          // Using jQuery's animate() method to add smooth page scroll
+          // The optional number (900) specifies the number of milliseconds it takes to scroll to the specified area
+          $('html, body').animate({
+            scrollTop: $(hash).offset().top
+          }, 900, function () {
 
-
-
-
-    <footer class="container-fluid text-center">
-      <a href="#myPage" title="To Top">
-        <span class="glyphicon glyphicon-chevron-up"></span>
-      </a>
-      <!-- <p>Bootstrap Theme Made By <a href="https://www.w3schools.com" title="Visit w3schools">www.w3schools.com</a></p> -->
-    </footer>
-
-    <script>
-      $(document).ready(function () {
-        // Add smooth scrolling to all links in navbar + footer link
-        $(".navbar a, footer a[href='#myPage']").on('click', function (event) {
-          // Make sure this.hash has a value before overriding default behavior
-          if (this.hash !== "") {
-            // Prevent default anchor click behavior
-            event.preventDefault();
-
-            // Store hash
-            var hash = this.hash;
-
-            // Using jQuery's animate() method to add smooth page scroll
-            // The optional number (900) specifies the number of milliseconds it takes to scroll to the specified area
-            $('html, body').animate({
-              scrollTop: $(hash).offset().top
-            }, 900, function () {
-
-              // Add hash (#) to URL when done scrolling (default click behavior)
-              window.location.hash = hash;
-            });
-          } // End if
-        });
-
-        $(window).scroll(function () {
-          $(".slideanim").each(function () {
-            var pos = $(this).offset().top;
-
-            var winTop = $(window).scrollTop();
-            if (pos < winTop + 600) {
-              $(this).addClass("slide");
-            }
+            // Add hash (#) to URL when done scrolling (default click behavior)
+            window.location.hash = hash;
           });
-        });
-      })
-    </script>
-
-    <script src="http://unpkg.com/axios/dist/axios.min.js"></script>
-    <script>
-
-      const data = axios({
-        url: 'navernews?query=플로깅',
-        method: 'get',
+        } // End if
       });
-      data.then((res) => {
 
-        console.log(res);
+      $(window).scroll(function () {
+        $(".slideanim").each(function () {
+          var pos = $(this).offset().top;
 
-        const newsdata = res;
+          var winTop = $(window).scrollTop();
+          if (pos < winTop + 600) {
+            $(this).addClass("slide");
+          }
+        });
+      });
+    })
+  </script>
 
-        // <div class="item active">
-        //     <h4>"This company is the best. I am so happy with the result!"<br><span>Michael Roe,
-        //         Vice President, Comment
-        //         Box</span></h4>
-        //   </div>
+  <script src="http://unpkg.com/axios/dist/axios.min.js"></script>
+  <script>
 
+    const data = axios({
+      url: 'navernews?query=플로깅',
+      method: 'get',
+    });
+    data.then((res) => {
 
-        let newscode = "";
-        const newslist = newsdata.data.items;
-        console.log(newslist);
-        for (let key in newslist) {
-          const abc = newslist[key];
-          const title = abc.title;
-          const pubdate = abc.pubDate;
-          const link = abc.link;
-          // const desc = abc.description;
-          // const publishedAt = abc.pubDate;
+      console.log(res);
 
-          newscode += '<div class="item">'
-          newscode += `<h4><a href="${link}">${title}</a><br>`;
-          newscode += `<span><h5>${pubdate}</h5></span>`;
-          newscode += '</h4>'
-          newscode += '</div>';
-        }
+      const newsdata = res;
 
-        document.getElementById("nvnewslgh").innerHTML += newscode;
-
-      })
+      // <div class="item active">
+      //     <h4>"This company is the best. I am so happy with the result!"<br><span>Michael Roe,
+      //         Vice President, Comment
+      //         Box</span></h4>
+      //   </div>
 
 
-    </script>
+      let newscode = "";
+      const newslist = newsdata.data.items;
+      console.log(newslist);
+      for (let key in newslist) {
+        const abc = newslist[key];
+        const title = abc.title;
+        const pubdate = abc.pubDate;
+        const link = abc.link;
+        // const desc = abc.description;
+        // const publishedAt = abc.pubDate;
+
+        newscode += '<div class="item">'
+        newscode += `<h4><a href="${link}">${title}</a><br>`;
+        newscode += `<span><h5>${pubdate}</h5></span>`;
+        newscode += '</h4>'
+        newscode += '</div>';
+      }
+
+      document.getElementById("nvnewslgh").innerHTML += newscode;
+
+    })
+
+
+  </script>
 
 
 

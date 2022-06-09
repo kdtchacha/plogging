@@ -197,6 +197,11 @@ footer .glyphicon {
   padding: 10px;
 }
 
+.campaign_content {
+  display: inline-block;
+  margin: 60px;
+}
+
 @keyframes slide {
   0% {
     opacity: 0;
