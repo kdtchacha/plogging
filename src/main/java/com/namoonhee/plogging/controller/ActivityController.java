@@ -25,7 +25,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.bind.annotation.RequestParam;
 
-
 @Controller
 public class ActivityController {
 
@@ -38,17 +37,16 @@ public class ActivityController {
     @Autowired
     ActAnswerRepository actAnswerRepository;
 
-
-
-
     @GetMapping("/activityform")
     public String actForm() {
+
         return "activityform";
     }
 
     @ResponseBody
     @PostMapping("/act")
     public String actTimeTest(HttpServletRequest req, HttpSession session, List<MultipartFile> photos) {
+
         for (MultipartFile mFile : photos) {
             System.out.println(mFile.getOriginalFilename());
 
@@ -168,22 +166,20 @@ public class ActivityController {
 
     @GetMapping("/camera")
     public String camera() {
+
         return "camera";
     }
 
-
     @GetMapping("/slide")
     public String slide() {
+
         return "slide";
     }
-
-
 
     @GetMapping(value = "/visibility")
     public String visibility(Long id) {
 
         Optional<Activity> actidd = actRepository.findById(id);
-
         Activity vv = actidd.get();
 
         if (vv.getVisibility() == 0) {
@@ -204,52 +200,41 @@ public class ActivityController {
         Optional<Activity> a = actRepository.findById(actid);
 
         Activity b = a.get();
-
         String c = b.getLatlng();
-
-        System.out.println(c);
-
         return c;
     }
 
-
     @PostMapping("/actanswer/create")
     public String answercreate(String content, long actid, HttpSession session) {
-        
-        System.out.println(content);
-        System.out.println(actid);
-        
+
         ActAnswer answer = new ActAnswer();
         answer.setContent(content);
         answer.setCreateDate(new Date());
 
         Activity act = new Activity();
         act.setId(actid);
- 
-       User user = (User) session.getAttribute("user");
+
+        User user = (User) session.getAttribute("user");
         answer.setUser(user);
 
         answer.setActivity(act);
 
         actAnswerRepository.save(answer);
 
-        return "redirect:/mapline?actid="+actid;
+        return "redirect:/mapline?actid=" + actid;
     }
 
-
-
-    @GetMapping(value="delanswer")
+    @GetMapping(value = "delanswer")
     public String deleteActivity(@RequestParam Long id, HttpSession session) {
-        User suser  = (User) session.getAttribute("user");
+
+        User suser = (User) session.getAttribute("user");
 
         Optional<ActAnswer> dbanswer = actAnswerRepository.findById(id);
 
-        if ( suser.getId() == dbanswer.get().getUser().getId() ) {
-
+        if (suser.getId() == dbanswer.get().getUser().getId()) {
             actAnswerRepository.deleteById(id);
-        } 
-
-        return "redirect:/mapline?actid="+dbanswer.get().getActivity().getId();
+        }
+        return "redirect:/mapline?actid=" + dbanswer.get().getActivity().getId();
     }
 
 }

@@ -22,6 +22,7 @@ public class UserController {
 
     @GetMapping("/signin")
     public String signForm() {
+
         return "sign2";
     }
 
@@ -49,15 +50,14 @@ public class UserController {
         httpSession.invalidate();
 
         return "redirect:/";
-
     }
 
     @GetMapping("/user/check")
     @ResponseBody
     public User userCheck(String email) {
+
         User user = userService.userCheck(email);
         return user;
-
     }
 
 }

@@ -12,13 +12,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RequestParam;
-
 
 @Controller
 public class AdminController {
-    
-
 
     @Autowired
     UserRepository userRepository;
@@ -29,22 +25,21 @@ public class AdminController {
     @Autowired
     ActAnswerRepository actAnswerRepository;
 
-
     @GetMapping("/adminmain")
-    public String adminMain() {    
-        
+    public String adminMain() {
+
         return "adminmain";
     }
 
     @ResponseBody
     @GetMapping("/adminUser")
-    public List<User> adminUser(){
+    public List<User> adminUser() {
 
-       List<User> users = userRepository.findAll();
+        List<User> users = userRepository.findAll();
 
         return users;
     }
-    
+
     @ResponseBody
     @GetMapping("/adminActivity")
     public List<Activity> adminActivity() {
@@ -53,12 +48,5 @@ public class AdminController {
 
         return activities;
     }
-    
-
-
-
-
-
-
 
 }
