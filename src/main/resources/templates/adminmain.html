@@ -1,22 +1,30 @@
 <!DOCTYPE html>
 <html lang="ko">
 
-<head>
-    <meta charset="UTF-8">
-    <title>PLOGGING</title>
-</head>
+<div th:replace="common/head"></div>
+
+<style>
+    #abcd {
+        border: 3px #16ad1b solid;
+    }
+</style>
 
 <body>
+    <br><br><br>
 
-    <h1>관리자 페이지입니다.</h1>
-
-    <button id="aaa">안녕 난 유저 전체를 부르는 버튼이야</button>
-
+    <h1 style="text-align: center">관리자 페이지입니다.</h1>
+    <hr>
+    <div style="display: flex; justify-content: center;">
+        <div style="width: 70%; display: flex; justify-content: space-around;">
+            <button id="aaa">안녕 난 <b>[유저]</b> 전체를 부르는 버튼이야</button>
+            <button id="bbb">안녕 난 <b>[플로깅활동]</b> 전체를 부르는 버튼이야</button>
+            <button id="ccc">안녕 난 <b>[댓글]</b> 전체를 부르는 버튼이야</button>
+        </div>
+    </div>
     <br><br>
-
-    <dvi id="vvv"></dvi>
-
-
+    <div style="display: flex; justify-content: center;">
+        <dvi id="vvv"></dvi>
+    </div>
     <script src="http://unpkg.com/axios/dist/axios.min.js"></script>
 
     <script>
@@ -32,7 +40,7 @@
                 console.log(res);
                 const userdata = res;
 
-                let usercode = "<table border=1px;>";
+                let usercode = "<table id='abcd' border=1px;>";
                 usercode += "<tr><th>이메일</th><th>닉네임</th><th>삭제</th></tr>"
                 const userlist = userdata.data;
                 console.log(userlist);
