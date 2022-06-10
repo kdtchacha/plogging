@@ -103,7 +103,7 @@
       <div class="col-sm-4" th:each="act : ${publist}" style="width: 420px; height: auto;" >
         <div class="thumbnail" style="height: auto;">
           <img th:src="@{/nawarapic(id=${act.id})}" style="width: auto;" onerror="this.src='/images/runday2.jpg'" alt="run2">
-          <div class="panel-body">
+          <div class="panel-body" >
             <p th:text="${#dates.format(act.createDate, 'yyyy년 MM월 dd일 HH:mm')}"></p>
             <strong>
               <p th:text="${'[ '+act.actName+' ]'}"></p>
@@ -113,8 +113,7 @@
             <p style="overflow: hidden;
             text-overflow: ellipsis;
             white-space: nowrap;
-            width: 90%;
-            height: 20px;">메모 : <span th:text="${act.actMemo}"></span></p><br>
+            width: 70%;">메모 : <span th:text="${act.actMemo}"></span></p><br>
             <div class="box">
             <div class="panel-heading"><a th:href="@{#}">💚</a> (00) &nbsp;
               <a th:href="@{mapline(actid=${act.Id})}">
