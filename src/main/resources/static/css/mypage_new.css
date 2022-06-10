@@ -96,17 +96,15 @@ body {
   }
 
   .panel-heading {
-    color: #fff !important;
-    background-color: gainsboro !important;
-    padding: 0px;
+    color: #818181 !important;
+    background-color: rgb(238, 236, 236) !important;
+    padding: 10px;
     border-bottom: 1px solid transparent;
-    border-top-left-radius: 100px;
-    border-top-right-radius: 100px;
-    border-bottom-left-radius: 100px;
-    border-bottom-right-radius: 100px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
     display: flex;
-    /* flex-direction: row;
-    justify-content: center; */
   }
 
   .panel-footer {
@@ -209,6 +207,8 @@ body {
     display: flex;
     justify-content: center;
   }
+
+  
 
 
 

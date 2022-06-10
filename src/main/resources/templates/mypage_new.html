@@ -25,9 +25,9 @@
     <h2>MY PAGE</h2><br>
     <h4>플로깅 피드들</h4>
 
-    <!-- <div class="row text-center slideanim"> -->
+    <div class="row text-center slideanim">
     <div>
-      <div class="col-sm-4" th:each="act : ${list}">
+      <div class="col-sm-4" th:each="act : ${list}" style="width: 420px; height: auto;">
         <div class="thumbnail">
           <img th:src="@{/nawarapic(id=${act.id})}" style="width: auto;" onerror="this.src='/images/runday2.jpg'"
             alt="run2">
@@ -39,10 +39,10 @@
             <p th:text="${act.actDistance}"></p>
             <p th:text="${act.actTime}"></p>
             <p th:text="${act.actMemo}"></p>
-            <div class="box">
+            <br><div class="box">
             <div class="panel-heading">💚 00개 |&nbsp&nbsp<br>
               <a th:href="@{mapline(actid=${act.Id})}">
-                <b th:text="경로보기"></b>
+                <b th:text="상세보기"></b>
               </a>&nbsp&nbsp&nbsp&nbsp
               <strong th:if="${act.visibility == 0}"> <a th:href="@{/visibility(id=${act.id})}">[비공개🙈]</a></strong>
               <strong th:unless="${act.visibility == 0}"> <a th:href="@{/visibility(id=${act.id})}">[공개중🙉]</a></strong>
@@ -115,7 +115,7 @@
     html += `<li class="page-item"><a class="page-link" href="?page=${endPage + 1}">다음</a></li>`
 
     html += '</ul>';
-    document.body.innerHTML += html;
+    document.getElementById('campaign').innerHTML += html;
 
 
 
