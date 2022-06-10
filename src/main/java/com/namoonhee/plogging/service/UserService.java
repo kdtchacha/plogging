@@ -16,5 +16,5 @@ public interface UserService {
 
     public void deleteAccount(User user);
 
-    public List<Activity> myActList(User user);
+    public List<Activity> myActList(User user, int page);
 }

@@ -121,6 +121,7 @@ h4 {
   /* width: 60%; */
   display: flex;
   justify-content: center;
+  align-items: flex-start;
   padding: 10px;
   border-bottom: 1px solid transparent;
   border-top-left-radius: 100px;

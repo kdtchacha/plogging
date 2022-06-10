@@ -52,16 +52,28 @@ public class UserServiceImpl implements UserService {
 
     }
 
+    // @Override
+    // public List<Activity> myActList(User user, int page) {
+
+    //     Sort sort = Sort.by(Sort.Direction.DESC, "createDate");
+
+    //     Pageable p = PageRequest.of(0, 4, sort);
+        
+    //      List<Activity> opt = activityRepository.findByUser_id(user.getId(), p);
+
+    //     return opt;
+    // }
+
     @Override
-    public List<Activity> myActList(User user) {
+    public List<Activity> myActList(User user, int page) {
 
         Sort sort = Sort.by(Sort.Direction.DESC, "createDate");
 
-        Pageable p = PageRequest.of(0, 6, sort);
+        Pageable p = PageRequest.of(page-1, 4, sort);
         
          List<Activity> opt = activityRepository.findByUser_id(user.getId(), p);
 
         return opt;
-    }
+    } 
 
 }
