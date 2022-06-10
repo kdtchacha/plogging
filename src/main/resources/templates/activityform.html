@@ -28,13 +28,12 @@
         display: flex;
         justify-content: center;
     }
+
     .stopwatch {
         border: 5px solid gainsboro;
         padding: 20px;
         border-radius: 10px;
     }
-    
-   
 </style>
 
 <body>
@@ -42,6 +41,14 @@
 
 
     <div id="maptest" th:replace="maptest"></div>
+
+    <div style="display: flex; justify-content: center;">
+        <div style="display: flex; flex-direction: column;">
+            <p>사용 설명서 : 지도 위에 좌클릭으로 경로를 남길 수 있습니다. </p>
+            <p>좌클릭을 반복하여 경로를 이어갈 수 있고, 우클릭으로 경로표시를 종료합니다</p>
+            <p style="font-weight: bold; color: red;">경로를 표시중 잘못 클릭하신 경우 반드시 새로고침을 해주세요!</p>
+        </div>
+    </div>
     <br>
 
 
@@ -61,12 +68,13 @@
                 <!--밀리초-->
             </div>
             <div>
-                <ul id="testRecordList"></ul>
+                <!-- <ul id="testRecordList"></ul> -->
                 <!--중간 기록할 리스트-->
             </div>
             <br>
-            <div> 
-                <button type="button" id="testStartBtn" class="btn btn-success">START</button>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+            <div>
+                <button type="button" id="testStartBtn"
+                    class="btn btn-success">START</button>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
                 <!--시작/재시작/기록 버튼-->
                 <button type="button" id="testStopBtn" class="btn btn-danger">STOP</button>
                 <!--스톱 버튼-->
@@ -86,9 +94,9 @@
         </div>
         <br>
         <br>
-        
+
         <div>
-            <input type="file" name="photo" id="photos" multiple style="display: inline-block; width: 250px;"/>
+            <input type="file" name="photo" id="photos" multiple style="display: inline-block; width: 250px;" />
             <!-- id속성에 timedb 값을 설정  -->
             <button type="submit" id="timedb" class="btn">DB에저장</button>
         </div>
@@ -114,7 +122,7 @@
         var recordList = document.getElementById('testRecordList')
         startBtn.addEventListener('click', function () {
             // RECORD
-            if (this.innerText == 'RECORD' && milisec) {
+            if (this.innerText == '[-----]' && milisec) {
                 console.log(min, sec, milisec)
                 var li = document.createElement('li')
                 li.style.color = "#fff"
@@ -126,7 +134,7 @@
                 }
                 return false
             }
-            this.innerText = 'RECORD'
+            this.innerText = '[-----]'
 
             if (!stTime) {
                 stTime = Date.now() // 최초 START 
