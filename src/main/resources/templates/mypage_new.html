@@ -26,147 +26,153 @@
     <h4>플로깅 피드들</h4>
 
     <div class="row text-center slideanim">
-    <div>
-      <div class="col-sm-4" th:each="act : ${list}" style="width: 420px; height: auto;">
-        <div class="thumbnail">
-          <img th:src="@{/nawarapic(id=${act.id})}" style="width: auto;" onerror="this.src='/images/runday2.jpg'"
-            alt="run2">
-          <div class="panel-body">
-            <p th:text="${#dates.format(act.createDate, 'yyyy년 MM월 dd일 HH:mm')}"></p>
-            <strong>
-              <p th:text="${act.actName}"></p>
-            </strong>
-            <p th:text="${act.actDistance}"></p>
-            <p th:text="${act.actTime}"></p>
-            <p th:text="${act.actMemo}"></p>
-            <br><div class="box">
-            <div class="panel-heading">💚 00개 |&nbsp&nbsp<br>
-              <a th:href="@{mapline(actid=${act.Id})}">
-                <b th:text="상세보기"></b>
-              </a>&nbsp&nbsp&nbsp&nbsp
-              <strong th:if="${act.visibility == 0}"> <a th:href="@{/visibility(id=${act.id})}">[비공개🙈]</a></strong>
-              <strong th:unless="${act.visibility == 0}"> <a th:href="@{/visibility(id=${act.id})}">[공개중🙉]</a></strong>
-              <a th:href="@{/delete_activity(id=${act.id})}">&nbsp&nbsp&nbsp&nbsp삭제하기</a>
-            </div>
+      <div>
+        <div class="col-sm-4" th:each="act : ${list}" style="width: 420px; height: auto;">
+          <div class="thumbnail">
+            <img th:src="@{/nawarapic(id=${act.id})}" style="width: auto;" onerror="this.src='/images/runday2.jpg'"
+              alt="run2">
+            <div class="panel-body">
+              <p th:text="${#dates.format(act.createDate, 'yyyy년 MM월 dd일 HH:mm')}"></p>
+              <strong>
+                <p th:text="${'[ '+act.actName+' ]'}"></p>
+              </strong>
+              <p>총 거리 : <span th:text="${act.actDistance}"></span></p>
+              <p>총 시간 : <span th:text="${act.actTime}"></span></p>
+              <p style="overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            width: 70%;">메모 : <span th:text="${act.actMemo}"></span></p>
+              <div class="box">
+                <div class="panel-heading" style="width: 100%; display: flex; justify-content: space-evenly;">
+                  <p>💚 00개</p>
+                  <p><a th:href="@{mapline(actid=${act.Id})}">
+                      <b th:text="상세보기"></b>
+                    </a></p>
+                  <p><strong th:if="${act.visibility == 0}"> <a
+                        th:href="@{/visibility(id=${act.id})}">[비공개🙈]</a></strong></p>
+                  <p><strong th:unless="${act.visibility == 0}"> <a
+                        th:href="@{/visibility(id=${act.id})}">[공개중🙉]</a></strong></p>
+                  <p><a th:href="@{/delete_activity(id=${act.id})}">삭제하기</a></p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
 
 
-  <!-- 수정 Modal -->
-  <div class="modal" id="myModal1" role="dialog">
-    <div class="modal-dialog">
+    <!-- 수정 Modal -->
+    <div class="modal" id="myModal1" role="dialog">
+      <div class="modal-dialog">
 
-      <!-- 수정 Modal Content -->
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">비밀번호를<br>수정하시겠습니까?</h4>
-        </div>
-        <div class="modal-body">
-          <div th:replace="user_info_update"></div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-
-
-  <!-- 탈퇴 Modal -->
-  <div class="modal" id="myModal2" role="dialog">
-    <div class="modal-dialog">
-
-      <!-- 탈퇴 Content -->
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">탈퇴하시겠습니까?</h4>
-        </div>
-        <div class="modal-body">
-          <div th:replace="deleteaccount"></div>
+        <!-- 수정 Modal Content -->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">비밀번호를<br>수정하시겠습니까?</h4>
+          </div>
+          <div class="modal-body">
+            <div th:replace="user_info_update"></div>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-  <script>
-
-    let query = location.search;
-
-    let page = query.substring(query.indexOf("=") + 1);
-
-    let startPage = parseInt(page / 5) * 5 + 1;
-
-    let endPage = startPage + 4;
 
 
 
-    let html = '<ul class="pagination">';
+    <!-- 탈퇴 Modal -->
+    <div class="modal" id="myModal2" role="dialog">
+      <div class="modal-dialog">
 
-    html += `<li class="page-item"><a class="page-link" href="?page=${startPage - 5}">이전</a></li>`
-    for (let i = startPage; i <= endPage; i++) {
+        <!-- 탈퇴 Content -->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">탈퇴하시겠습니까?</h4>
+          </div>
+          <div class="modal-body">
+            <div th:replace="deleteaccount"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
 
-      html +=
-        `<li class="page-item ${page == i ? 'active' : ' '}">
+      let query = location.search;
+
+      let page = query.substring(query.indexOf("=") + 1);
+
+      let startPage = parseInt(page / 5) * 5 + 1;
+
+      let endPage = startPage + 4;
+
+
+
+      let html = '<ul class="pagination">';
+
+      html += `<li class="page-item"><a class="page-link" href="?page=${startPage - 5}">이전</a></li>`
+      for (let i = startPage; i <= endPage; i++) {
+
+        html +=
+          `<li class="page-item ${page == i ? 'active' : ' '}">
           <a class="page-link" href= "?page=${i}">${i}</a></li>`;
-    }
-    html += `<li class="page-item"><a class="page-link" href="?page=${endPage + 1}">다음</a></li>`
+      }
+      html += `<li class="page-item"><a class="page-link" href="?page=${endPage + 1}">다음</a></li>`
 
-    html += '</ul>';
-    document.getElementById('campaign').innerHTML += html;
-
-
+      html += '</ul>';
+      document.getElementById('campaign').innerHTML += html;
 
 
-    $(document).ready(function () {
-      // Add smooth scrolling to all links in navbar + footer link
-      $(".navbar a, footer a[href='#myPage']").on('click', function (event) {
-        // Make sure this.hash has a value before overriding default behavior
-        if (this.hash !== "") {
-          // Prevent default anchor click behavior
-          event.preventDefault();
 
-          // Store hash
-          var hash = this.hash;
 
-          // Using jQuery's animate() method to add smooth page scroll
-          // The optional number (900) specifies the number of milliseconds it takes to scroll to the specified area
-          $('html, body').animate({
-            scrollTop: $(hash).offset().top
-          }, 900, function () {
+      $(document).ready(function () {
+        // Add smooth scrolling to all links in navbar + footer link
+        $(".navbar a, footer a[href='#myPage']").on('click', function (event) {
+          // Make sure this.hash has a value before overriding default behavior
+          if (this.hash !== "") {
+            // Prevent default anchor click behavior
+            event.preventDefault();
 
-            // Add hash (#) to URL when done scrolling (default click behavior)
-            window.location.hash = hash;
-          });
-        } // End if
-      });
+            // Store hash
+            var hash = this.hash;
 
-      $(window).scroll(function () {
-        $(".slideanim").each(function () {
-          var pos = $(this).offset().top;
+            // Using jQuery's animate() method to add smooth page scroll
+            // The optional number (900) specifies the number of milliseconds it takes to scroll to the specified area
+            $('html, body').animate({
+              scrollTop: $(hash).offset().top
+            }, 900, function () {
 
-          var winTop = $(window).scrollTop();
-          if (pos < winTop + 600) {
-            $(this).addClass("slide");
-          }
+              // Add hash (#) to URL when done scrolling (default click behavior)
+              window.location.hash = hash;
+            });
+          } // End if
         });
-      });
-    })
-  </script>
+
+        $(window).scroll(function () {
+          $(".slideanim").each(function () {
+            var pos = $(this).offset().top;
+
+            var winTop = $(window).scrollTop();
+            if (pos < winTop + 600) {
+              $(this).addClass("slide");
+            }
+          });
+        });
+      })
+    </script>
   </div>
 
-  
+
 
   <!-- <FOOTER> -->
 
-    <div th:replace="common/contact"></div>
-    <footer class="container-footer text-center">
-      <a href="#myPage" title="To Top">
-        <span class="glyphicon glyphicon-chevron-up"></span>
-      </a>
-    </footer>
+  <div th:replace="common/contact"></div>
+  <footer class="container-footer text-center">
+    <a href="#myPage" title="To Top">
+      <span class="glyphicon glyphicon-chevron-up"></span>
+    </a>
+  </footer>
 
 </body>
 
