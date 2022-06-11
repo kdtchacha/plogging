@@ -9,6 +9,7 @@ import com.namoonhee.plogging.service.UserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -35,13 +36,24 @@ public class UserController {
     }
 
     @PostMapping("/signin")
-    public String signin(@ModelAttribute User user, HttpSession httpSession) {
+    public String signin(@ModelAttribute User user, HttpSession httpSession, Model model) {
 
         Optional<User> opt = userService.signin(user);
 
-        httpSession.setAttribute("user", opt.get());
+        String res = "";
 
-        return "redirect:/";
+        if (opt.isPresent()) {
+
+            httpSession.setAttribute("user", opt.get());
+            res = "redirect:/";
+        } else {
+
+            model.addAttribute("signinres", "fail");
+
+            res = "sign2";
+        }
+
+        return res;
     }
 
     @GetMapping("/signout")

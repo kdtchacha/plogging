@@ -122,7 +122,7 @@
         var recordList = document.getElementById('testRecordList')
         startBtn.addEventListener('click', function () {
             // RECORD
-            if (this.innerText == '[-----]' && milisec) {
+            if (this.innerText == '[기록중]' && milisec) {
                 console.log(min, sec, milisec)
                 var li = document.createElement('li')
                 li.style.color = "#fff"
@@ -134,7 +134,7 @@
                 }
                 return false
             }
-            this.innerText = '[-----]'
+            this.innerText = '[기록중]'
 
             if (!stTime) {
                 stTime = Date.now() // 최초 START 
