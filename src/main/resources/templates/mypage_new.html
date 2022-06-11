@@ -53,14 +53,14 @@
                         th:href="@{/visibility(id=${act.id})}">_ [비공개🙈] _</a></strong></p>
                   <p><strong th:unless="${act.visibility == 0}"> <a
                         th:href="@{/visibility(id=${act.id})}">_ [공개중🙉] _</a></strong></p>
-                        <a href="#" data-toggle="modal" data-target="#myModal3"><strong>_[삭제]</strong></a>
+                        <a href="#" data-toggle="modal" th:data-target="|#${act.id}|"><strong>_[삭제]</strong></a>
                         <!-- <a th:href="@{/delete_activity(id=${act.id})}"><strong>_ 삭제하기</strong></a></p> -->
                 </div>
               </div>
             
           
           </div>
-          <div class="modal" id="myModal3" role="dialog">
+          <div class="modal" th:id=${act.id} role="dialog">
             <div class="modal-dialog">
               <div class="modal-content">
                 <div class="modal-header">
