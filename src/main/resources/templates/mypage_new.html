@@ -39,22 +39,34 @@
               <p>총 거리 : <span th:text="${act.actDistance}"></span></p>
               <p>총 시간 : <span th:text="${act.actTime}"></span></p>
               <p style="overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-            width: 70%;">메모 : <span th:text="${act.actMemo}"></span></p>
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
+                    width: 70%;">메모 : <span th:text="${act.actMemo}"></span></p>
               <div class="box" style="width: 100%;">
                 <div class="panel-heading" >
                   <p><strong>💚 00개 _</strong></p>
                   <p><a th:href="@{mapline(actid=${act.Id})}">
-                      <b>_ 상세보기 _</b>
+                      <b>_ [상세보기] _</b>
                     </a></p>
                   <p><strong th:if="${act.visibility == 0}"> <a
                         th:href="@{/visibility(id=${act.id})}">_ [비공개🙈] _</a></strong></p>
                   <p><strong th:unless="${act.visibility == 0}"> <a
                         th:href="@{/visibility(id=${act.id})}">_ [공개중🙉] _</a></strong></p>
-                        <button type="button" class="btn btn-default btn" data-toggle="modal" data-target="#myModal3"
-                        style="border:white;"><a th:href="@{/delete_activity(id=${act.id})}">삭제</a></button>
+                        <a href="#" data-toggle="modal" data-target="#myModal3"><strong>_[삭제]</strong></a>
                         <!-- <a th:href="@{/delete_activity(id=${act.id})}"><strong>_ 삭제하기</strong></a></p> -->
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal" id="myModal3" role="dialog">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <h4 class="modal-title">삭제하시겠습니까?</h4>
+                </div>
+                <div class="modal-body">
+                  <div th:replace="delete_activity"></div>
                 </div>
               </div>
             </div>
@@ -101,10 +113,8 @@
     </div>
 
     <!-- 활동피드삭제 Modal -->
-    <div class="modal" id="myModal3" role="dialog">
+    <!-- <div class="modal" id="myModal3" role="dialog">
       <div class="modal-dialog">
-
-        <!-- 탈퇴 Content -->
         <div class="modal-content">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -115,7 +125,7 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
 
 
 

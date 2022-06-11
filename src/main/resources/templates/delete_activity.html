@@ -35,7 +35,7 @@
     🔊 삭제버튼을 누르시면<br>게시물이 삭제됩니다. 
     <br><br>
     <form action="/delete_activity" method="post">
-        <input type="hidden" name="id" th:value="${param.id}">
+        <input type="hidden" name="id" th:value="${act.id}">
     <button type="submit" class="btn btn-danger">삭제</button>
     </form>
     </body>

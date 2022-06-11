@@ -62,10 +62,10 @@ public class MypageController {
         return "mypage_new";
     }
 
-    // @GetMapping(value = "/delete_activity")
-    // public String deleteActivityForm() {
-    //     return "delete_activity";
-    // }
+    @GetMapping(value = "/delete_activity")
+    public String deleteActivityForm() {
+        return "delete_activity";
+    }
 
     @PostMapping(value = "delete_activity")
     public String deleteActivity(@RequestParam Long id, HttpSession session) {
