@@ -73,8 +73,8 @@
           <div class="form-group">
             <label for="emailck">이메일 주소</label>
             <input name="email" type="email" class="form-control" id="emailck"
-              placeholder="name@example.com" required><div id="emailcheck">[------------------]</div>
-            <small id="emailHelp" class="form-text text-muted"></small>
+              placeholder="name@example.com" required>
+            <small id="emailHelp" class="form-text text-muted"><div id="emailcheck"></div></small>
           </div>
           <div class="form-group">
             <label for="exampleInputPassword2">비밀번호</label>
@@ -95,9 +95,11 @@
 
 </body>
 
+
+<script src="http://unpkg.com/axios/dist/axios.min.js"></script>
 <script>
-  const emailForm = document.querySelector("#emailck");
-  emailForm.addEventListener("keyup", () => {
+  const emailForm = document.getElementById("emailck");
+  emailForm.addEventListener("input", () => {
 
       const email = document.querySelector("#emailck").value;
       const data = axios({
@@ -109,9 +111,9 @@
       });
       data.then(function (emailcheck) {
           if (emailcheck.data != "") {
-              document.querySelector("#emailck").innerHTML = "이미 존재하는 Email 입니다."
+              document.querySelector("#emailcheck").innerHTML = "이미 존재하는 email입니다."
           } else {
-              document.querySelector("#emailck").innerHTML = "사용 가능합니다 😊"
+              document.querySelector("#emailcheck").innerHTML = "사용가능한 email입니다."
           }
       });
   });
@@ -129,7 +131,7 @@
     if (uppass.value == uppasschk.value) {
       document.getElementById("aazz").innerText = '[💚 입력한 비밀번호와 일치합니다. ]';
     } else {
-      document.getElementById("aazz").innerText = '[❤️ 입력한 비밀번호와 일치하지 않습니다. ]';
+      document.getElementById("aazz").innerText = '[💔 입력한 비밀번호와 일치하지 않습니다. ]';
     }
 
     uppass.addEventListener("keyup", () => {
@@ -137,7 +139,7 @@
       if (uppass.value == uppasschk.value) {
         document.getElementById("aazz").innerText = '[💚 입력한 비밀번호와 일치합니다. ]';
       } else {
-        document.getElementById("aazz").innerText = '[❤️ 입력한 비밀번호와 일치하지 않습니다. ]';
+        document.getElementById("aazz").innerText = '[💔 입력한 비밀번호와 일치하지 않습니다. ]';
       }
 
     });

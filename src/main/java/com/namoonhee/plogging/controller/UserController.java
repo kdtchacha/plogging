@@ -67,6 +67,7 @@ public class UserController {
     @GetMapping("/user/check")
     @ResponseBody
     public User userCheck(String email) {
+        System.out.println(email);
 
         User user = userService.userCheck(email);
         return user;
