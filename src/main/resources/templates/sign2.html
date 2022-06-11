@@ -39,8 +39,8 @@
           <div class="form-group">
 
             <div class="welcome plogging" style="display: flex; justify-content: center;">
-              <a href="/"><img src="images/ecology.png" style="width: 40px;"></a>
-              <h3>Let's Plogging !</h3>
+              <a href="/" style="text-decoration: none; color: black;"><img src="images/ecology.png" style="width: 40px;">
+              <h3 style="display: inline-block;">Let's Plogging !</h3></a>
             </div><br>
 
             <label for="exampleFormControlInput1">이메일 주소</label>
@@ -58,7 +58,7 @@
             <div class="invalid-feedback">비밀번호를 입력해주세요.</div> -->
             <small id="emailHelp" class="form-text text-muted"></small>
           </div>
-          <button type="submit" class="btn btn-primary">Submit</button>
+          <button type="submit" class="btn btn-dark">로그인</button>
         </form>
       </div>
 
@@ -86,7 +86,7 @@
             <input type="password" class="form-control" id="uppasschk" placeholder="Password" required>
             <p id="aazz">[--------------]</p>
           </div>
-          <button type="submit" class="btn btn-primary">가입하기</button>
+          <button type="submit" class="btn btn-dark">가입하기</button>
         </form>
       </div>
     </div>
@@ -104,17 +104,17 @@
   uppasschk.addEventListener("keyup", () => {
 
     if (uppass.value == uppasschk.value) {
-      document.getElementById("aazz").innerText = '[💚 입력한 비밀번호와 일치합니다. 😊]';
+      document.getElementById("aazz").innerText = '[💚 입력한 비밀번호와 일치합니다. ]';
     } else {
-      document.getElementById("aazz").innerText = '[❤️ 입력한 비밀번호와 일치하지 않습니다. 😊]';
+      document.getElementById("aazz").innerText = '[❤️ 입력한 비밀번호와 일치하지 않습니다. ]';
     }
 
     uppass.addEventListener("keyup", () => {
 
       if (uppass.value == uppasschk.value) {
-        document.getElementById("aazz").innerText = '[💚 입력한 비밀번호와 일치합니다. 😊]';
+        document.getElementById("aazz").innerText = '[💚 입력한 비밀번호와 일치합니다. ]';
       } else {
-        document.getElementById("aazz").innerText = '[❤️ 입력한 비밀번호와 일치하지 않습니다. 😊]';
+        document.getElementById("aazz").innerText = '[❤️ 입력한 비밀번호와 일치하지 않습니다. ]';
       }
 
     });
