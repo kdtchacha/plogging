@@ -31,6 +31,7 @@
           <div class="thumbnail">
             <img th:src="@{/nawarapic(id=${act.id})}" style="width: auto;" onerror="this.src='/images/runday2.jpg'"
               alt="run2">
+              <div class="bodywrap">
             <div class="panel-body">
               <p th:text="${#dates.format(act.createDate, 'yyyy년 MM월 dd일 HH:mm')}"></p>
               <strong>
@@ -41,7 +42,7 @@
               <p style="overflow: hidden;
                     text-overflow: ellipsis;
                     white-space: nowrap;
-                    width: 70%;">메모 : <span th:text="${act.actMemo}"></span></p>
+                    width: 70%;">메모 : <span th:text="${act.actMemo}"></span></p></div></div>
               <div class="box" style="width: 100%;">
                 <div class="panel-heading" >
                   <p><strong>💚 00개 _</strong></p>
@@ -56,7 +57,8 @@
                         <!-- <a th:href="@{/delete_activity(id=${act.id})}"><strong>_ 삭제하기</strong></a></p> -->
                 </div>
               </div>
-            </div>
+            
+          
           </div>
           <div class="modal" th:id=${act.id} role="dialog">
             <div class="modal-dialog">
