@@ -1,10 +1,8 @@
 package com.namoonhee.plogging.controller;
 
-import java.io.Console;
 import java.util.List;
 import java.util.Optional;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import com.namoonhee.plogging.model.Activity;
@@ -21,9 +19,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RequestBody;
-
-
 
 
 @Controller
@@ -44,18 +39,19 @@ public class MypageController {
     // @GetMapping(value = "/mypage")
     // public String mypage(HttpSession session, Model model) {
 
-    //     User user = (User) session.getAttribute("user");
+    // User user = (User) session.getAttribute("user");
 
-    //     List<Activity> myActList = userService.myActList(user);
+    // List<Activity> myActList = userService.myActList(user);
 
-    //     model.addAttribute("list", myActList);
+    // model.addAttribute("list", myActList);
 
-    //     return "mypage";
+    // return "mypage";
 
     // }
 
-    @GetMapping(value="/mypage_new")
-    public String mypagenew(HttpSession session, Model model,  @RequestParam(value = "page", defaultValue = "1") int page) {
+    @GetMapping(value = "/mypage_new")
+    public String mypagenew(HttpSession session, Model model,
+            @RequestParam(value = "page", defaultValue = "1") int page) {
 
         User user = (User) session.getAttribute("user");
 
@@ -66,25 +62,23 @@ public class MypageController {
         return "mypage_new";
     }
 
-    @GetMapping(value="/delete_activity")
+    @GetMapping(value = "/delete_activity")
     public String deleteActivityForm() {
         return "delete_activity";
     }
-    
-    @PostMapping(value="delete_activity")
+
+    @PostMapping(value = "delete_activity")
     public String deleteActivity(@RequestParam Long id, HttpSession session) {
-        User suser  = (User) session.getAttribute("user");
+
+        User suser = (User) session.getAttribute("user");
 
         Optional<Activity> dbact = activityRepository.findById(id);
 
-        if ( suser.getId() == dbact.get().getUser().getId() ) {
-
-            activityService.delete_activity(id); 
-        } 
-
+        if (suser.getId() == dbact.get().getUser().getId()) {
+            activityService.delete_activity(id);
+        }
         return "redirect:/mypage_new";
     }
-
 
     @PostMapping(value = "/deleteaccount")
     public String deleteAccount(@ModelAttribute User user, HttpSession httpSession, Model model) {
@@ -92,20 +86,15 @@ public class MypageController {
         Optional<User> opt = userService.signin(user);
 
         String redir = "";
-
         if (opt.isPresent()) {
-
             userService.deleteAccount(user);
             httpSession.invalidate();
             model.addAttribute("deleteaccount_result", "success");
             redir = "redirect:/";
-
         } else {
             model.addAttribute("deleteaccount_result", "fail");
-
             redir = "redirect:/mypage_new";
         }
-
         return redir;
     }
 
@@ -136,14 +125,8 @@ public class MypageController {
         // 그 새로운 닉네임과 비밀번호를 디비에 저장한다.
         userRepository.save(dbuser);
 
-
         // 세션에 새로 저장한 닉네임을 세팅해준다.(유저는 화분/디비유저는 심을 내용물)
         session.setAttribute("user", dbuser);
-
-        // System.out.println(suser.getEmail());
-        // System.out.println(suser.getPwd());
-        // System.out.println(suser.getNickname());
-        // System.out.println(suser.getId());
 
         // userRepository.findById(id);
 

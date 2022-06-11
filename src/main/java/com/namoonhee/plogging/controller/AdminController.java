@@ -2,6 +2,7 @@ package com.namoonhee.plogging.controller;
 
 import java.util.List;
 
+import com.namoonhee.plogging.model.Activity;
 import com.namoonhee.plogging.model.User;
 import com.namoonhee.plogging.repository.ActAnswerRepository;
 import com.namoonhee.plogging.repository.ActivityRepository;
@@ -14,8 +15,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class AdminController {
-    
-
 
     @Autowired
     UserRepository userRepository;
@@ -26,24 +25,28 @@ public class AdminController {
     @Autowired
     ActAnswerRepository actAnswerRepository;
 
-
     @GetMapping("/adminmain")
-    public String adminMain() {    
-        
+    public String adminMain() {
+
         return "adminmain";
     }
 
     @ResponseBody
     @GetMapping("/adminUser")
-    public List<User> adminUser(){
+    public List<User> adminUser() {
 
-       List<User> users = userRepository.findAll();
+        List<User> users = userRepository.findAll();
 
         return users;
     }
 
+    @ResponseBody
+    @GetMapping("/adminActivity")
+    public List<Activity> adminActivity() {
 
+        List<Activity> activities = activityRepository.findAll();
 
-
+        return activities;
+    }
 
 }

@@ -58,6 +58,7 @@ public class PloggingController {
 
     @GetMapping("maptest")
     public String mapatest() {
+
         return "maptest";
     }
 
@@ -66,14 +67,14 @@ public class PloggingController {
 
         Optional<Activity> opt = activityRepository.findById(actid);
 
-        model.addAttribute("act",opt.get());
+        model.addAttribute("act", opt.get());
 
         return "mapline";
     }
 
     @GetMapping(value = "/nawarapic")
     public ResponseEntity<Resource> download(@ModelAttribute Activity activity) throws Exception {
-      
+
         List<ActFile> fList = activityService.download(activity);
 
         String fileName = fList.get(0).getSaveFileName();
@@ -88,9 +89,10 @@ public class PloggingController {
                         MediaType.parseMediaType("application/octet-stream"))
                 .body(resource);
     }
+
     @GetMapping(value = "/nawarapic2")
     public ResponseEntity<Resource> download2(@ModelAttribute Activity activity) throws Exception {
-      
+
         List<ActFile> fList = activityService.download(activity);
 
         String fileName = fList.get(1).getSaveFileName();
@@ -105,9 +107,10 @@ public class PloggingController {
                         MediaType.parseMediaType("application/octet-stream"))
                 .body(resource);
     }
+
     @GetMapping(value = "/nawarapic3")
     public ResponseEntity<Resource> download3(@ModelAttribute Activity activity) throws Exception {
-      
+
         List<ActFile> fList = activityService.download(activity);
 
         String fileName = fList.get(2).getSaveFileName();

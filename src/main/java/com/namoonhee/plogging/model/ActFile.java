@@ -15,9 +15,7 @@ public class ActFile {
     @Id
     @GeneratedValue
     Long afId;
-
     String originalFileName;
-
     String saveFileName;
 
     @ManyToOne

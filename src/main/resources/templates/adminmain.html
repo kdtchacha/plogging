@@ -4,15 +4,15 @@
 <div th:replace="common/head"></div>
 
 <style>
-    #abcd {
-        border: 3px #16ad1b solid;
+    #abcd, {
+        border: 3px solid;
     }
 </style>
 
 <body>
     <br><br><br>
 
-    <h1 style="text-align: center">관리자 페이지입니다.</h1>
+    <h1 style="text-align: center">관리자 페이지</h1>
     <hr>
     <div style="display: flex; justify-content: center;">
         <div style="width: 70%; display: flex; justify-content: space-around;">
@@ -23,12 +23,12 @@
     </div>
     <br><br>
     <div style="display: flex; justify-content: center;">
-        <dvi id="vvv"></dvi>
+        <div id="v"></div>
+        <!-- <div id="vv"></div> -->
     </div>
     <script src="http://unpkg.com/axios/dist/axios.min.js"></script>
 
     <script>
-
         const userBtn = document.getElementById(aaa);
         aaa.addEventListener("click", () => {
 
@@ -58,10 +58,52 @@
                     usercode += `</tr>`;
                 }
                 usercode += "</table>"
-                document.getElementById("vvv").innerHTML = usercode;
+                document.getElementById("v").innerHTML = usercode;
             })
         });
     </script>
+    <script>
+        const activityBtn = document.getElementById(bbb);
+        bbb.addEventListener("click", () => {
+
+            const data = axios({
+                url: 'adminActivity',
+                method: 'get',
+            });
+            data.then((res) => {
+                console.log(res);
+                const activitydata = res;
+
+                let activitycode = "<table id='defd' border=5px;>";
+                    activitycode += "<tr><th>작성날짜</th><th>플로깅이름</th><th>플로깅거리</th><th>플로깅시간</th><th>플로깅메모</th><th>공개여부</th><th>삭제</th></tr>"
+                const activitylist = activitydata.data;
+                console.log(activitylist);
+                for (let key in activitylist) {
+                    const def = activitylist[key];
+                    const createDate = def.createDate;
+                    const actName = def.actName;
+                    const actDistance = def.actDistance;
+                    const actTime = def.actTime;
+                    const actMemo = def.actMemo;
+                    const visibility = def.visibility;
+                    // const desc = abc.description;
+                    // const publishedAt = abc.pubDate;
+                    activitycode += `<tr>`
+                    activitycode += `<td>${createDate}</td>`;
+                    activitycode += `<td>${actName}</td>`;
+                    activitycode += `<td>${actDistance}</td>`;
+                    activitycode += `<td>${actTime}</td>`;
+                    activitycode += `<td>${actMemo}</td>`;
+                    activitycode += `<td>${visibility}</td>`;
+                    activitycode += `<td><a href="#"><button type="button" class="btn btn-danger">삭제</button></a></td>`;
+                    activitycode += `</tr>`;
+                }
+                activitycode += "</table>"
+                document.getElementById("v").innerHTML = activitycode;
+            })
+        });
+    </script>
+    
 </body>
 
 

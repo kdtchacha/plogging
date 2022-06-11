@@ -40,7 +40,6 @@ public class NewsCrawlingController {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
         return newslist;
     }
 }
