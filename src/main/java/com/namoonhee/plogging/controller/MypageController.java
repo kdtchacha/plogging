@@ -20,7 +20,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-
 @Controller
 public class MypageController {
 
@@ -36,27 +35,11 @@ public class MypageController {
     @Autowired
     ActivityRepository activityRepository;
 
-    // @GetMapping(value = "/mypage")
-    // public String mypage(HttpSession session, Model model) {
-
-    // User user = (User) session.getAttribute("user");
-
-    // List<Activity> myActList = userService.myActList(user);
-
-    // model.addAttribute("list", myActList);
-
-    // return "mypage";
-
-    // }
-
     @GetMapping(value = "/mypage_new")
     public String mypagenew(HttpSession session, Model model,
             @RequestParam(value = "page", defaultValue = "1") int page) {
-
         User user = (User) session.getAttribute("user");
-
         List<Activity> myActList = userService.myActList(user, page);
-
         model.addAttribute("list", myActList);
 
         return "mypage_new";
@@ -69,16 +52,13 @@ public class MypageController {
 
     @PostMapping(value = "delete_activity")
     public String deleteActivity(@RequestParam Long id, HttpSession session) {
-
-        System.out.println(id);
-
         User suser = (User) session.getAttribute("user");
-
         Optional<Activity> dbact = activityRepository.findById(id);
 
         if (suser.getId() == dbact.get().getUser().getId()) {
             activityService.delete_activity(id);
         }
+
         return "redirect:/mypage_new";
     }
 
@@ -86,25 +66,21 @@ public class MypageController {
     public String deleteAccount(@ModelAttribute User user, HttpSession httpSession, Model model) {
 
         Optional<User> opt = userService.signin(user);
-
         String redir = "";
         if (opt.isPresent()) {
             userService.deleteAccount(user);
             httpSession.invalidate();
-            model.addAttribute("deleteaccount_result", "success");
             redir = "redirect:/";
         } else {
-            model.addAttribute("deleteaccount_result", "fail");
             redir = "redirect:/mypage_new";
         }
+
         return redir;
     }
 
     @GetMapping("/user_info/update")
     public String userInfoUpdateForm() {
 
-        // Optional <User> opt = UserRepository.findById(Long id);
-        // model.addAttribute("email", opt.get());
         return "user_info_update";
     }
 
@@ -129,21 +105,6 @@ public class MypageController {
 
         // 세션에 새로 저장한 닉네임을 세팅해준다.(유저는 화분/디비유저는 심을 내용물)
         session.setAttribute("user", dbuser);
-
-        // userRepository.findById(id);
-
-        // suser 중에서도 nickname을 가져옴.
-        // suser.getNickname();
-
-        // String a = user.getNickname();
-
-        // User newNickname = user.getNickname();
-
-        // // Activity dbact = actFromdb.get();
-
-        // newNickname.setNickname();
-
-        // UserRepository.save(newNickname);
 
         return "redirect:/mypage_new";
     }

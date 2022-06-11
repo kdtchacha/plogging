@@ -29,7 +29,6 @@ public class UserController {
 
     @PostMapping("/signup")
     public String signup(@ModelAttribute User user) {
-
         userService.signup(user);
 
         return "redirect:/";
@@ -37,19 +36,14 @@ public class UserController {
 
     @PostMapping("/signin")
     public String signin(@ModelAttribute User user, HttpSession httpSession, Model model) {
-
         Optional<User> opt = userService.signin(user);
-
         String res = "";
 
         if (opt.isPresent()) {
-
             httpSession.setAttribute("user", opt.get());
             res = "redirect:/";
         } else {
-
             model.addAttribute("signinres", "fail");
-
             res = "sign2";
         }
 
@@ -58,7 +52,6 @@ public class UserController {
 
     @GetMapping("/signout")
     public String signout(HttpSession httpSession) {
-
         httpSession.invalidate();
 
         return "redirect:/";
@@ -67,9 +60,8 @@ public class UserController {
     @GetMapping("/user/check")
     @ResponseBody
     public User userCheck(String email) {
-        System.out.println(email);
-
         User user = userService.userCheck(email);
+
         return user;
     }
 

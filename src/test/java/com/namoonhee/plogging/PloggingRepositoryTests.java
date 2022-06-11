@@ -18,7 +18,7 @@ class PloggingRepositoryTests {
 
 	@Autowired
 	ActivityRepository activityRepository;
-	
+
 	@Autowired
 	ActAnswerRepository actAnswerRepository;
 
@@ -27,9 +27,6 @@ class PloggingRepositoryTests {
 
 	@Autowired
 	UserRepository userRepository;
-
-
-
 
 	@Test
 	void activityRepositoryCreateTest() {
@@ -40,17 +37,12 @@ class PloggingRepositoryTests {
 		act.setActName("test_name");
 		act.setActTime("xx:xx:xx");
 		act.setCreateDate(new Date());
-		
+
 		User user = new User();
 		user.setId(1L);
 		act.setUser(user);
 
 		activityRepository.save(act);
 	}
-
-
-	@Test
 	
-
-
 }

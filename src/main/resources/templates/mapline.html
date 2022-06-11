@@ -268,11 +268,9 @@
     <br><br>
 
 
-    <!-- <지도> -->
-    <!-- <지도> -->
-    <!-- <지도> -->
-    <!-- <지도> -->
 
+    <!-- <지도> -->
+    <!-- <지도> -->
     <div style="display: flex; justify-content: center;">
         <div id="map" style="width:70%; height:500px; border-radius: 25px;"></div>
     </div>
@@ -308,13 +306,14 @@
     </div>
 
     <hr>
+   
     <div>
         <h5 class="border-bottom my-3 py-2" th:text="${#lists.size(act.answers)} + '개의 답변이 있습니다.'"></h5>
         <th:block th:each="answer : ${act.answers}">
             <div style=" margin: 15px; width: 370px; height: 120px;">
-                <div th:text="${answer.content}" style="word-break: break-all;"></div>
-                <div th:text="${answer.user.nickname}"></div>
-                <div th:text="${#dates.format(answer.createDate, 'MM-dd HH:mm')}"></div>
+                <div th:text="|💬 ${answer.content} |" style="word-break: break-all;"></div>
+                <div th:text="|작성자 : ${answer.user.nickname}|"></div>
+                <div th:text="|작성일 : ${#dates.format(answer.createDate, 'MM-dd HH:mm')}|"></div>
                 <div th:if="${session.user != null}">
                     <div th:if="${session.user.nickname} == ${answer.user.nickname}" class="my-3">
                         <a th:href="@{/delanswer(id=${answer.id})}">삭제</a>
