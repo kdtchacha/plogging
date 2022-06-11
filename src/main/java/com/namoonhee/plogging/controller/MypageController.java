@@ -70,6 +70,8 @@ public class MypageController {
     @PostMapping(value = "delete_activity")
     public String deleteActivity(@RequestParam Long id, HttpSession session) {
 
+        System.out.println(id);
+
         User suser = (User) session.getAttribute("user");
 
         Optional<Activity> dbact = activityRepository.findById(id);
