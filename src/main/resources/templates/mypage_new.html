@@ -52,7 +52,9 @@
                         th:href="@{/visibility(id=${act.id})}">_ [비공개🙈] _</a></strong></p>
                   <p><strong th:unless="${act.visibility == 0}"> <a
                         th:href="@{/visibility(id=${act.id})}">_ [공개중🙉] _</a></strong></p>
-                  <p><a th:href="@{/delete_activity(id=${act.id})}"><strong>_ 삭제하기</strong></a></p>
+                        <button type="button" class="btn btn-default btn" data-toggle="modal" data-target="#myModal3"
+                        style="border:white;"><a th:href="@{/delete_activity(id=${act.id})}">삭제</a></button>
+                        <!-- <a th:href="@{/delete_activity(id=${act.id})}"><strong>_ 삭제하기</strong></a></p> -->
                 </div>
               </div>
             </div>
@@ -97,6 +99,26 @@
         </div>
       </div>
     </div>
+
+    <!-- 활동피드삭제 Modal -->
+    <div class="modal" id="myModal3" role="dialog">
+      <div class="modal-dialog">
+
+        <!-- 탈퇴 Content -->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">삭제하시겠습니까?</h4>
+          </div>
+          <div class="modal-body">
+            <div th:replace="delete_activity"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
     <script>
 
       let query = location.search;

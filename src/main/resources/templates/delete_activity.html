@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<body>
+<!--원래 삭제페이지 <body>
     <a href="/">메인화면으로</a>
     <br>
     <a href="/mypage_new">마이페이지</a>
@@ -10,9 +10,33 @@
         <br><br>
         이 글을 삭제하시겠습니까?
         <br><br>
-        <button type="submit" class="btn-deleteactivity">삭제하기</button>
+        <button type="submit" class="btn btn-danger">삭제하기</button>
     </form>
     <br><br>
 
-</body>
+</body> -->
+
+
+
+<!-- <모달용> -->
+<style>
+    form {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        text-align: center;
+
+    }
+</style>
+
+<body>
+    
+    <br>
+    🔊 삭제버튼을 누르시면<br>게시물이 삭제됩니다. 
+    <br><br>
+    <form action="/delete_activity" method="post">
+        <input type="hidden" name="id" th:value="${param.id}">
+    <button type="submit" class="btn btn-danger">삭제</button>
+    </form>
+    </body>
 </body>

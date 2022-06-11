@@ -33,8 +33,8 @@
               <li><a th:href="@{/mypage_new}" th:if="${session.user != null}">MY PAGE</a></li>
               <li><a th:href="@{/signout}" th:if="${session.user != null}"><span class="glyphicon glyphicon-log-in"></span>
                   [[${session.user.nickname}]]님 Logout</a></li>
-              <li><a th:href="@{/signin}" th:unless="${session.user != null}"><span
-                    class="glyphicon glyphicon-log-out"></span> Login</a></li>
+              <li><a th:href="@{/signin}" th:unless="${session.user != null}">
+                <span class="glyphicon glyphicon-log-out"></span> Login</a></li>
             </ul>
           </div>
         </div>

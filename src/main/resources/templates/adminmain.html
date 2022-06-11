@@ -74,7 +74,7 @@
                 console.log(res);
                 const activitydata = res;
 
-                let activitycode = "<table id='defd' border=5px;>";
+                let activitycode = "<table id='defg' border=5px;>";
                     activitycode += "<tr><th>작성날짜</th><th>플로깅이름</th><th>플로깅거리</th><th>플로깅시간</th><th>플로깅메모</th><th>공개여부</th><th>삭제</th></tr>"
                 const activitylist = activitydata.data;
                 console.log(activitylist);
@@ -86,8 +86,6 @@
                     const actTime = def.actTime;
                     const actMemo = def.actMemo;
                     const visibility = def.visibility;
-                    // const desc = abc.description;
-                    // const publishedAt = abc.pubDate;
                     activitycode += `<tr>`
                     activitycode += `<td>${createDate}</td>`;
                     activitycode += `<td>${actName}</td>`;
@@ -100,6 +98,37 @@
                 }
                 activitycode += "</table>"
                 document.getElementById("v").innerHTML = activitycode;
+            })
+        });
+    </script>
+    <script>
+        const answerBtn = document.getElementById(ccc);
+        ccc.addEventListener("click", () => {
+
+            const data = axios({
+                url: 'adminAnswer',
+                method: 'get',
+            });
+            data.then((res) => {
+                console.log(res);
+                const answerdata = res;
+
+                let answercode = "<table id='ghij' border=5px;>";
+                    answercode += "<tr><th>작성날짜</th><th>댓글내용</th><th>삭제</th></tr>"
+                const answerlist = answerdata.data;
+                console.log(answerlist);
+                for (let key in answerlist) {
+                    const ghi = answerlist[key];
+                    const createDate = ghi.createDate;
+                    const content = ghi.content;
+                    answercode += `<tr>`
+                    answercode += `<td>${createDate}</td>`;
+                    answercode += `<td>${content}</td>`;
+                    answercode += `<td><a href="#"><button type="button" class="btn btn-danger">삭제</button></a></td>`;
+                    answercode += `</tr>`;
+                }
+                answercode += "</table>"
+                document.getElementById("v").innerHTML = answercode;
             })
         });
     </script>
