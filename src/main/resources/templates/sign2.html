@@ -12,7 +12,11 @@
 <script src = https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js></script>
 <link rel="shortcut icon" href="https://cdn-icons.flaticon.com/png/128/2391/premium/2391092.png?token=exp=1654523299~hmac=883039fe929538c756aa4bd0ff44e780">
 </head>
-
+<script>
+  if('[[${signinres}]]' == 'fail'){
+    alert("이메일 또는 비밀번호 입력이 잘못되었습니다.")
+  }
+</script>
 
 <body>
 
