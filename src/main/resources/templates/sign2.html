@@ -97,19 +97,29 @@
 
 <script>
 
-const uppass = document.getElementById("uppass");
-const uppasschk = document.getElementById("uppasschk");
+  const uppass = document.getElementById("uppass");
+  const uppasschk = document.getElementById("uppasschk");
 
-uppasschk.addEventListener("keyup",()=>{
- 
 
-  if(uppass.value == uppasschk.value){
-    document.getElementById("aazz").innerText = '[💚 입력한 비밀번호와 일치합니다. 😊]';
-  } else {
-    document.getElementById("aazz").innerText = '[❤️ 입력한 비밀번호와 일치하지 않습니다. 😊]';
-  }
+  uppasschk.addEventListener("keyup", () => {
 
-});
+    if (uppass.value == uppasschk.value) {
+      document.getElementById("aazz").innerText = '[💚 입력한 비밀번호와 일치합니다. 😊]';
+    } else {
+      document.getElementById("aazz").innerText = '[❤️ 입력한 비밀번호와 일치하지 않습니다. 😊]';
+    }
+
+    uppass.addEventListener("keyup", () => {
+
+      if (uppass.value == uppasschk.value) {
+        document.getElementById("aazz").innerText = '[💚 입력한 비밀번호와 일치합니다. 😊]';
+      } else {
+        document.getElementById("aazz").innerText = '[❤️ 입력한 비밀번호와 일치하지 않습니다. 😊]';
+      }
+
+    });
+
+  });
 
 
 </script>
