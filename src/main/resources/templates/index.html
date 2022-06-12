@@ -94,35 +94,36 @@
     <h2>플로깅 피드</h2>
     <br><br>
     <div class="row text-center slideanim slide">
-      <div class="col-sm-4" th:each="act : ${publist}" style="width: 420px; height: auto;" >
+      <div class="col-sm-4" th:each="act : ${publist}" style="width: 420px; height: auto;">
         <div class="thumbnail" style="height: auto;">
-          <img th:src="@{/nawarapic(id=${act.id})}" style="width: auto;" onerror="this.src='/images/runday2.jpg'" alt="run2">
+          <img th:src="@{/nawarapic(id=${act.id})}" style="width: auto;" onerror="this.src='/images/runday2.jpg'"
+            alt="run2">
           <div class="bodywrap">
-          <div class="panel-body">
-            <p th:text="${#dates.format(act.createDate, 'yyyy년 MM월 dd일 HH:mm')}"></p>
-            <strong>
-              <p th:text="${'[ '+act.actName+' ]'}"></p>
-            </strong>
-            <p>총 거리 : <span th:text="${act.actDistance}"></span></p>
-            <p>총 시간 : <span th:text="${act.actTime}"></span></p>
-            <p style="overflow: hidden;
+            <div class="panel-body">
+              <p th:text="${#dates.format(act.createDate, 'yyyy년 MM월 dd일 HH:mm')}"></p>
+              <strong>
+                <p th:text="${'[ '+act.actName+' ]'}"></p>
+              </strong>
+              <p>총 거리 : <span th:text="${act.actDistance}"></span></p>
+              <p>총 시간 : <span th:text="${act.actTime}"></span></p>
+              <!-- <p style="overflow: hidden;
             text-overflow: ellipsis;
             white-space: nowrap;
             /* width: 90%; */
             height: 20px;">
-            메모 : <span th:text="${act.actMemo}"></span></p><br>
-            <div class="box">
-            <div class="panel-heading"><a th:href="@{#}">💚</a> (00) &nbsp;
-              <a th:href="@{mapline(actid=${act.Id})}">🔍<b th:text="상세보기"></b></a>
-              
+            메모 : <span th:text="${act.actMemo}"></span></p> -->
+              <br>
+              <div class="box">
+                <div class="panel-heading"><a th:href="@{#}">💚</a> (00) &nbsp;
+                  <a th:href="@{mapline(actid=${act.Id})}">🔍<b th:text="상세보기"></b></a>
+                </div>
               </div>
-              </div>
-            </div>
             </div>
           </div>
         </div>
       </div>
     </div>
+  </div>
 
 
 
@@ -211,7 +212,7 @@
 
   <br><br>
 
- 
+
   </div>
 
 
@@ -224,7 +225,8 @@
         <p>이름과 이메일을 적어 보내주시면 연락드리겠습니다.</p>
         <p><span class="glyphicon glyphicon-map-marker"></span> Sejong, KOREA</p>
         <p><span class="glyphicon glyphicon-phone"></span> +00 1515151515</p>
-        <p><span class="glyphicon glyphicon-home"></span><a href="https://github.com/kdtchacha/plogging" style="text-decoration: none; color: #818181;"> github </a></p>
+        <p><span class="glyphicon glyphicon-home"></span><a href="https://github.com/kdtchacha/plogging"
+            style="text-decoration: none; color: #818181;"> github </a></p>
       </div>
       <div class="col-sm-7">
         <form action="/contact" method="post">

@@ -33,7 +33,6 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Optional<User> signin(User user) {
-
         Optional<User> opt = userRepository.findByEmailAndPwd(user.getEmail(), user.getPwd());
 
         return opt;
@@ -42,6 +41,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public User userCheck(String email) {
         User user = userRepository.findByEmail(email);
+
         return user;
     }
 
@@ -52,28 +52,13 @@ public class UserServiceImpl implements UserService {
 
     }
 
-    // @Override
-    // public List<Activity> myActList(User user, int page) {
-
-    //     Sort sort = Sort.by(Sort.Direction.DESC, "createDate");
-
-    //     Pageable p = PageRequest.of(0, 4, sort);
-        
-    //      List<Activity> opt = activityRepository.findByUser_id(user.getId(), p);
-
-    //     return opt;
-    // }
-
     @Override
     public List<Activity> myActList(User user, int page) {
-
         Sort sort = Sort.by(Sort.Direction.DESC, "createDate");
-
-        Pageable p = PageRequest.of(page-1, 4, sort);
-        
-         List<Activity> opt = activityRepository.findByUser_id(user.getId(), p);
+        Pageable p = PageRequest.of(page - 1, 4, sort);
+        List<Activity> opt = activityRepository.findByUser_id(user.getId(), p);
 
         return opt;
-    } 
+    }
 
 }

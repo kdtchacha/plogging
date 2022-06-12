@@ -25,11 +25,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-
 
 @Controller
 public class PloggingController {
+
     @RequestMapping("/comeon")
     public String plogging() {
         return "plogging";
@@ -46,13 +45,9 @@ public class PloggingController {
 
     @GetMapping("/")
     public String index(Model model) {
-
         Sort sort = Sort.by(Sort.Direction.DESC, "createDate");
-
         Pageable p = PageRequest.of(0, 4, sort);
-
         List<Activity> publist = activityRepository.findByVisibility(1, p);
-
         model.addAttribute("publist", publist);
 
         return "index";
@@ -66,25 +61,17 @@ public class PloggingController {
 
     @GetMapping("mapline")
     public String mapline(Long actid, Model model) {
-
         Optional<Activity> opt = activityRepository.findById(actid);
-
         model.addAttribute("act", opt.get());
 
         return "mapline";
     }
 
-
-    
-
     @GetMapping(value = "/nawarapic")
     public ResponseEntity<Resource> download(@ModelAttribute Activity activity) throws Exception {
-
         List<ActFile> fList = activityService.download(activity);
-
         String fileName = fList.get(0).getSaveFileName();
         File file = new File("c:/project/" + fileName);
-
         InputStreamResource resource = new InputStreamResource(new FileInputStream(file));
 
         return ResponseEntity.ok()
@@ -97,12 +84,9 @@ public class PloggingController {
 
     @GetMapping(value = "/nawarapic2")
     public ResponseEntity<Resource> download2(@ModelAttribute Activity activity) throws Exception {
-
         List<ActFile> fList = activityService.download(activity);
-
         String fileName = fList.get(1).getSaveFileName();
         File file = new File("c:/project/" + fileName);
-
         InputStreamResource resource = new InputStreamResource(new FileInputStream(file));
 
         return ResponseEntity.ok()
@@ -115,12 +99,9 @@ public class PloggingController {
 
     @GetMapping(value = "/nawarapic3")
     public ResponseEntity<Resource> download3(@ModelAttribute Activity activity) throws Exception {
-
         List<ActFile> fList = activityService.download(activity);
-
         String fileName = fList.get(2).getSaveFileName();
         File file = new File("c:/project/" + fileName);
-
         InputStreamResource resource = new InputStreamResource(new FileInputStream(file));
 
         return ResponseEntity.ok()
