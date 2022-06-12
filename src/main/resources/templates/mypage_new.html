@@ -28,9 +28,10 @@
     <div class="row text-center slideanim">
       <div>
         <div class="col-sm-4" th:each="act : ${list}" style="width: 420px; height: auto;">
-          <div class="thumbnail">
+          <div class="thumbnail"  style="height: auto;">
             <img th:src="@{/nawarapic(id=${act.id})}" style="width: auto;" onerror="this.src='/images/runday2.jpg'"
               alt="run2">
+              <div>
               <div class="bodywrap">
             <div class="panel-body">
               <p th:text="${#dates.format(act.createDate, 'yyyy년 MM월 dd일 HH:mm')}"></p>
@@ -57,9 +58,7 @@
                         <!-- <a th:href="@{/delete_activity(id=${act.id})}"><strong>_ 삭제하기</strong></a></p> -->
                 </div>
               </div>
-            
-          
-          </div>
+          </div></div>
           <div class="modal" th:id=${act.id} role="dialog">
             <div class="modal-dialog">
               <div class="modal-content">

@@ -11,7 +11,7 @@
 
   <div class="jumbotron text-center">
     <h1>Plogging</h1>
-    <p>We run on the Earth</p>
+    <p>We run for Earth</p>
     <br>
     <form>
       <div class="input-group">
@@ -35,6 +35,7 @@
       </div>
       <div class="col-sm-4">
         <span class="glyphicon glyphicon-globe logo slideanim"></span>
+        <!-- <img src="images/plogging.png"> -->
       </div>
     </div>
   </div>
@@ -55,42 +56,35 @@
 
   <!-- Container (Services Section) -->
   <div id="services" class="container-fluid text-center">
-    <h2>SERVICES</h2>
-    <h4>What we offer</h4>
+    <h2>제공하는 서비스</h2>
     <br>
     <div class="row slideanim">
       <div class="col-sm-4">
-        <span class="glyphicon glyphicon-off logo-small"></span>
+        <img src="images/map.png">
         <h4>경로 기록</h4>
-        <p>Lorem ipsum dolor sit amet..</p>
       </div>
       <div class="col-sm-4">
-        <span class="glyphicon glyphicon-heart logo-small"></span>
+        <img src="images/heart.png">
         <h4>SNS</h4>
-        <p>Lorem ipsum dolor sit amet..</p>
       </div>
       <div class="col-sm-4">
-        <span class="glyphicon glyphicon-lock logo-small"></span>
-        <h4>플로깅 관련 뉴스</h4>
-        <p>Lorem ipsum dolor sit amet..</p>
+        <img src="images/news.png">
+        <h4>플로깅 뉴스</h4>
       </div>
     </div>
     <br><br>
     <div class="row slideanim">
       <div class="col-sm-4">
-        <span class="glyphicon glyphicon-leaf logo-small"></span>
+        <img src="images/leaf.png">
         <h4>환경보호 캠페인</h4>
-        <p>Lorem ipsum dolor sit amet..</p>
       </div>
       <div class="col-sm-4">
-        <span class="glyphicon glyphicon-certificate logo-small"></span>
+        <img src="images/stopwatch.png">
         <h4>스탑워치</h4>
-        <p>Lorem ipsum dolor sit amet..</p>
       </div>
       <div class="col-sm-4">
-        <span class="glyphicon glyphicon-wrench logo-small"></span>
+        <img src="images/pic2.png">
         <h4 style="color:#303030;">사진기록</h4>
-        <p>Lorem ipsum dolor sit amet..</p>
       </div>
     </div>
   </div>
@@ -120,6 +114,7 @@
             <div class="box">
             <div class="panel-heading"><a th:href="@{#}">💚</a> (00) &nbsp;
               <a th:href="@{mapline(actid=${act.Id})}">🔍<b th:text="상세보기"></b></a>
+              
               </div>
               </div>
             </div>
@@ -137,27 +132,30 @@
 
   <!-- Container (Portfolio Section) -->
   <div id="campaign" class="container-fluid text-center bg-grey">
-    <h2>플로깅 캠페인 안내</h2><br>
+    <h2>플로깅 캠페인</h2><br>
     <div class="row text-center slideanim">
-      <div class="campaign_content" id="campaignimg">
+      
+      <div class="campaign_content" >
         <div class="thumbnails">
-          <img src="images/ansan.png" alt="Ansan">
-          <p><strong>Ansan</strong></p>
-          <p>Yes, we built Paris</p>
+          <img src="images/adong.png" alt="adong" onclick="location.href='http://www.apparelnews.co.kr/news/news_view/?idx=198296';">
+          <p><strong>안동도시공사</strong></p>
+          <p>Yes, San Fran is ours</p>
         </div>
       </div>
+
       <div class="campaign_content">
         <div class="thumbnails">
           <img src="images/jejooo.jfif" alt="Jejooo">
-          <p><strong>Jeju</strong></p>
+          <p><strong>제주시</strong></p>
           <p>We built New York</p>
         </div>
       </div>
-      <div class="campaign_content">
+    
+      <div class="campaign_content" id="campaignimg">
         <div class="thumbnails">
-          <img src="images/adong.png" alt="adong">
-          <p><strong>adong</strong></p>
-          <p>Yes, San Fran is ours</p>
+          <img src="images/campaign3.jpg" alt="Ansan">
+          <p><strong>브라더인터내셔널코리아</strong></p>
+          <p>브라더, 환경의 달 기념 '플로깅 챌린지' 진행</p>
         </div>
       </div>
     </div>

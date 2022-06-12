@@ -1,11 +1,23 @@
 <!DOCTYPE html>
 <html lang="ko">
+<head>
+    <title>Bootstrap Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>    
 
 <div th:replace="common/head"></div>
 
 <style>
     #abcd {
         border: 3px solid;
+    }
+
+    .table {
+        max-width: 80%;
     }
 </style>
 
@@ -14,16 +26,16 @@
 
     <h1 style="text-align: center">관리자 페이지</h1>
     <hr>
-    <div style="display: flex; justify-content: center;">
-        <div style="width: 70%; display: flex; justify-content: space-around;">
-            <button id="aaa">안녕 난 <b>[유저]</b> 전체를 부르는 버튼이야</button>
-            <button id="bbb">안녕 난 <b>[플로깅활동]</b> 전체를 부르는 버튼이야</button>
-            <button id="ccc">안녕 난 <b>[댓글]</b> 전체를 부르는 버튼이야</button>
+    <div>
+        <div  class="btn-group" style="width: 100%; display: flex; justify-content: space-evenly;">
+            <button type="button" class="btn btn-lg" id="aaa">사용자 목록</button>
+            <button type="button" class="btn btn-lg" id="bbb">플로깅활동 목록</button>
+            <button type="button" class="btn btn-lg" id="ccc">댓글 목록</button>
         </div>
     </div>
-    <br><br>
+    <br><br><br>
     <div style="display: flex; justify-content: center;">
-        <div id="v"></div>
+        <table class="table" id="v"></table>
         <!-- <div id="vv"></div> -->
     </div>
     <script src="http://unpkg.com/axios/dist/axios.min.js"></script>
@@ -54,7 +66,7 @@
                     usercode += `<tr>`
                     usercode += `<td>${email}</td>`;
                     usercode += `<td>${nickname}</td>`;
-                    usercode += `<td><a href="#"><img src="http://localhost/images/ecology.png" width=20px;></a></td>`;
+                    usercode += `<td><a href="#"><button type="button" class="btn btn-danger">삭제</button></a></td>`;
                     usercode += `</tr>`;
                 }
                 usercode += "</table>"
@@ -92,7 +104,8 @@
                     activitycode += `<td>${actDistance}</td>`;
                     activitycode += `<td>${actTime}</td>`;
                     activitycode += `<td>${actMemo}</td>`;
-                    activitycode += `<td>${visibility}</td>`;
+                    activitycode += `<td th:if="${act.visibility == 0}">비공개</td>
+                                     <td th:unless="${act.visibility == 0}">공개중</td>`;
                     activitycode += `<td><a href="#"><button type="button" class="btn btn-danger">삭제</button></a></td>`;
                     activitycode += `</tr>`;
                 }
