@@ -31,4 +31,6 @@ public interface ActivityService {
 
     void activityUpdate(HttpServletRequest req, HttpSession session, List<MultipartFile> photos);
 
+    void actLike(HttpSession session, HttpServletRequest req);
+
 }
