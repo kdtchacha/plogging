@@ -213,11 +213,11 @@ footer .glyphicon {
   display: inline-block;
   margin: 5%;
 }
-/*
+
 .box {
   display: flex;
-   justify-content: left; 
-} */
+  justify-content: flex-start; 
+}
 
 .bodywrap {
   display: flex;
