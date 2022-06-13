@@ -277,8 +277,7 @@
     <br>
 
 
-
-
+    
     <div id="picture" class="container-fluid text-center bg-grey">
         <h2>플로깅 사진</h2><br>
         <div class="row text-center slideanim">
@@ -304,10 +303,13 @@
             </div>
         </div>
         <p th:text="|플로깅 메모 : ${act.actMemo}|"></p>
+        <div th:if="${session.user.nickname} == ${act.user.nickname}" class="update" style="display: flex; justify-content: center;">
+            <a th:href="@{/activityupdate(actid=${act.id})}"><button th:text="활동기록수정"></button></a>
+        </div>
     </div>
 
     <hr>
-   
+
     <div>
         <h5 class="border-bottom my-3 py-2" th:text="${#lists.size(act.answers)} + '개의 답변이 있습니다.'"></h5>
         <th:block th:each="answer : ${act.answers}">
@@ -399,7 +401,6 @@
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 </div>
             </div>
-
         </div>
     </div>
 

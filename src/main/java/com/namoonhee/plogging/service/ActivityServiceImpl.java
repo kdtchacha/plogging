@@ -166,4 +166,75 @@ public class ActivityServiceImpl implements ActivityService {
     return actid;
   }
 
+  @Override
+  public Optional<Activity> actUpdateForm(Long actid) {
+
+    Optional<Activity> act = activityRepository.findById(actid);
+
+    return act;
+  }
+
+  @Override
+  public void activityUpdate(HttpServletRequest req, HttpSession session, List<MultipartFile> photos) {
+    String acttime = req.getParameter("time");
+    String dist = req.getParameter("dist");
+    dist += "m";
+    String actname = req.getParameter("actname");
+    String actmemo = req.getParameter("actmemo");
+    String latlng = req.getParameter("latlng");
+    Long actid = Long.decode(req.getParameter("actid"));
+
+    Activity act = activityRepository.findById(actid).get();
+
+    act.setActTime(acttime);
+    act.setActDistance(dist);
+    act.setActName(actname);
+    act.setActMemo(actmemo);
+    act.setLatlng(latlng);
+
+    activityRepository.save(act);
+    
+    // 에러나는 코드
+    // actFileRepository.deleteByActivity(act);
+
+    List<ActFile> files = actFileRepository.findByActivity(act);
+
+    for (ActFile file : files) {
+      actFileRepository.deleteById(file.getAfId());
+    }
+
+    for (MultipartFile mFile : photos) {
+      String oName = mFile.getOriginalFilename();
+      if (oName == null || oName.equals("")) {
+        break;
+      }
+
+      /* 중복파일 검사 - 파일명 변경 */
+      File f = new File("c:/project/" + oName);
+      String sName = "";
+
+      if (f.isFile()) { // 파일이 존재하는가?
+        String fileName = oName.substring(0, oName.lastIndexOf("."));
+        String fileExt = oName.substring(oName.lastIndexOf("."));
+        sName = fileName + System.currentTimeMillis() + fileExt;
+      } else {
+        sName = oName;
+      }
+
+      try {
+        ActFile af = new ActFile();
+        af.setOriginalFileName(oName);
+        af.setSaveFileName(sName);
+        af.setActivity(act);
+        actFileRepository.save(af);
+
+        mFile.transferTo(new File("c:/project/" + sName));
+      } catch (IllegalStateException e) {
+        e.printStackTrace();
+      } catch (IOException e) {
+        e.printStackTrace();
+      }
+    }
+  }
+
 }

@@ -1,13 +1,19 @@
 package com.namoonhee.plogging.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+
+import com.namoonhee.plogging.model.Activity;
+import com.namoonhee.plogging.model.User;
+import com.namoonhee.plogging.repository.ActivityRepository;
 import com.namoonhee.plogging.service.ActivityService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -19,6 +25,8 @@ public class ActivityController {
 
     @Autowired
     ActivityService activityService;
+    @Autowired
+    ActivityRepository activityRepository;
 
     @GetMapping("/activityform")
     public String actForm() {
@@ -28,7 +36,7 @@ public class ActivityController {
 
     @ResponseBody
     @PostMapping("/act")
-    public String actTimeTest(HttpServletRequest req, HttpSession session, List<MultipartFile> photos) {
+    public String actCreate(HttpServletRequest req, HttpSession session, List<MultipartFile> photos) {
         activityService.activityCreate(req, session, photos);
 
         return "ok";
@@ -45,6 +53,33 @@ public class ActivityController {
 
     // return "slide";
     // }
+
+    @GetMapping("/activityupdate")
+    public String actUpdateForm(Long actid, Model model) {
+
+        Optional<Activity> act = activityService.actUpdateForm(actid);
+        model.addAttribute("act", act.get());
+
+        return "activityupdateform";
+    }
+
+    @ResponseBody
+    @PostMapping("/actupdate")
+    public String actUpdate(HttpServletRequest req, HttpSession session, List<MultipartFile> photos) {
+        Long actid = Long.decode(req.getParameter("actid"));
+        Activity act = activityRepository.findById(actid).get();
+        User suser = (User) session.getAttribute("user");
+
+        String res = "";        
+        if (act.getUser().getId() == suser.getId()) {
+            activityService.activityUpdate(req, session, photos);
+            res = "ok";
+        }else{
+            res = "fail";
+        }
+
+        return res;
+    }
 
     @GetMapping(value = "/visibility")
     public String visibility(Long id, HttpSession session) {
