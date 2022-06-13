@@ -29,7 +29,6 @@ public class Activity {
     String actName;
     String actMemo;
 
-    
     Date createDate;
     int visibility;
 
@@ -44,10 +43,12 @@ public class Activity {
     @JsonIgnore
     List<ActFile> actFiles = new ArrayList<>();
 
-
     @OneToMany(mappedBy = "activity", cascade = CascadeType.REMOVE)
     @JsonIgnore
     List<ActAnswer> answers = new ArrayList<>();
 
+    @OneToMany(mappedBy = "activity", cascade = CascadeType.REMOVE)
+    @JsonIgnore
+    List<ActLike> actLikes = new ArrayList<>();
 
 }

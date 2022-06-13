@@ -110,10 +110,12 @@ public class ActivityController {
         return "redirect:/mapline?actid=" + actid;
     }
 
-    // @PostMapping(value="/like")
-    // public SomeData getMethodName(Long activityId, Long userId) {
-    //     return new SomeData();
-    // }
+    @ResponseBody
+    @PostMapping(value = "actlike")
+    public String actLike(HttpSession session, HttpServletRequest req){
+        activityService.actLike(session, req);
     
+        return "ok";
+    }
 
 }

@@ -306,10 +306,11 @@
         <div th:if="${session.user != null}">
             <div th:if="${session.user.nickname} == ${act.user.nickname}" class="update"
                 style="display: flex; justify-content: center;">
-                <a th:href="@{/activityupdate(actid=${act.id})}"><button th:text="활동기록수정"></button></a>&nbsp;&nbsp;&nbsp;&nbsp;
-                <input type="button" value="💚" onclick="goodcheck()"/>
+                <a th:href="@{/activityupdate(actid=${act.id})}"><button
+                        th:text="활동기록수정"></button></a>&nbsp;&nbsp;&nbsp;&nbsp;
             </div>
         </div>
+        <input id="like1" type="button" th:value="|💚 (${#lists.size(act.actLikes)})|" />
     </div>
 
     <hr>
@@ -407,9 +408,6 @@
             </div>
         </div>
     </div>
-
-
-
 
     <script type="text/javascript"
         src="//dapi.kakao.com/v2/maps/sdk.js?appkey=2be20ca0a50df1e82e1ef6c4f832ca69"></script>
@@ -519,6 +517,34 @@
             });
 
     </script>
+
+
+    <script>
+        const likeHeart = document.getElementById("like1")
+        likeHeart.addEventListener("click", () => {
+
+            const actid = '[[${param.actid}]]';
+            const formData = new FormData();
+            formData.append('actid', actid);
+
+            const data = axios({
+                url: 'actlike',
+                method: 'post',
+                data: formData
+            })
+                .then(function (result) {
+                    alert("좋아요 ~")
+                    window.location.href = "/mapline?actid=[[${param.actid}]]"
+                })
+                .catch(function (error) {
+                    alert("활동 저장이 정상적으로 되지 않았습니다.")
+                    console.log(error.message);
+                });
+        });
+
+
+    </script>
+
 </body>
 
 </html>

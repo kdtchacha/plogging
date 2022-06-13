@@ -11,10 +11,12 @@ import javax.servlet.http.HttpSession;
 
 import com.namoonhee.plogging.model.ActAnswer;
 import com.namoonhee.plogging.model.ActFile;
+import com.namoonhee.plogging.model.ActLike;
 import com.namoonhee.plogging.model.Activity;
 import com.namoonhee.plogging.model.User;
 import com.namoonhee.plogging.repository.ActAnswerRepository;
 import com.namoonhee.plogging.repository.ActFileRepository;
+import com.namoonhee.plogging.repository.ActLikeRepository;
 import com.namoonhee.plogging.repository.ActivityRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +34,10 @@ public class ActivityServiceImpl implements ActivityService {
 
   @Autowired
   ActAnswerRepository actAnswerRepository;
+
+  @Autowired
+  ActLikeRepository actLikeRepository;
+
 
   @Override
   public void activityCreate(HttpServletRequest req, HttpSession session, List<MultipartFile> photos) {
@@ -193,7 +199,7 @@ public class ActivityServiceImpl implements ActivityService {
     act.setLatlng(latlng);
 
     activityRepository.save(act);
-    
+
     // 에러나는 코드
     // actFileRepository.deleteByActivity(act);
 
@@ -235,6 +241,23 @@ public class ActivityServiceImpl implements ActivityService {
         e.printStackTrace();
       }
     }
+  }
+
+  @Override
+  public void actLike(HttpSession session, HttpServletRequest req) {
+    Long actid = Long.decode(req.getParameter("actid"));
+
+    Activity dbact = activityRepository.findById(actid).get();
+
+    User suser = (User) session.getAttribute("user");
+
+    ActLike actLike = new ActLike();
+
+    actLike.setActivity(dbact);
+    actLike.setUser(suser);
+
+    actLikeRepository.save(actLike);
+
   }
 
 }
