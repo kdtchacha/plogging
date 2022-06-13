@@ -40,29 +40,28 @@
               </strong>
               <p>총 거리 : <span th:text="${act.actDistance}"></span></p>
               <p>총 시간 : <span th:text="${act.actTime}"></span></p>
-              <p style="overflow: hidden;
+              <!-- <p style="overflow: hidden;
                     text-overflow: ellipsis;
                     white-space: nowrap;
-                    width: 70%;">메모 : <span th:text="${act.actMemo}"></span></p> 
+                    width: 70%;">메모 : <span th:text="${act.actMemo}"></span></p>  -->
               </div>
             </div>
             <div class="box" style="width: 100%;">
               <div class="panel-heading">
-                <p><strong>💚 00개 _</strong></p>
+                <p><strong>💚 00개 </strong></p>&nbsp;&nbsp;&nbsp;&nbsp;
                 <p><a th:href="@{mapline(actid=${act.Id})}">
-                    <b>_ [상세보기] _</b>
-                  </a></p>
-                <p><strong th:if="${act.visibility == 0}"> <a th:href="@{/visibility(id=${act.id})}">_ [비공개🙈]
-                      _</a></strong></p>
-                <p><strong th:unless="${act.visibility == 0}"> <a th:href="@{/visibility(id=${act.id})}">_ [공개중🙉]
-                      _</a></strong></p>
-                <a href="#" data-toggle="modal" th:data-target="|#${act.id}|"><strong>_[삭제]</strong></a>
+                    <b>🔍상세보기 </b>
+                  </a></p>&nbsp;&nbsp;&nbsp;&nbsp;
+                <p><strong th:if="${act.visibility == 0}"> <a th:href="@{/visibility(id=${act.id})}"> 🙈비공개
+                      </a></strong></p>
+                <p><strong th:unless="${act.visibility == 0}"> <a th:href="@{/visibility(id=${act.id})}"> 🙉공개중
+                      </a></strong></p>
+                      &nbsp;&nbsp;&nbsp;&nbsp;<a href="#" data-toggle="modal" th:data-target="|#${act.id}|"><strong>🗑️</strong></a>
                 <!-- <a th:href="@{/delete_activity(id=${act.id})}"><strong>_ 삭제하기</strong></a></p> -->
               </div>
             </div>
-
-
           </div>
+          
           <div class="modal" th:id=${act.id} role="dialog">
             <div class="modal-dialog">
               <div class="modal-content">

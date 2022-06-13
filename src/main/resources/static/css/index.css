@@ -120,7 +120,6 @@ h4 {
   background-color: #fff !important;
   /* width: 60%; */
   display: flex;
-  justify-content: center;
   align-items: flex-start;
   padding: 10px;
   border-bottom: 1px solid transparent;
@@ -201,6 +200,7 @@ footer .glyphicon {
  flex-direction: row;
  flex-wrap: wrap;
  align-content: center;
+ align-items: center;
  justify-content: center;
 }
 
@@ -213,10 +213,11 @@ footer .glyphicon {
   display: inline-block;
   margin: 5%;
 }
-
+/*
 .box {
-  justify-content: center;
-}
+  display: flex;
+   justify-content: left; 
+} */
 
 .bodywrap {
   display: flex;

@@ -92,7 +92,10 @@
                 console.log(activitylist);
                 for (let key in activitylist) {
                     const def = activitylist[key];
-                    const createDate = def.createDate;
+                    var dt = new Date(def.createDate.substring(0, def.createDate.lastIndexOf("+")) + 'Z');
+                    console.log(dt.toLocaleString());
+                    console.log(dt.getFullYear(), dt.getMonth(), dt.getDate());
+                    const createDate = dt.getFullYear()+'년 '+(dt.getMonth()+1)+'월 '+dt.getDate()+'일'+dt.getHours()+' : '+dt.getMinutes();
                     const actName = def.actName;
                     const actDistance = def.actDistance;
                     const actTime = def.actTime;
@@ -104,8 +107,16 @@
                     activitycode += `<td>${actDistance}</td>`;
                     activitycode += `<td>${actTime}</td>`;
                     activitycode += `<td>${actMemo}</td>`;
-                    activitycode += `<td th:if="${act.visibility == 0}">비공개</td>
-                                     <td th:unless="${act.visibility == 0}">공개중</td>`;
+                    // activitycode += `<td>${visibility}</td>`;
+                    if(`${visibility}` == 0)  {
+                        activitycode += `<td>비공개</td>`
+                    }
+                    if(`${visibility}` == 1) {
+                        activitycode += `<td>공개중</td>`
+                    }
+
+                    // activitycode += `<td if="${visibility == 0}">비공개</td>
+                    //                  <td else="${visibility == 1}">공개중</td>`;
                     activitycode += `<td><a href="#"><button type="button" class="btn btn-danger">삭제</button></a></td>`;
                     activitycode += `</tr>`;
                 }

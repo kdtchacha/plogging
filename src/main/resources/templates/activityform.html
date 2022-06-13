@@ -8,6 +8,7 @@
     <!-- 화면 캡쳐 CDN -->
     <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
     <link rel="shortcut icon" href="http://localhost/images/ecology.png">
+    <link rel="stylesheet" type="text/css" href="/css/index.css">
 </head>
 
 <!-- 지도 스타일 -->
@@ -37,6 +38,8 @@
 </style>
 
 <body>
+
+     <head th:replace="common/head"></head>
     <br>
 
 
@@ -46,7 +49,7 @@
         <div style="display: flex; flex-direction: column;">
             <p>사용 설명서 : 지도 위에 좌클릭으로 경로를 남길 수 있습니다. </p>
             <p>좌클릭을 반복하여 경로를 이어갈 수 있고, 우클릭으로 경로표시를 종료합니다</p>
-            <p style="font-weight: bold; color: red;">경로를 표시중 잘못 클릭하신 경우 반드시 새로고침을 해주세요!</p>
+            <p style="font-weight: bold; color: red;">경로를 표시중 잘못 클릭하신 경우 새로고침을 해주세요!</p>
         </div>
     </div>
     <br>

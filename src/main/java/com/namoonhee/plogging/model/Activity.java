@@ -28,6 +28,8 @@ public class Activity {
     String actTime;
     String actName;
     String actMemo;
+
+    
     Date createDate;
     int visibility;
 

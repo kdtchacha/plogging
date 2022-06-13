@@ -26,7 +26,7 @@
   <div id="about" class="container-fluid">
     <div class="row">
       <div class="col-sm-8">
-        <h2>플로깅(Plogging)이란?</h2><br>
+        <h2>플로깅(Plogging)이란?</h2>
         <h4>‘이삭을 줍는다’는 뜻인 스웨덴어 ‘plocka upp’과 영어 ‘jogging(조깅)’의 합성어로 2016년, 환경보호를 위해 스웨덴에서 처음 시작된 환경보호운동입니다.
           플로깅은 조깅하면서 쓰레기를 줍는 행동으로, 조깅이라는 대중적 운동(exercise)에 환경보호 운동(movement)이 더해진 개인이 자발적으로 실천할 수 있는 환경보호운동을 뜻합니다.
 
@@ -34,19 +34,20 @@
           <!-- <br><button class="btn btn-default btn-lg">Get in Touch</button> -->
       </div>
       <div class="col-sm-4">
-        <span class="glyphicon glyphicon-globe logo slideanim"></span>
-        <!-- <img src="images/plogging.png"> -->
-      </div>
+         <img src="images/plogging2.png" width="250px;">
+      <!--  <span class="glyphicon glyphicon-globe logo slideanim"></span> -->
+      </div> 
     </div>
   </div>
 
   <div class="container-fluid bg-grey">
     <div class="row">
-      <div class="col-sm-4">
+      <img src="images/ecology.png" style="width: 230px; height: 230px; margin-right: 0px;   margin-bottom: 40px;" >
+      <!-- <div class="col-sm-4">
         <span class="glyphicon glyphicon-globe logo slideanim"></span>
-      </div>
+      </div> -->
       <div class="col-sm-8">
-        <h2>OUR SERVICE IS</h2><br>
+        <h2>플로깅 서비스란?</h2>
         <h4><strong></strong>기록과 공유, 소통에 기반을 둔 'SNS 기능'과 '러닝어플의 기능'을 결합한 서비스입니다. 자신의 운동내용을 지도(현재 위치, 경로 표시)와
           사진, 기록(거리, 시간)으로 저장할 수 있게 하고, 이를 공유할 수 있는 게시판과 댓글 기능을 활용하여 개인 단위의 자발적인 환경보호활동을 장려합니다.</h4><br>
         <p><strong></strong> </p>
@@ -95,15 +96,15 @@
     <br><br>
     <div class="row text-center slideanim slide">
       <div class="col-sm-4" th:each="act : ${publist}" style="width: 420px; height: auto;">
-        <div class="thumbnail" style="height: auto;">
+        <div class="thumbnail" style="height: auto;"> <a th:href="@{mapline(actid=${act.Id})}">
           <img th:src="@{/nawarapic(id=${act.id})}" style="width: auto;" onerror="this.src='/images/runday2.jpg'"
-            alt="run2">
-          <div class="bodywrap">
-            <div class="panel-body">
-              <p th:text="${#dates.format(act.createDate, 'yyyy년 MM월 dd일 HH:mm')}"></p>
-              <strong>
-                <p th:text="${'[ '+act.actName+' ]'}"></p>
-              </strong>
+            alt="run2"></a>
+            <div class="bodywrap">
+              <div class="panel-body">
+                <p th:text="${#dates.format(act.createDate, 'yyyy년 MM월 dd일 HH:mm')}"></p>
+                <strong>
+                  <p th:text="${'[ '+act.actName+' ]'}"></p>
+                </strong>
               <p>총 거리 : <span th:text="${act.actDistance}"></span></p>
               <p>총 시간 : <span th:text="${act.actTime}"></span></p>
               <!-- <p style="overflow: hidden;
@@ -116,6 +117,7 @@
               <div class="box">
                 <div class="panel-heading"><a th:href="@{#}">💚</a> (00) &nbsp;
                   <a th:href="@{mapline(actid=${act.Id})}">🔍<b th:text="상세보기"></b></a>
+                  
                 </div>
               </div>
             </div>
@@ -132,38 +134,38 @@
 
 
   <!-- Container (Portfolio Section) -->
-  <div id="campaign" class="container-fluid text-center bg-grey">
+  <div id="campaign" class="container-fluid text-center">
     <h2>플로깅 캠페인</h2><br>
     <div class="row text-center slideanim">
       
-      <div class="campaign_content" >
+      <div class="campaign_content"><a href="https://www.ajunews.com/view/20220524181919173">
         <div class="thumbnails">
-          <img src="images/adong.png" alt="adong" onclick="location.href='http://www.apparelnews.co.kr/news/news_view/?idx=198296';">
-          <p><strong>안동도시공사</strong></p>
-          <p>Yes, San Fran is ours</p>
+          <img src="images/ansan.png">
+          <p><strong>안산도시공사</strong></p>
+          <p>결식아동 돕기 착한발걸음 플로깅 참가자 뽑아</p>
         </div>
-      </div>
+      </div></a>
 
-      <div class="campaign_content">
+      <div class="campaign_content"><a href="https://www.khan.co.kr/national/health-welfare/article/202205191649001">
         <div class="thumbnails">
-          <img src="images/jejooo.jfif" alt="Jejooo">
-          <p><strong>제주시</strong></p>
-          <p>We built New York</p>
+          <img src="images/jeju.jpg">
+          <p><strong>광동제약 X 제주올레</strong></p>
+          <p>제주 환경정화 프로젝트 참가자 모집</p>
         </div>
-      </div>
+      </div></a>
     
-      <div class="campaign_content" id="campaignimg">
+      <div class="campaign_content" id="campaignimg"><a href="http://www.apparelnews.co.kr/news/news_view/?idx=198296">
         <div class="thumbnails">
           <img src="images/campaign3.jpg" alt="Ansan">
           <p><strong>브라더인터내셔널코리아</strong></p>
-          <p>브라더, 환경의 달 기념 '플로깅 챌린지' 진행</p>
+          <p>환경의 달 기념 '플로깅 챌린지' 진행</p>
         </div>
-      </div>
+      </div></a>
     </div>
     <br><br>
 
   </div>
-  <div class="news">
+  <div class="news" style="padding-top: 50px;">
     <div style="display: flex; justify-content: center;">
       <h2>PLOGGING NEWS</h2>
     </div>
@@ -232,16 +234,16 @@
         <form action="/contact" method="post">
           <div class="row">
             <div class="col-sm-6 form-group">
-              <input class="form-control" id="name" name="subject" placeholder="Name" type="text" required>
+              <input class="form-control" id="name" name="subject" placeholder="이름" type="text" required>
             </div>
             <div class="col-sm-6 form-group">
-              <input class="form-control" id="email" name="email" placeholder="Email" type="email" required>
+              <input class="form-control" id="email" name="email" placeholder="보내는 사람 이메일 주소" type="email" required>
             </div>
           </div>
-          <textarea class="form-control" id="comments" name="content" placeholder="Comment" rows="5"></textarea><br>
+          <textarea class="form-control" id="comments" name="content" placeholder="내용" rows="5"></textarea><br>
           <div class="row">
             <div class="col-sm-12 form-group">
-              <button class="btn btn-default pull-right" type="submit" id="emailsend">Send</button>
+              <button class="btn btn-default pull-right" type="submit" id="emailsend">보내기</button>
             </div>
           </div>
         </form>
