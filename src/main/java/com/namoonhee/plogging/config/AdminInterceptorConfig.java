@@ -9,7 +9,7 @@ import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
-public class InterceptorConfig implements WebMvcConfigurer{
+public class AdminInterceptorConfig implements WebMvcConfigurer{
 
     @Autowired
     private Interceptor interceptor;
@@ -21,8 +21,8 @@ public class InterceptorConfig implements WebMvcConfigurer{
     public void addInterceptors(InterceptorRegistry registry) {
         
         registry
-        .addInterceptor(interceptor)
-        .addPathPatterns("/mypage_new", "/activityform", "/adminmain");
+        .addInterceptor(adminInterceptor)
+        .addPathPatterns("/adminmain");
 
 
         WebMvcConfigurer.super.addInterceptors(registry);

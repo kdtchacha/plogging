@@ -96,9 +96,9 @@
     <br><br>
     <div class="row text-center slideanim slide">
       <div class="col-sm-4" th:each="act : ${publist}" style="width: 420px; height: auto;">
-        <div class="thumbnail" style="height: auto;"> <a th:href="@{mapline(actid=${act.Id})}">
+        <div class="thumbnail"> 
           <img th:src="@{/nawarapic(id=${act.id})}" style="width: auto;" onerror="this.src='/images/runday2.jpg'"
-            alt="run2"></a>
+            alt="run2">
             <div class="bodywrap">
               <div class="panel-body">
                 <p th:text="${#dates.format(act.createDate, 'yyyy년 MM월 dd일 HH:mm')}"></p>
