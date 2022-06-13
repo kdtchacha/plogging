@@ -306,7 +306,8 @@
         <div th:if="${session.user != null}">
             <div th:if="${session.user.nickname} == ${act.user.nickname}" class="update"
                 style="display: flex; justify-content: center;">
-                <a th:href="@{/activityupdate(actid=${act.id})}"><button th:text="활동기록수정"></button></a>
+                <a th:href="@{/activityupdate(actid=${act.id})}"><button th:text="활동기록수정"></button></a>&nbsp;&nbsp;&nbsp;&nbsp;
+                <input type="button" value="💚" onclick="goodcheck()"/>
             </div>
         </div>
     </div>
