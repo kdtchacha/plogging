@@ -68,34 +68,32 @@ public class AdminController {
     }
 
     @GetMapping("/admin_delete_activity")
-    public String adminDeleteActivityForm() {
-        return "admin_delete_activity";
+    public String adminDeleteActivity(Long id, HttpSession session) {
+
+        User suser= (User) session.getAttribute("user");
+        
+        if(suser.getNickname().equals("admin")) {
+
+            activityRepository.deleteById(id);
+        }
+        return "redirect:/adminmain";
     }
 
-    @PostMapping("/admin_delete_activity")
-    public String adminDeleteActivity(@RequestParam Long id, HttpSession session) {
-        
-        User suser = (User) session.getAttribute("user");
+    @GetMapping("/admin_delete_answer")
+    public String adminDeleteAnswer(Long id, HttpSession session) {
 
-        if (suser.getNickname().equals("admin")) {
-            activityService.delete_activity(id);
-        }
+        User suser= (User) session.getAttribute("user");
 
-
-
-        Optional<User> opt = userService.signin(user);
-        String redir = "";
-        if (opt.get().getNickname().equals("admin")) {
-            userService.deleteAccount(user);
-            httpSession.invalidate();
-            redir = "redirect:/";
-        } else {
-            redir = "redirect:/mypage_new";
+        if(suser.getNickname().equals("admin")) {
+            
+            actAnswerRepository.deleteById(id);
         }
 
 
         return "redirect:/adminmain";
     }
+    
+
     
 
 }

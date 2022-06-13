@@ -56,7 +56,7 @@
                 const userdata = res;
 
                 let usercode = "<table id='abcd' border=1px;>";
-                usercode += "<tr><th>이메일</th><th>닉네임</th><th>강제 탈퇴</th></tr>"
+                usercode += "<tr><th>이메일</th><th>닉네임</th></tr>"
                 const userlist = userdata.data;
                 console.log(userlist);
                 for (let key in userlist) {
@@ -69,7 +69,7 @@
                     usercode += `<tr>`
                     usercode += `<td>${email}</td>`;
                     usercode += `<td>${nickname}</td>`;
-                    usercode += `<td><a href="/delete_activity(id=${id})"><button type="button" class="btn btn-danger">탈퇴</button></a></td>`;
+                    // usercode += `<td><a href="/delete_activity(id=${id})"><button type="button" class="btn btn-danger">탈퇴</button></a></td>`;
                     // usercode += `<td><a href="/delete_activity(id=${id})">탈퇴</a></td>`;
                     usercode += `</tr>`;
                 }
@@ -91,7 +91,7 @@
                 const activitydata = res;
 
                 let activitycode = "<table id='defg' border=5px;>";
-                    activitycode += "<tr><th>작성날짜</th><th>플로깅이름</th><th>플로깅거리</th><th>플로깅시간</th><th>플로깅메모</th><th>공개여부</th><th>삭제</th></tr>"
+                    activitycode += "<tr><th>작성날짜</th><th>플로깅이름</th><th>플로깅거리</th><th>플로깅시간</th><th>플로깅메모</th><th>공개여부</th><th>삭제하기</th></tr>"
                 const activitylist = activitydata.data;
                 console.log(activitylist);
                 for (let key in activitylist) {
@@ -123,15 +123,13 @@
                     // activitycode += `<td if="${visibility == 0}">비공개</td>
                     //                  <td else="${visibility == 1}">공개중</td>`;
                     // activitycode += `<td><button type="button" class="btn btn-danger" onclick="location.href='/admin_delete_activity';">삭제</button></td>`;
-                    activitycode += `<td><a href="/admin_delete_activity?id=${actid}">삭제</a></td>`;
+                    activitycode += `<td><a href="/admin_delete_activity?id=${actid}"><button type="button" class="btn btn-danger">삭제</button></a></td>`;
                     activitycode += `</tr>`;
                 }
                 activitycode += "</table>"
                 document.getElementById("v").innerHTML = activitycode;
             })
         });
-
-
     </script>
 
 
@@ -151,7 +149,7 @@
                 const answerdata = res;
 
                 let answercode = "<table id='ghij' border=5px;>";
-                    answercode += "<tr><th>작성날짜</th><th>댓글내용</th><th>삭제</th></tr>"
+                    answercode += "<tr><th>작성날짜</th><th>댓글내용</th><th>삭제하기</th></tr>"
                 const answerlist = answerdata.data;
                 console.log(answerlist);
                 for (let key in answerlist) {
@@ -159,10 +157,11 @@
                     var dtt = new Date(ghi.createDate);
                     const createDate = dtt.getFullYear() + '년 ' + dtt.getMonth() + '월 ' + dtt.getDate() + '일 ' + dtt.getHours() + ':'+ dtt.getMinutes();
                     const content = ghi.content;
+                    const actid = ghi.id;
                     answercode += `<tr>`
                     answercode += `<td>${createDate}</td>`;
                     answercode += `<td>${content}</td>`;
-                    answercode += `<td><a href="#"><button type="button" class="btn btn-danger">삭제</button></a></td>`;
+                    answercode += `<td><a href="/admin_delete_answer?id=${actid}"><button type="button" class="btn btn-danger">삭제</button></a></td>`;
                     answercode += `</tr>`;
                 }
                 answercode += "</table>"
