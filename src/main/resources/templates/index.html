@@ -55,40 +55,48 @@
     </div>
   </div>
 
-  <!-- Container (Services Section) -->
-  <div id="services" class="container-fluid text-center">
-    <h2>제공하는 서비스</h2>
-    <br>
-    <div class="row slideanim">
-      <div class="col-sm-4">
-        <img src="images/map.png">
-        <h4>경로 기록</h4>
-      </div>
-      <div class="col-sm-4">
-        <img src="images/heart.png">
-        <h4>SNS</h4>
-      </div>
-      <div class="col-sm-4">
-        <img src="images/news.png">
-        <h4>플로깅 뉴스</h4>
-      </div>
+
+
+  <div id="news" class="container-fluid text-center bg-grey" style="padding-top: 50px;">
+    <div style="display: flex; justify-content: center;">
+      <h2>PLOGGING NEWS</h2>
     </div>
-    <br><br>
-    <div class="row slideanim">
-      <div class="col-sm-4">
-        <img src="images/leaf.png">
-        <h4>환경보호 캠페인</h4>
+    <!-- <h5>( 출처 : NAVER NEWS )</h5> -->
+    <div id="myCarousel" class="carousel slide text-center" data-ride="carousel">
+      <!-- Indicators -->
+      <ol class="carousel-indicators">
+        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+        <li data-target="#myCarousel" data-slide-to="1"></li>
+        <li data-target="#myCarousel" data-slide-to="2"></li>
+        <li data-target="#myCarousel" data-slide-to="3"></li>
+        <li data-target="#myCarousel" data-slide-to="4"></li>
+        <li data-target="#myCarousel" data-slide-to="5"></li>
+        <li data-target="#myCarousel" data-slide-to="6"></li>
+      </ol>
+
+      <!-- Wrapper for slides -->
+      <div class="carousel-inner" role="listbox" id="nvnewslgh">
+        <div class="item active">
+          <h4>플로깅으로 검색된 최신 뉴스를 전달해드립니다.<br><span>
+              <h6>( 출처 : NAVER NEWS )</h6>
+            </span></h4>
+        </div>
+       
       </div>
-      <div class="col-sm-4">
-        <img src="images/stopwatch.png">
-        <h4>스탑워치</h4>
-      </div>
-      <div class="col-sm-4">
-        <img src="images/pic2.png">
-        <h4 style="color:#303030;">사진기록</h4>
-      </div>
+
+      <!-- Left and right controls -->
+      <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+      </a>
     </div>
   </div>
+
+  
 
   <div id="feed" class="container-fluid text-center bg-grey">
 
@@ -129,6 +137,12 @@
 
 
 
+  
+
+  <br><br>
+
+
+
 
 
 
@@ -162,60 +176,51 @@
         </div>
       </div></a>
     </div>
+  </div>
+  <br><br><hr>
+
+
+  <!-- Container (Services Section) -->
+  <div id="services" class="container-fluid text-center">
+    <h2>제공하는 서비스</h2>
+    <br>
+    <div class="row slideanim">
+      <div class="col-sm-4">
+        <img src="images/map.png">
+        <h4>경로 기록</h4>
+      </div>
+      <div class="col-sm-4">
+        <img src="images/heart.png">
+        <h4>SNS</h4>
+      </div>
+      <div class="col-sm-4">
+        <img src="images/news.png">
+        <h4>플로깅 뉴스</h4>
+      </div>
+    </div>
     <br><br>
-
-  </div>
-  <div class="news" style="padding-top: 50px;">
-    <div style="display: flex; justify-content: center;">
-      <h2>PLOGGING NEWS</h2>
-    </div>
-    <!-- <h5>( 출처 : NAVER NEWS )</h5> -->
-    <div id="myCarousel" class="carousel slide text-center" data-ride="carousel">
-      <!-- Indicators -->
-      <ol class="carousel-indicators">
-        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-        <li data-target="#myCarousel" data-slide-to="1"></li>
-        <li data-target="#myCarousel" data-slide-to="2"></li>
-        <li data-target="#myCarousel" data-slide-to="3"></li>
-        <li data-target="#myCarousel" data-slide-to="4"></li>
-        <li data-target="#myCarousel" data-slide-to="5"></li>
-        <li data-target="#myCarousel" data-slide-to="6"></li>
-      </ol>
-
-      <!-- Wrapper for slides -->
-      <div class="carousel-inner" role="listbox" id="nvnewslgh">
-        <div class="item active">
-          <h4>플로깅으로 검색된 최신 뉴스를 전달해드립니다.<br><span>
-              <h6>( 출처 : NAVER NEWS )</h6>
-            </span></h4>
-        </div>
-        <!-- <div class="item">
-        <h4>"One word... WOW!!"<br><span>John Doe, Salesman, Rep Inc</span></h4>
+    <div class="row slideanim">
+      <div class="col-sm-4">
+        <img src="images/leaf.png">
+        <h4>환경보호 캠페인</h4>
       </div>
-      <div class="item">
-        <h4>"Could I... BE any more happy with this company?"<br><span>Chandler Bing, Actor, FriendsAlot</span></h4>
+      <div class="col-sm-4">
+        <img src="images/stopwatch.png">
+        <h4>스탑워치</h4>
       </div>
-      <div class="item">
-        <h4>가희님이 프론트를 너무 잘해주셨어요<br><span>Chandler Bing, Actor, FriendsAlot</span></h4>
-      </div> -->
+      <div class="col-sm-4">
+        <img src="images/pic2.png">
+        <h4 style="color:#303030;">사진기록</h4>
       </div>
-
-      <!-- Left and right controls -->
-      <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
-        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-        <span class="sr-only">Previous</span>
-      </a>
-      <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
-        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-        <span class="sr-only">Next</span>
-      </a>
     </div>
   </div>
 
-  <br><br>
 
 
-  </div>
+  
+
+
+  
 
 
 

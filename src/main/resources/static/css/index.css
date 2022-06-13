@@ -204,7 +204,7 @@ footer .glyphicon {
  justify-content: center;
 }
 
-.news {
+#news {
   background: white;
   padding: 10px;
 }
@@ -230,10 +230,7 @@ footer .glyphicon {
   align-items: flex-start;
 }
 
-/* #campaignimg{
-  display: flex;
-  justify-content: space-around;
-} */
+
 
 @keyframes slide {
   0% {
