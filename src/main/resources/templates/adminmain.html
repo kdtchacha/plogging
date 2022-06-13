@@ -36,8 +36,11 @@
     <br><br><br>
     <div style="display: flex; justify-content: center;">
         <table class="table" id="v"></table>
+        
         <!-- <div id="vv"></div> -->
     </div>
+
+    
     <script src="http://unpkg.com/axios/dist/axios.min.js"></script>
 
     <script>
@@ -53,7 +56,7 @@
                 const userdata = res;
 
                 let usercode = "<table id='abcd' border=1px;>";
-                usercode += "<tr><th>이메일</th><th>닉네임</th><th>삭제</th></tr>"
+                usercode += "<tr><th>이메일</th><th>닉네임</th><th>강제 탈퇴</th></tr>"
                 const userlist = userdata.data;
                 console.log(userlist);
                 for (let key in userlist) {
@@ -66,7 +69,8 @@
                     usercode += `<tr>`
                     usercode += `<td>${email}</td>`;
                     usercode += `<td>${nickname}</td>`;
-                    usercode += `<td><a href="#"><button type="button" class="btn btn-danger">삭제</button></a></td>`;
+                    usercode += `<td><a href="/delete_activity(id=${id})"><button type="button" class="btn btn-danger">탈퇴</button></a></td>`;
+                    // usercode += `<td><a href="/delete_activity(id=${id})">탈퇴</a></td>`;
                     usercode += `</tr>`;
                 }
                 usercode += "</table>"
@@ -95,12 +99,13 @@
                     var dt = new Date(def.createDate.substring(0, def.createDate.lastIndexOf("+")) + 'Z');
                     console.log(dt.toLocaleString());
                     console.log(dt.getFullYear(), dt.getMonth(), dt.getDate());
-                    const createDate = dt.getFullYear()+'년 '+(dt.getMonth()+1)+'월 '+dt.getDate()+'일'+dt.getHours()+' : '+dt.getMinutes();
+                    const createDate = dt.getFullYear()+'년 '+(dt.getMonth()+1)+'월 '+dt.getDate()+'일  '+dt.getHours()+' : '+dt.getMinutes();
                     const actName = def.actName;
                     const actDistance = def.actDistance;
                     const actTime = def.actTime;
                     const actMemo = def.actMemo;
                     const visibility = def.visibility;
+                    const actid = def.id;
                     activitycode += `<tr>`
                     activitycode += `<td>${createDate}</td>`;
                     activitycode += `<td>${actName}</td>`;
@@ -117,14 +122,22 @@
 
                     // activitycode += `<td if="${visibility == 0}">비공개</td>
                     //                  <td else="${visibility == 1}">공개중</td>`;
-                    activitycode += `<td><a href="#"><button type="button" class="btn btn-danger">삭제</button></a></td>`;
+                    // activitycode += `<td><button type="button" class="btn btn-danger" onclick="location.href='/admin_delete_activity';">삭제</button></td>`;
+                    activitycode += `<td><a href="/admin_delete_activity?id=${actid}">삭제</a></td>`;
                     activitycode += `</tr>`;
                 }
                 activitycode += "</table>"
                 document.getElementById("v").innerHTML = activitycode;
             })
         });
+
+
     </script>
+
+
+
+
+
     <script>
         const answerBtn = document.getElementById(ccc);
         ccc.addEventListener("click", () => {
@@ -143,7 +156,8 @@
                 console.log(answerlist);
                 for (let key in answerlist) {
                     const ghi = answerlist[key];
-                    const createDate = ghi.createDate;
+                    var dtt = new Date(ghi.createDate);
+                    const createDate = dtt.getFullYear() + '년 ' + dtt.getMonth() + '월 ' + dtt.getDate() + '일 ' + dtt.getHours() + ':'+ dtt.getMinutes();
                     const content = ghi.content;
                     answercode += `<tr>`
                     answercode += `<td>${createDate}</td>`;

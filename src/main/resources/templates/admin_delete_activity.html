@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+
+원래 삭제페이지 <body>
+    <a href="/">메인화면으로</a>
+    <br>
+    <a href="/mypage_new">마이페이지</a>
+    <br><br>
+    <form action="/admin_delete_activity" method="post" >
+        <input type="hidden" name="id" th:value="${param.id}">
+        <br><br>
+        이 글을 삭제하시겠습니까?
+        <br><br>
+        <button type="submit" class="btn btn-danger">삭제하기</button>
+    </form>
+    <br><br>
+
+</body>
