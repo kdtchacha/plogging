@@ -38,7 +38,6 @@ public class ActivityServiceImpl implements ActivityService {
   @Autowired
   ActLikeRepository actLikeRepository;
 
-
   @Override
   public void activityCreate(HttpServletRequest req, HttpSession session, List<MultipartFile> photos) {
     String hour = req.getParameter("hour");
@@ -251,12 +250,16 @@ public class ActivityServiceImpl implements ActivityService {
 
     User suser = (User) session.getAttribute("user");
 
-    ActLike actLike = new ActLike();
+    Optional<ActLike> opt = actLikeRepository.findByActivityAndUser(dbact,suser);
 
-    actLike.setActivity(dbact);
-    actLike.setUser(suser);
-
-    actLikeRepository.save(actLike);
+    if(!opt.isPresent()){
+      ActLike actLike = new ActLike();
+  
+      actLike.setActivity(dbact);
+      actLike.setUser(suser);
+  
+      actLikeRepository.save(actLike);
+    }
 
   }
 
