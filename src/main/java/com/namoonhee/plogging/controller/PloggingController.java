@@ -46,7 +46,7 @@ public class PloggingController {
     @GetMapping("/")
     public String index(Model model) {
         Sort sort = Sort.by(Sort.Direction.DESC, "createDate");
-        Pageable p = PageRequest.of(0, 4, sort);
+        Pageable p = PageRequest.of(0, 8, sort);
         List<Activity> publist = activityRepository.findByVisibility(1, p);
         model.addAttribute("publist", publist);
 
