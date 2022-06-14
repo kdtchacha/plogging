@@ -38,6 +38,8 @@
             color: #303030;
             font-weight: 400;
             margin-bottom: 30px;
+            display: flex;
+            justify-content: center;
         }
 
         /* .container-fluid {
@@ -67,7 +69,7 @@
         }
 
         .thumbnail img {
-            /* width: 100%; */
+            width: 100%;
             max-height: 200px;
             margin-bottom: 10px;
         }
@@ -192,17 +194,13 @@
             visibility: visible;
         }
 
-        .memobox {
+        /* .memobox {
             display: flex;
             flex-direction: column;
             justify-content: space-around;
-        }
+        } */
 
-        .row {
-            display: flex;
-            justify-content: center;
-            border: green;
-        }
+       
 
 
         @keyframes slide {
@@ -280,7 +278,7 @@
         </div>
     </nav>
     <br>
-    <br><br>
+    <br><br><br>
 
 
 
@@ -295,9 +293,10 @@
 
 
     <div id="picture" >
-        <h2>플로깅 사진</h2><br>
+        <!-- <h2>플로깅 사진</h2> -->
+        <br>
 
-        <div class = "bottombox" style="display: flex; justify-content: space-evenly;">
+        <div class = "bottombox" style="display: flex; flex-direction: column;  justify-content: space-evenly;">
         <div class="row text-center slideanim" >
             <!-- <div style="width: 500px; height: 200px; display: flex; justify-content: center;"> -->
 
@@ -321,23 +320,24 @@
                         style="width:100%; padding: 10px; margin-left: 8px; margin-right: 8px;"></a>
             </div>
         </div>
-        <div class="memobox" >
+        <!-- <div class="memobox" > -->
         <!-- <div class = "memolike" style="display : flex; flex-direction: column; justify-content: space-evenly; align-items: center;" > -->
-        <p th:text="|플로깅 메모 : ${act.actMemo}|"></p> <br>
+        <h4 th:text="|${act.actMemo}|"></h4> <br>
         <div th:if="${session.user != null}">
             <div th:if="${session.user.nickname} == ${act.user.nickname}" class="update"
                 style="display: flex; justify-content: center;"> 
                 <div bottonbox style="display: flex;">
                 <a th:href="@{/activityupdate(actid=${act.id})}"><button th:text="활동기록수정" class="btn"></button></a>  &nbsp;&nbsp;&nbsp;&nbsp;
                 <input id="like1" type="button" class="btn" th:value="|💚 (${#lists.size(act.actLikes)})|" />
+                
             </div>
         </div>
         </div>
-        </div>
+        <!-- </div> -->
         </div>
         </div>
 
-    <hr>
+        <br><hr>
 
     <div>
         <h5 class="border-bottom my-3 py-2" th:text="${#lists.size(act.answers)} + '개의 답변이 있습니다.'"></h5>
