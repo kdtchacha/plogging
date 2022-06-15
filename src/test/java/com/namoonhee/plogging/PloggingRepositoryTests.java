@@ -28,21 +28,21 @@ class PloggingRepositoryTests {
 	@Autowired
 	UserRepository userRepository;
 
-	@Test
-	void activityRepositoryCreateTest() {
+	// @Test
+	// void activityRepositoryCreateTest() {
 
-		Activity act = new Activity();
-		act.setActDistance("1234m");
-		act.setActMemo("test_memo");
-		act.setActName("test_name");
-		act.setActTime("xx:xx:xx");
-		act.setCreateDate(new Date());
+	// 	Activity act = new Activity();
+	// 	act.setActDistance("1234m");
+	// 	act.setActMemo("test_memo");
+	// 	act.setActName("test_name");
+	// 	act.setActTime("xx:xx:xx");
+	// 	act.setCreateDate(new Date());
 
-		User user = new User();
-		user.setId(1L);
-		act.setUser(user);
+	// 	User user = new User();
+	// 	user.setId(1L);
+	// 	act.setUser(user);
 
-		activityRepository.save(act);
-	}
+	// 	activityRepository.save(act);
+	// }
 	
 }
