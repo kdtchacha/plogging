@@ -194,13 +194,28 @@
             visibility: visible;
         }
 
-        /* .memobox {
+        .bottombox {
+            display: flex; 
+            flex-direction: column;  
+            justify-content: space-evenly;
+            
+        }
+
+        .box {
             display: flex;
             flex-direction: column;
             justify-content: space-around;
-        } */
+            align-items: center;
+            width: 420px;
+            height: auto;
+            border: solid 3px gainsboro;
+        }
+        .memolike {
+            display: flex;
+            align-items: center;
+        }
 
-       
+
 
 
         @keyframes slide {
@@ -286,58 +301,71 @@
     <!-- <지도> -->
     <div style="display: flex; justify-content: center;">
         <!-- <div id="map" style="width:70%; height:500px; border-radius: 25px;"></div> -->
-        <div id="map" style="max-width: 1000px; width:90%; height:450px; border-radius: 5px; border: solid 3px gainsboro;"></div>
+        <div id="map"
+            style="max-width: 1000px; width:90%; height:450px; border-radius: 5px; border: solid 3px gainsboro;"></div>
     </div>
-    <br><br><hr><br>
+    <br><br>
+    <hr><br>
 
 
 
-    <div id="picture" >
+    <div id="picture">
         <!-- <h2>플로깅 사진</h2> -->
         <br>
 
-        <div class = "bottombox" style="display: flex; flex-direction: column;  justify-content: space-evenly;">
-        <div class="row text-center slideanim" >
-            <!-- <div style="width: 500px; height: 200px; display: flex; justify-content: center;"> -->
+        <div class="bottombox" style="display: flex; flex-direction: column;  justify-content: space-evenly;">
+            <div class="row text-center slideanim">
+                <!-- <div style="width: 500px; height: 200px; display: flex; justify-content: center;"> -->
 
-            <div class="thumbnail" style="display: flex inline-block;">
+                <div class="thumbnail" style="display: flex inline-block;">
 
-                <a class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal1"
-                    style="background-color: white; border: #16ad1b;"><img th:src="@{/nawarapic(id=${param.actid})}"
-                        style="width:100%; padding: 10px; margin-left: 8px; margin-right: 8px;"></a>
+                    <a class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal1"
+                        style="background-color: white; border: #16ad1b;"><img th:src="@{/nawarapic(id=${param.actid})}"
+                            style="width:100%; padding: 10px; margin-left: 8px; margin-right: 8px;"></a>
+                </div>
+
+
+                <div class="thumbnail">
+                    <a class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal2"
+                        style="background-color: white; border: #16ad1b ;"><img
+                            th:src="@{/nawarapic2(id=${param.actid})}"
+                            style="width:100%; padding: 10px; margin-left: 8px; margin-right: 8px;"></a>
+                </div>
+
+                <div class="thumbnail">
+                    <a class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal3"
+                        style="background-color: white; border: #16ad1b ;"><img
+                            th:src="@{/nawarapic3(id=${param.actid})}"
+                            style="width:100%; padding: 10px; margin-left: 8px; margin-right: 8px;"></a>
+                </div>
             </div>
-
-            
-            <div class="thumbnail">
-                <a class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal2"
-                    style="background-color: white; border: #16ad1b ;"><img th:src="@{/nawarapic2(id=${param.actid})}"
-                        style="width:100%; padding: 10px; margin-left: 8px; margin-right: 8px;"></a>
-            </div>
-
-            <div class="thumbnail">
-                <a class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal3"
-                    style="background-color: white; border: #16ad1b ;"><img th:src="@{/nawarapic3(id=${param.actid})}"
-                        style="width:100%; padding: 10px; margin-left: 8px; margin-right: 8px;"></a>
-            </div>
-        </div>
-        <!-- <div class="memobox" > -->
-        <!-- <div class = "memolike" style="display : flex; flex-direction: column; justify-content: space-evenly; align-items: center;" > -->
-        <h4 th:text="|${act.actMemo}|"></h4> <br>
-        <div th:if="${session.user != null}">
-            <div th:if="${session.user.nickname} == ${act.user.nickname}" class="update"
-                style="display: flex; justify-content: center;"> 
-                <div bottonbox style="display: flex;">
-                <a th:href="@{/activityupdate(actid=${act.id})}"><button th:text="활동기록수정" class="btn"></button></a>  &nbsp;&nbsp;&nbsp;&nbsp;
-                <input id="like1" type="button" class="btn" th:value="|💚 (${#lists.size(act.actLikes)})|" />
-                
+            <div class = "memolike" display = "flex; " style="justify-content: center;">
+            <div class="box" style="max-width: 90%;">
+                <h4 th:text="${#dates.format(act.createDate, 'yyyy년 MM월 dd일 HH:mm')}"></h4>
+                <strong>
+                    <h4 th:text="${'[ '+act.actName+' ]'}"></h4>
+                </strong>
+                <h4>[ 총 거리 ] &nbsp;<span th:text="${act.actDistance}"></span></h4>
+                <h4>[ 총 시간 ] &nbsp;<span th:text="${act.actTime}"></span></h4>
+                <h4 th:text="${act.actMemo}"></h4> <br>
+                <div th:if="${session.user != null}">
+                    <div th:if="${session.user.nickname} == ${act.user.nickname}" class="update"
+                        style="display: flex; justify-content: center;">
+                        <div bottonbox style="display: flex;">
+                            <a th:href="@{/activityupdate(actid=${act.id})}"><button th:text="활동기록수정"
+                                    class="btn"></button></a> &nbsp;&nbsp;&nbsp;&nbsp;
+                            <input id="like1" type="button" class="btn"
+                                th:value="|💚 (${#lists.size(act.actLikes)})|" />
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-        </div>
-        <!-- </div> -->
-        </div>
-        </div>
+    </div>
+    </div>
 
-        <br><hr>
+    <br>
+    <hr>
 
     <div>
         <h5 class="border-bottom my-3 py-2" th:text="${#lists.size(act.answers)} + '개의 답변이 있습니다.'"></h5>
